@@ -1,0 +1,26 @@
+<header>
+    <nav>
+        <div>
+            <a routerLink=""><span>petl</span>
+                <span>
+
+                    <svg-icon-sprite
+                    [src]="'/sprite.svg#icon-heart'"
+                    [width]="'23px'"
+                    ></svg-icon-sprite>
+                </span>
+                <span>ve</span></a>
+           
+        </div>
+        <ul>
+            <li><a routerLink="news">News</a></li>
+            <li><a routerLink="notices">Find pet</a></li>
+            <li><a routerLink="friends">Our friends</a></li>
+        </ul>
+        @if(isLoged){
+            <app-user-nav/>
+        }@else{
+            <app-auth-nav/>
+        }
+    </nav>
+</header>
