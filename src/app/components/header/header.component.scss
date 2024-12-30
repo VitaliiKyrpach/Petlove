@@ -1,0 +1,53 @@
+@import '../../../styles/variables';
+.header{
+    position: fixed;
+        top: 16px;
+        width: 100%;
+    .nav{
+        display: flex;
+        position: relative;
+
+        padding: 16px 64px;
+        justify-content: space-between;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        color: $color-primary-dark;
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1;
+        text-decoration: none;
+        position: relative;
+    }
+    .logo.home{
+        color: $color-light;
+    }
+    .heart{
+        color:$color-secondary;
+        position: relative;
+        top: 3px;
+    }
+    .heart.home{
+        color:$color-light;
+    }
+    .navLinkGrp{
+        display: flex;
+        gap: 10px;
+        position: absolute;
+        left: calc(50% - 165px)
+    }
+    .navLink{
+        color: $color-primary-dark;
+        padding: 15px 20px;
+        border-radius: 30px;
+        border: 1px solid $color-primary-transparent;
+    }
+    .navLink.home{
+        color: $color-light;
+        border: 1px solid $color-accent-light;
+    }
+    .activeLink{
+        border-color: $color-secondary;
+    }
+}
