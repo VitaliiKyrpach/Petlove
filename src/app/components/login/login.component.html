@@ -1,1 +1,54 @@
-<p>login works!</p>
+<section>
+  <div class="container">
+    <div class="wrapper">
+      <div class="cardWrapper">
+        <div class="card">
+          <img src="images/avatarDog.jpg" class="img" alt="dog" />
+          <div>
+            <div class="title">
+              <h2 class="name">Rich</h2>
+              <p class="birth">
+                <span class="color">Birthday:</span> 21.09.2020
+              </p>
+            </div>
+            <p class="text">
+              Rich would be the perfect addition to an active family that loves
+              to play and go on walks. I bet he would love having a doggy
+              playmate too!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="formWrapper">
+        <h2 class="title">Log in</h2>
+        <p class="textUpper">
+          Welcome! Please enter your credentials to login to the platform:
+        </p>
+        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            class="input"
+          />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            class="input"
+          />
+          <button type="submit" class="submitBtn">LOG IN</button>
+        </form>
+        <p class="textLower">
+          Don’t have an account?<button
+            type="button"
+            class="redirect"
+            (click)="redirect()"
+          >
+            Register
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

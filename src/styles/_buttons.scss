@@ -1,0 +1,9 @@
+%button {
+  color: $color-light;
+  border-radius: 30px;
+  background-color: $color-secondary;
+  transition: background-color 150ms ease;
+  &:hover {
+    background-color: $color-secondary-add;
+  }
+}

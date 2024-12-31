@@ -1,0 +1,115 @@
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+
+.wrapper {
+  display: flex;
+  gap: 32px;
+  margin-top: 114px;
+  .cardWrapper {
+    width: 592px;
+    height: 654px;
+    background-image: url("../../../../public/images/loginDog.jpg");
+    border-radius: 60px;
+    overflow: hidden;
+  }
+  .card {
+    width: 294px;
+    height: 121px;
+    background-color: $color-light;
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+    margin-top: 436px;
+    margin-left: 61px;
+  }
+  .img {
+    width: 60px;
+    height: 60px;
+  }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 8px;
+  }
+  .name {
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: $color-secondary;
+  }
+  .birth,
+  .text {
+    font-size: 12px;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+  }
+  .color {
+    color: $color-secondary-dark;
+  }
+  .formWrapper {
+    width: 592px;
+    height: 654px;
+    background-color: $color-light;
+    border-radius: 60px;
+    overflow: hidden;
+    padding: 118px 84px;
+    .title {
+      font-size: 54px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+    .textUpper {
+      font-size: 18px;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+  }
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+    .input {
+      height: 52px;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      border-radius: 30px;
+      border: 1px solid $color-primary-transparent;
+      padding: 16px;
+      outline: none;
+    }
+    .input:focus {
+      border-color: $color-secondary;
+    }
+    .submitBtn {
+      @extend %button;
+      height: 52px;
+      margin-top: 48px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  .textLower {
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: -0.03em;
+    color: $color-secondary-dark;
+    text-align: center;
+  }
+  .redirect {
+    color: $color-secondary;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 150ms ease;
+    &:hover {
+      color: $color-secondary-add;
+    }
+  }
+}

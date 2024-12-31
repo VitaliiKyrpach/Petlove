@@ -1,37 +1,34 @@
-@import '../../../styles/variables';
-.auth{
-    display: flex;
-    gap: 8px;    
-    .login{
-        color: $color-light;
-        padding: 15px 35px;
-        font-weight: 700;
-        text-transform: uppercase;
-        border-radius: 30px;
-        background-color: $color-secondary;
-        transition: background-color 150ms ease;
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+
+.auth {
+  display: flex;
+  gap: 8px;
+  .login {
+    @extend %button;
+    padding: 15px 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .login.home {
+    border: 1px solid $color-accent-light;
+    transition: color 150ms ease, background-color 150ms ease;
+    &:hover {
+      color: $color-secondary;
+      background-color: $color-secondary-light;
     }
-    .login.home{
-        border: 1px solid $color-accent-light;
-        transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .reg {
+    color: $color-secondary;
+    padding: 15px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 30px;
+    background-color: $color-secondary-light;
+    transition: background-color 150ms ease;
+    &:hover {
+      background-color: $color-secondary-hover;
     }
-    .login.home:hover{
-        color: $color-secondary;
-        background-color: $color-secondary-light;
-    }
-    .login:hover{
-        background-color: $color-secondary-add;
-    }
-    .reg{
-        color: $color-secondary;
-        padding: 15px 20px;
-        font-weight: 700;
-        text-transform: uppercase;
-        border-radius: 30px;
-        background-color: $color-secondary-light;
-        transition: background-color 150ms ease;
-    }
-    .reg:hover{
-        background-color: $color-secondary-hover;
-    }
+  }
 }
