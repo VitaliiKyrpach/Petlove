@@ -1,1 +1,90 @@
-<p>registration works!</p>
+<section>
+  <div class="container">
+    <div class="wrapper">
+      <div class="cardWrapper">
+        <div class="card">
+          <img src="images/avatarCat.jpg" class="img" alt="cat" />
+          <div>
+            <div class="title">
+              <h2 class="name">Jack</h2>
+              <p class="birth">
+                <span class="color">Birthday:</span> 18.10.2021
+              </p>
+            </div>
+            <p class="text">
+              Jack is a gray Persian cat with green eyes. He loves to be
+              pampered and groomed, and enjoys playing with toys.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="formWrapper">
+        <h2 class="title">Registration</h2>
+        <p class="textUpper">Thank you for your interest in our platform.</p>
+        <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="form">
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Name"
+            class="input"
+          />
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            class="input"
+          />
+          <div class="inputWrapper">
+            <div class="eye" (click)="handleShown('pass')">
+              @if(isShown.pass){
+              <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-eye-on'"
+                [width]="'22px'"
+              ></svg-icon-sprite>
+              }@else{
+              <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-eye-off'"
+                [width]="'22px'"
+              ></svg-icon-sprite>
+              }
+            </div>
+            <input
+              type="{{ isShown.pass ? 'text' : 'password' }}"
+              formControlName="password"
+              placeholder="Password"
+              class="input"
+            />
+          </div>
+          <div class="inputWrapper">
+            <div class="eye" (click)="handleShown('confirm')">
+              @if(isShown.confirm){
+              <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-eye-on'"
+                [width]="'22px'"
+              ></svg-icon-sprite>
+              }@else{
+              <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-eye-off'"
+                [width]="'22px'"
+              ></svg-icon-sprite>
+              }
+            </div>
+            <input
+              type="{{ isShown.confirm ? 'text' : 'password' }}"
+              formControlName="confirm"
+              placeholder="Confirm Password"
+              class="input"
+            />
+          </div>
+          <button type="submit" class="submitBtn">REGISTRATION</button>
+        </form>
+        <p class="textLower">
+          Already have an account?
+          <button type="button" (click)="redirect()" class="redirect">
+            Login
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

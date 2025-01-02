@@ -11,14 +11,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   constructor(private router: Router) {}
+
   public loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
-  public onSubmit() {
+  public onSubmit(): void {
     console.log(this.loginForm.value);
   }
-  public redirect() {
-    this.router.navigate(['/registration']);
+  public redirect(): void {
+    this.router.navigate(['registration']);
   }
 }
