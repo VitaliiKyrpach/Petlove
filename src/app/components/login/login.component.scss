@@ -77,9 +77,10 @@
   .loginForm {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     margin-bottom: 16px;
     .input {
+      width: 100%;
       height: 52px;
       font-size: 16px;
       line-height: 1.25;
@@ -96,12 +97,37 @@
         border-color: $color-secondary;
       }
     }
+    .input.error{
+      border-color: $color-error;
+    }
+    .svgError{
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      color: $color-error;
+    }
+    .inputWrapper {
+      position: relative;
+    } 
+    .textError{
+      position: absolute;
+      top: -14px;
+      left: 10px;
+      font-size: 12px;
+      line-height: 1.16;
+      color: $color-error;
+    }
     .submitBtn {
       @extend %button;
       height: 52px;
       margin-top: 48px;
       border: none;
       cursor: pointer;
+    }
+    .submitBtn[disabled]{
+      // color: $color-secondary;
+      // background-color: $color-secondary-light;
+      cursor: not-allowed;
     }
   }
   .textLower {

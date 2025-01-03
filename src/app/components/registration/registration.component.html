@@ -22,19 +22,55 @@
         <h2 class="title">Registration</h2>
         <p class="textUpper">Thank you for your interest in our platform.</p>
         <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="form">
-          <input
+          <div class="inputWrapper">
+            @if(name && name.invalid){
+              <p class="textError">{{errors.name}}</p>
+            }
+            @if(errors.name){
+              <div class="svgError">
+                <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-cross-small-converted'"
+                [width]="'22px'"
+                ></svg-icon-sprite>
+              </div>
+            }
+            <input
             type="text"
             formControlName="name"
             placeholder="Name"
             class="input"
-          />
-          <input
+            [ngClass]="errors.name ? 'error' : ''"
+            (blur)="updErrorMsg('name')"
+            />
+          </div>
+          <div class="inputWrapper">
+            @if(email && email.invalid){
+              <p class="textError">{{errors.email}}</p>
+            }
+            @if(errors.email){
+              <div class="svgError">
+                <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-cross-small-converted'"
+                [width]="'22px'"
+                ></svg-icon-sprite>
+              </div>
+            }
+            <input
             type="email"
             formControlName="email"
             placeholder="Email"
             class="input"
-          />
+            [ngClass]="errors.email ? 'error' : ''"
+            (blur)="updErrorMsg('email')"
+            />
+          </div>
           <div class="inputWrapper">
+            @if(password && password.invalid){
+              <p class="textError">{{errors.password}}</p>
+            }
+            @if(password.value.length > 7){
+              <p class="textApprove">Password is secure</p>
+            }
             <div class="eye" (click)="handleShown('pass')">
               @if(isShown.pass){
               <svg-icon-sprite
@@ -53,9 +89,20 @@
               formControlName="password"
               placeholder="Password"
               class="input"
+              [ngClass]="{
+                'error': errors.password,
+                'approve': password.value.length > 7
+              }"
+              (blur)="updErrorMsg('password')"
             />
           </div>
           <div class="inputWrapper">
+            @if(errors.confirm){
+              <p class="textError">{{errors.confirm}}</p>
+            }
+            @if( confirm.value !== '' && password.value === confirm.value){
+              <p class="textApprove">Passwords match</p>
+            }
             <div class="eye" (click)="handleShown('confirm')">
               @if(isShown.confirm){
               <svg-icon-sprite
@@ -74,9 +121,12 @@
               formControlName="confirm"
               placeholder="Confirm Password"
               class="input"
+              [ngClass]="{'error' : errors.confirm,
+              'approve': confirm.value !== '' && password.value === confirm.value}"
+              (blur)="updErrorMsg('confirm')"
             />
           </div>
-          <button type="submit" class="submitBtn">REGISTRATION</button>
+          <button type="submit" class="submitBtn" [disabled]="!regForm.valid || !regForm.dirty">REGISTRATION</button>
         </form>
         <p class="textLower">
           Already have an account?

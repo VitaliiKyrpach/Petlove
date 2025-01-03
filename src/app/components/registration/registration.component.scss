@@ -99,6 +99,18 @@
         border-color: $color-secondary;
       }
     }
+    .input.error{
+      border-color: $color-error;
+    }
+    .input.approve{
+      border-color: $color-approve
+    }
+    .svgError{
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      color: $color-error;
+    }
     .inputWrapper {
       position: relative;
       .eye {
@@ -108,12 +120,33 @@
         color: $color-secondary;
       }
     }
+    .textError{
+      position: absolute;
+      top: -14px;
+      left: 10px;
+      font-size: 12px;
+      line-height: 1.16;
+      color: $color-error;
+    }
+    .textApprove{
+      position: absolute;
+      top: -14px;
+      left: 10px;
+      font-size: 12px;
+      line-height: 1.16;
+      color: $color-approve;
+    }
     .submitBtn {
       @extend %button;
       height: 52px;
       margin-top: 16px;
       border: none;
       cursor: pointer;
+    }
+    .submitBtn[disabled]{
+      // color: $color-secondary;
+      // background-color: $color-secondary-light;
+      cursor: not-allowed;
     }
   }
   .textLower {
