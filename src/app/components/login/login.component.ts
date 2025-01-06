@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
+import { LoginErrors, LoginForm } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 export class LoginComponent {
   constructor(private router: Router) {}
 
-  public loginForm = new FormGroup({
+  public loginForm: FormGroup<LoginForm> = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)]),
     password: new FormControl('',[Validators.required, Validators.minLength(7)]),
   });
@@ -26,19 +27,19 @@ export class LoginComponent {
     this.router.navigate(['registration']);
   }
 
-  public errors = {
+  public errors: LoginErrors = {
     email: '',
     password: ''
   }
 
-  get email(){
+  get email(): FormControl{
     return this.loginForm.get('email') as FormControl
   }
-  get password(){
+  get password(): FormControl{
     return this.loginForm.get('password') as FormControl
   }
 
-  public updErrorMsg(type: string){
+  public updErrorMsg(type: string): void{
     switch(type){
       case 'email':
         if(this.email && this.email.hasError('required')){

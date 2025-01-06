@@ -1,1 +1,32 @@
-<p>friends-page works!</p>
+<section class="friends">
+    <div class="container">
+        <h2 class="title">Our friends</h2>
+        <ul class="list">
+            @for(data of friends$ | async; track data){
+                <li class="item">
+                    <img class="img" src="{{data.imageUrl}}" alt="company logo">
+                    <div>
+                        <h3 class="brand">{{data.title}}</h3>
+                        <p class="info"><span class="infoKey">Email:</span>
+                            @if(data.email){
+                                {{data.email}}
+                            }@else{
+                                website only
+                            }
+                        </p>
+                        <p class="info"><span class="infoKey">Address:</span>
+                            {{data.address | address}}</p>
+                        <p class="info"><span class="infoKey">Phone:</span>
+                            @if(data.phone){
+
+                                {{data.phone}}
+                            }@else{
+                                website only
+                            }
+                        </p>
+                    </div>
+                </li>
+                }
+        </ul>
+    </div>
+</section>

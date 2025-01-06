@@ -1,6 +1,9 @@
 @import '../../../styles/variables';
 .home{
     margin-top: 16px;
+    .img{
+        border-radius: 60px;
+    }
 }
 .firstBox{
     display: flex;

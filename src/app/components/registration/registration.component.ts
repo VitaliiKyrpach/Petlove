@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
+import { IsShown, RegErrors, RegForm } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-registration',
@@ -13,11 +14,11 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 })
 export class RegistrationComponent {
   constructor(private router: Router) {}
-  public isShown = {
+  public isShown:IsShown = {
     pass: false,
     confirm: false,
   };
-  public regForm = new FormGroup({
+  public regForm: FormGroup<RegForm> = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)]),
     password: new FormControl('', [Validators.required, Validators.minLength(7)]),
@@ -32,34 +33,34 @@ export class RegistrationComponent {
   public redirect(): void {
     this.router.navigate(['login']);
   }
-  public handleShown(type: 'pass' | 'confirm') {
+  public handleShown(type: 'pass' | 'confirm'): void {
     this.isShown[type] = !this.isShown[type];
   }
 
-  public errors = {
+  public errors: RegErrors = {
     name: '',
     email: '',
     password: '',
     confirm: ''
   }
 
-  get name(){
+  get name(): FormControl{
     return this.regForm.get('name') as FormControl
   }
-  get email(){
+  get email(): FormControl{
     return this.regForm.get('email') as FormControl
   }
-  get password(){
+  get password(): FormControl{
     return this.regForm.get('password') as FormControl
   }
-  get confirm(){
+  get confirm(): FormControl{
     return this.regForm.get('confirm') as FormControl
   }
 
-  public confirmPass(){
+  public confirmPass():void{
     console.log(this.password.value)
   }
-  public updErrorMsg(type: string){
+  public updErrorMsg(type: string): void{
     switch (type){
       case 'name':
         if(this.name && this.name.hasError('required')){
