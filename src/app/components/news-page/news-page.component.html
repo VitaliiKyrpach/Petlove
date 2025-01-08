@@ -1,1 +1,25 @@
-<p>news-page works!</p>
+<section class="news">
+    <div class="container">
+        <div class="titleWrapper">
+            <h2 class="title">News</h2>
+            <div class="serchWrapper">
+                <input class="search" type="text" [(ngModel)]="searchValue" placeholder="Search">
+                @if(searchValue !== ''){
+                    <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-cross-small-converted'"
+                [width]="'18px'"
+                [class]="'imgClear'"
+                (click)="clearInput()"
+                ></svg-icon-sprite>
+                }
+                <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-search-conv'"
+                [width]="'18px'"
+                [class]="'imgSearch'"
+                (click)="handleInput()"
+                ></svg-icon-sprite>
+            </div>
+        </div>
+        <ul></ul>
+    </div>
+</section>

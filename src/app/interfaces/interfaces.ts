@@ -40,3 +40,7 @@ export interface IsShown{
     pass: boolean;
     confirm: boolean
 }
+
+export interface InitState{
+    friends: Friends[]
+}

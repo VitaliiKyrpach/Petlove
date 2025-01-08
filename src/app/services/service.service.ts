@@ -10,6 +10,7 @@ export class ServiceService {
   private api = 'https://petlove.b.goit.study/api'
   constructor(private http: HttpClient) { }
   public getFriends(): Observable<Friends[]>{
-    return this.http.get<Friends[]>(this.api + '/friends/')
+    console.log('function')
+    return this.http.get<Friends[]>(`${this.api}/friends/`)
   }
 }

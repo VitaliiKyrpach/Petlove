@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ServiceService } from '../../services/service.service';
 import { Friends } from '../../interfaces/interfaces';
 import { AsyncPipe } from '@angular/common';
 import { AddressPipe } from '../../pipes/address.pipe';
+import { Store } from '@ngrx/store';
+import { selectFriends } from '../../store/selectors';
+import { getFriends } from '../../store/actions';
 
 @Component({
   selector: 'app-friends-page',
@@ -14,9 +16,14 @@ import { AddressPipe } from '../../pipes/address.pipe';
 })
 export class FriendsPageComponent implements OnInit {
   public friends$!: Observable<Friends[]>
-  constructor(private service: ServiceService){}
+  constructor(private store: Store){}
   ngOnInit(){
-    this.friends$ = this.service.getFriends()
-    this.friends$.subscribe(data=> console.log(data))
+   this.friends$ = this.store.select(selectFriends)
+   this.friends$.subscribe(data => {
+    console.log(data)
+    if(!data.length){
+      this.store.dispatch(getFriends())
+    }
+   })
   }
 }
