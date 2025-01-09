@@ -1,6 +1,10 @@
 @import '../../../styles/variables';
 .friends{
     margin-top: 178px;
+    .container.wrapper{
+        padding-left: 31px;
+        padding-right: 31px;
+    }
     .title{
         font-size: 54px;
         line-height: 1;

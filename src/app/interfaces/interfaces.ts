@@ -40,7 +40,23 @@ export interface IsShown{
     pass: boolean;
     confirm: boolean
 }
+export interface NewsData{
+    page: number,
+    perPage: number,
+    totalPages: number,
+    results: News[]
+}
+export interface News{
+    date: string,
+    id: string,
+    imgUrl: string,
+    text: string,
+    title: string,
+    url: string,
+    _id: string
+}
 
 export interface InitState{
-    friends: Friends[]
+    friends: Friends[],
+    news: any
 }

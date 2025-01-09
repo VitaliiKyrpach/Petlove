@@ -1,5 +1,5 @@
 <section class="news">
-    <div class="container">
+    <div class="container wrapper">
         <div class="titleWrapper">
             <h2 class="title">News</h2>
             <div class="serchWrapper">
@@ -20,6 +20,19 @@
                 ></svg-icon-sprite>
             </div>
         </div>
-        <ul></ul>
+        <ul class="list">
+            @for(item of news; track item._id){
+                <li class="item">
+                    <img [src]="item.imgUrl" class="img" alt="news cover">
+                    <h3 class="label">{{item.title}}</h3>
+                    <p class="text">{{item.text}}</p>
+                    <div class="itemBottom">
+                        <p class="date">{{item.date | date: 'dd/MM/yyyy'}}</p>
+                        <a [href]="item.url" class="link" target="_blank">Read more</a>
+                    </div>
+                </li>
+            }
+        </ul>
+        <app-pagination [page]="page" (newPage)="handlePage($event)"/>
     </div>
 </section>

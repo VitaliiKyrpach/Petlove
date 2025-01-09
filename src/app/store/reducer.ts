@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { getFriendsSuccess } from './actions';
+import { getFriendsSuccess, getNewsSuccess } from './actions';
 import { InitState } from '../interfaces/interfaces';
 export const initialState: InitState = {
-    friends: []
+    friends: [],
+    news: []
 }
 
 export const dataReducer = createReducer(
@@ -10,7 +11,13 @@ export const dataReducer = createReducer(
     on(getFriendsSuccess, (state, {friends}) => {
         return {
             ...state,
-            friends: friends
+            friends
+        }
+    }),
+    on(getNewsSuccess, (state, {news})=>{
+        return {
+            ...state,
+            news
         }
     })
 )

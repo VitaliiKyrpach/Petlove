@@ -1,6 +1,6 @@
-<header class="header">
+<header class="header" [ngClass]="path === '/' ? 'fixed' : 'relative'">
     <div class="container">
-        <nav class="nav">
+        <nav class="nav " [ngClass]="path === '/' ? 'home' : ''">
             <a routerLink="" class="logo" [ngClass]="path === '/' ? 'home' : ''"><span>petl</span>
                 <span class="heart" [ngClass]="path === '/' ? 'home' : ''">
                     <svg-icon-sprite
