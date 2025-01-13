@@ -60,3 +60,7 @@ export interface InitState{
     friends: Friends[],
     news: any
 }
+export interface Pages{
+    page: number,
+    totalPages: number
+}

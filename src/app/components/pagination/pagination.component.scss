@@ -1,0 +1,40 @@
+@import '../../../styles/variables';
+@import "../../../styles/buttons";
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 80px;
+}
+.arrows{
+    display: flex;
+    gap: 8px;
+}
+.pages{
+    display: flex;
+    gap: 10px
+}
+.btn{
+    @extend %pagBtn;
+    .arr{
+        position: relative;
+        top: 1px;
+    }
+        .left{
+            left: 8px
+        }
+        .right{
+            right: 8px;
+        }
+    &.active{
+        color: $color-light;
+        background-color: $color-secondary;
+        border: none;
+    }
+}
+.btn[disabled]{
+    border-color: $color-pag-disabled;
+    color: $color-secondary-dark;
+    cursor:not-allowed;
+}

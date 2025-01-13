@@ -1,4 +1,43 @@
-<div>
-    <button type="button" (click)="handlePage('prev')">prev</button>
-    <button type="button" (click)="handlePage('next')">next</button>
+<div class="pagination">
+    <div class="arrows">
+
+    <button class="btn" type="button" (click)="handlePage('first')" [disabled]="pages.page === 1"><svg-icon-sprite
+        [src]="'images/sprite.svg#icon-arrow-left'"
+        [width]="'24px'"
+        [class]="'left arr'"
+        ></svg-icon-sprite>
+        <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-arrow-left'"
+        [width]="'24px'"
+        [class]="'right arr'"
+        ></svg-icon-sprite></button>
+        <button class="btn" type="button" (click)="handlePage('prev')" [disabled]="pages.page === 1"><svg-icon-sprite
+            [src]="'images/sprite.svg#icon-arrow-left'"
+            [width]="'24px'"
+            [class]="'arr'"
+            ></svg-icon-sprite></button>
+    </div>
+    <div class="pages">
+        @for(page of pageArr; track page){
+            <button class="btn" [ngClass]="page === pages.page ? 'active' : ''" type="button" (click)="handlePage(page)">{{page}}</button>
+        }
+    </div>
+    <div class="arrows">        
+        <button class="btn" type="button" (click)="handlePage('next')" [disabled]="pages.page === pages.totalPages"><svg-icon-sprite
+            [src]="'images/sprite.svg#icon-arrow-right'"
+            [width]="'24px'"
+            [class]="'arr'"
+            ></svg-icon-sprite></button>
+        <button class="btn" type="button" (click)="handlePage('last')" [disabled]="pages.page === pages.totalPages"><svg-icon-sprite
+            [src]="'images/sprite.svg#icon-arrow-right'"
+            [width]="'24px'"
+            [class]="'left arr'"
+            ></svg-icon-sprite>
+            <svg-icon-sprite
+            [src]="'images/sprite.svg#icon-arrow-right'"
+            [width]="'24px'"
+            [class]="'right arr'"
+            ></svg-icon-sprite></button>
+    </div>
+
 </div>

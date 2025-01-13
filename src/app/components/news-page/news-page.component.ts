@@ -5,7 +5,7 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { Observable } from 'rxjs';
 import { getNews } from '../../store/actions';
 import { selectNews } from '../../store/selectors';
-import { News, NewsData } from '../../interfaces/interfaces';
+import { News, NewsData, Pages } from '../../interfaces/interfaces';
 import { DatePipe } from '@angular/common';
 import { PaginationComponent } from '../pagination/pagination.component';
 
@@ -20,18 +20,23 @@ export class NewsPageComponent implements OnInit {
   private newsData$!: Observable<NewsData>
   public news: News[] = []
   public searchValue: string = ''
-  public page: number = 1
+  public pages: Pages={
+    page: 1,
+    totalPages: 1
+  }
 
   constructor(private store: Store){}
 
   ngOnInit(): void {
     this.newsData$ = this.store.select(selectNews)
     this.newsData$.subscribe(data=> {
+      console.log(data)
     if(!data.results){
-    this.store.dispatch(getNews({page: this.page}))
+    this.store.dispatch(getNews({page: this.pages.page}))
   }
     this.news = data.results
-    this.page = data.page
+    this.pages.page = data.page
+    this.pages.totalPages = data.totalPages
     })
   }
 
@@ -43,8 +48,8 @@ export class NewsPageComponent implements OnInit {
     this.searchValue = ''
   }
   public handlePage(newPage: number){
-    this.page = newPage
-    this.store.dispatch(getNews({ page: this.page }))
+    this.pages.page = newPage
+    this.store.dispatch(getNews({ page: this.pages.page }))
   }
 //   public handlePag(){
 // this.page += 1
