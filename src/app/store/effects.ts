@@ -24,7 +24,7 @@ export class dataEffects {
         ofType(getNews),
         switchMap((action)=> {
           
-          return this.service.getNews(action.page).pipe(
+          return this.service.getNews(action.page, action.search).pipe(
           map(news=> getNewsSuccess({news})),
           catchError(error=> EMPTY)
         )})

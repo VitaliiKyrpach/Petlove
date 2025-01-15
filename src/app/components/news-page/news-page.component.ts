@@ -17,7 +17,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
   styleUrl: './news-page.component.scss'
 })
 export class NewsPageComponent implements OnInit {
-  private newsData$!: Observable<NewsData>
+  public newsData$!: Observable<NewsData>
   public news: News[] = []
   public searchValue: string = ''
   public pages: Pages={
@@ -32,7 +32,7 @@ export class NewsPageComponent implements OnInit {
     this.newsData$.subscribe(data=> {
       console.log(data)
     if(!data.results){
-    this.store.dispatch(getNews({page: this.pages.page}))
+    this.store.dispatch(getNews({page: this.pages.page, search: this.searchValue}))
   }
     this.news = data.results
     this.pages.page = data.page
@@ -41,19 +41,14 @@ export class NewsPageComponent implements OnInit {
   }
 
   public handleInput(){
-    if(this.searchValue === '') return
-    console.log(this.searchValue)
+    this.store.dispatch(getNews({ page: this.pages.page, search: this.searchValue }))
+    console.log({ page: this.pages.page, search: this.searchValue })
   }
   public clearInput(){
     this.searchValue = ''
   }
   public handlePage(newPage: number){
     this.pages.page = newPage
-    this.store.dispatch(getNews({ page: this.pages.page }))
+    this.store.dispatch(getNews({ page: this.pages.page, search: this.searchValue }))
   }
-//   public handlePag(){
-// this.page += 1
-// console.log(this.page)
-// this.store.dispatch(getNews({ page: this.page }))
-//   }
 }

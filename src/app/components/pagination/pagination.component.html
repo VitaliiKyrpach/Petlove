@@ -1,6 +1,6 @@
+@if(isExist){
 <div class="pagination">
     <div class="arrows">
-
     <button class="btn" type="button" (click)="handlePage('first')" [disabled]="pages.page === 1"><svg-icon-sprite
         [src]="'images/sprite.svg#icon-arrow-left'"
         [width]="'24px'"
@@ -39,5 +39,5 @@
             [class]="'right arr'"
             ></svg-icon-sprite></button>
     </div>
-
 </div>
+}

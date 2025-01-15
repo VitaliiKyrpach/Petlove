@@ -64,3 +64,25 @@ export interface Pages{
     page: number,
     totalPages: number
 }
+export interface PetPage{
+    page: number,
+    perPage: number,
+    results: Pet[],
+    totalPages: number
+}
+export interface Pet{
+    birthDay: string,
+    category: string,
+    comment: string,
+    createdAt: string,
+    imgUrl: string,
+    location: string,
+    name: string,
+    popularity: number,
+    sex: string, 
+    species: string,
+    title: string,
+    updatedAt: string,
+    user: string,
+    _id: string
+}

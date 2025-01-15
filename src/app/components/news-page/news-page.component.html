@@ -33,6 +33,6 @@
                 </li>
             }
         </ul>
-        <app-pagination [pages]="pages" (newPage)="handlePage($event)"/>
+        <app-pagination [data$]="newsData$" (newPage)="handlePage($event)"/>
     </div>
 </section>
