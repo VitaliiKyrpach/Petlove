@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Friends, NewsData, PetPage } from '../interfaces/interfaces';
+import { Friends, NewsData, PetData } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ServiceService {
   public getNews(page: number, keyword: string): Observable<NewsData>{
     return this.http.get<NewsData>(`${this.api}/news`, {params:{page, keyword}})
   }
-  public getPets():Observable<PetPage>{
-    return this.http.get<PetPage>(`${this.api}/notices`)
+  public getPets(page:number):Observable<PetData>{
+    return this.http.get<PetData>(`${this.api}/notices`, {params:{page}})
   }
 }

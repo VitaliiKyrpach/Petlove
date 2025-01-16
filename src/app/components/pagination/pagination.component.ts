@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, output } from '@angular/core';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { NewsData, Pages } from '../../interfaces/interfaces';
+import { NewsData, Pages, PetData } from '../../interfaces/interfaces';
 import { NgClass } from '@angular/common';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent implements OnInit {
-@Input() data$!: Observable<NewsData>
+@Input() data$!: Observable<NewsData | PetData>
 newPage = output<number>()
 public pageArr: number[] = [];
 public pages: Pages = {

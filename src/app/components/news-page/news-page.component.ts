@@ -31,7 +31,7 @@ export class NewsPageComponent implements OnInit {
     this.newsData$ = this.store.select(selectNews)
     this.newsData$.subscribe(data=> {
       console.log(data)
-    if(!data.results){
+    if(!data.results.length){
     this.store.dispatch(getNews({page: this.pages.page, search: this.searchValue}))
   }
     this.news = data.results

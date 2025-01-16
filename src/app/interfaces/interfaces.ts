@@ -58,27 +58,29 @@ export interface News{
 
 export interface InitState{
     friends: Friends[],
-    news: any
+    news: NewsData,
+    pets: PetData
 }
 export interface Pages{
     page: number,
     totalPages: number
 }
-export interface PetPage{
+export interface PetData{
     page: number,
     perPage: number,
     results: Pet[],
     totalPages: number
 }
 export interface Pet{
-    birthDay: string,
+    birthday: string,
     category: string,
     comment: string,
     createdAt: string,
-    imgUrl: string,
+    imgURL: string,
     location: string,
     name: string,
     popularity: number,
+    price: number,
     sex: string, 
     species: string,
     title: string,
