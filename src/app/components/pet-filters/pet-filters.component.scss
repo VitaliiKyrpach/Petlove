@@ -1,0 +1,64 @@
+@import '../../../styles/variables';
+@import '../../../styles/buttons';
+.filters{   
+    background-color: $color-secondary-light;
+    border-radius: 30px;
+    padding: 40px;
+    .upper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .divider{
+        width: 100%;
+        height: 1px;
+        background-color: $color-primary-transparent;
+        margin: 20px 0px;  
+    }
+    .btnWrapper{
+        position: relative;
+    }
+    .query{
+        width: 265px;
+    }
+    .location{
+        width: 227px;
+    }
+    .category{
+        @extend %input;
+        width: 200px;
+    }
+    .gender, .type{
+        @extend %input;
+        width: 190px;
+    }
+    .input{
+        @extend %input;
+        width: 100%;
+    }
+    .imgSearch{
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        cursor: pointer;
+    }
+    .imgClear{
+        position: absolute;
+        top: 14px;
+        right: 32px;
+        cursor: pointer;
+    }
+    .lower{
+        display: inline-flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+    .radioInput{
+        display: none;
+    }
+    .radio{
+        @extend %input;
+        
+    }
+    
+}

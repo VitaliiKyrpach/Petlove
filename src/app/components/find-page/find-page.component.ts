@@ -8,11 +8,12 @@ import { Observable } from 'rxjs';
 import { Pet, PetData } from '../../interfaces/interfaces';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { PetFiltersComponent } from '../pet-filters/pet-filters.component';
 
 @Component({
   selector: 'app-find-page',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, IconSpriteModule, PaginationComponent],
+  imports: [AsyncPipe, DatePipe, IconSpriteModule, PaginationComponent, PetFiltersComponent],
   templateUrl: './find-page.component.html',
   styleUrl: './find-page.component.scss'
 })

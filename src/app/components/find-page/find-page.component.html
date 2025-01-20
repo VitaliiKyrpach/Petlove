@@ -1,7 +1,7 @@
 <section class="pets">
     <div class="container">
         <h2 class="title">Find your favorite pet</h2>
-        <div>filters</div>
+        <app-pet-filters/>
         <ul class="cardList">
             @for(pet of pets; track pet._id){
                 <li class="card">

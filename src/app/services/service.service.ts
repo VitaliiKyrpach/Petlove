@@ -19,4 +19,14 @@ export class ServiceService {
   public getPets(page:number):Observable<PetData>{
     return this.http.get<PetData>(`${this.api}/notices`, {params:{page}})
   }
+  public getCategory():Observable<string[]>{
+    return this.http.get<string[]>(`${this.api}/notices/categories`)
+  }
+  public getGender():Observable<string[]>{
+    return this.http.get<string[]>(`${this.api}/notices/sex`)
+  }
+  public getSpecies():Observable<string[]>{
+    return this.http.get<string[]>(`${this.api}/notices/species`)
+  }
 }
+

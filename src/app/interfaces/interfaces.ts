@@ -88,3 +88,13 @@ export interface Pet{
     user: string,
     _id: string
 }
+
+export enum SelectorType{
+    Category = 'category',
+    Gender = 'gender',
+    Type = 'type'
+}
+export enum InputType {
+    Query = 'query',
+    Location = 'location'
+}

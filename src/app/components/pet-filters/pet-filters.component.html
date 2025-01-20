@@ -1,0 +1,75 @@
+<section class="filters">
+    <div class="upper">
+        <div class="btnWrapper query">
+            <input class="input" type="text" [(ngModel)]="query" placeholder="Search">
+            @if(query !== ''){
+                <svg-icon-sprite
+            [src]="'images/sprite.svg#icon-cross-small-converted'"
+            [width]="'18px'"
+            [class]="'imgClear'"
+            (click)="query = ''"
+            ></svg-icon-sprite>
+            }
+            <svg-icon-sprite
+                [src]="'images/sprite.svg#icon-search-conv'"
+                [width]="'18px'"
+                [class]="'imgSearch'"
+                (click)="handleInput(inputTypes.Query)"
+                ></svg-icon-sprite>
+        </div>
+        <ng-select class="custom"></ng-select>
+        <select class="category" [(ngModel)]="category" (ngModelChange)="selectCategory(selectorTypes.Category)">
+            @if(category === ''){
+                <option value="" selected disabled>Category</option>
+            }
+            @for(category of categories$ | async; track category){
+                <option [value]="category">{{category}}</option>
+            }
+        </select>
+        <select class="gender" [(ngModel)]="gender" (ngModelChange)="selectCategory(selectorTypes.Gender)">
+            @if(gender === ''){
+            <option value="" selected disabled>By gender</option>
+        }
+        @for(gender of gender$ | async; track gender){
+            <option [value]="gender">{{gender}}</option>
+        }
+    </select>
+    <select class="type" [(ngModel)]="type" (ngModelChange)="selectCategory(selectorTypes.Type)">
+        @if(type === ''){
+            <option value="" selected disabled>By type</option>
+        }
+        @for(type of type$ | async; track type){
+            <option [value]="type">{{type}}</option>
+        }
+    </select>
+    <div class="btnWrapper location">
+        <input class="input" type="text" [(ngModel)]="location" placeholder="Location">
+        @if(location !== ''){
+            <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+        [width]="'18px'"
+        [class]="'imgClear'"
+            (click)="location = ''"
+        ></svg-icon-sprite>
+        }
+        <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-search-conv'"
+        [width]="'18px'"
+        [class]="'imgSearch'"
+        (click)="handleInput(inputTypes.Location)"
+        ></svg-icon-sprite>
+    </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="lower">
+        <input class="radioInput" type="radio" name="sort" id="popular">
+        <label class="radio" for="popular">Popular</label>
+        <input class="radioInput" type="radio" name="sort" id="unpopular">
+        <label class="radio" for="unpopular">Unpopular</label>
+        <input class="radioInput" type="radio" name="sort" id="cheap">
+        <label class="radio" for="cheap">Cheap</label>
+        <input class="radioInput" type="radio" name="sort" id="expensive">
+        <label class="radio" for="expensive">Expensive</label>
+    </div>
+</section>
