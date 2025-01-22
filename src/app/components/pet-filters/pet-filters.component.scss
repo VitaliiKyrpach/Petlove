@@ -4,6 +4,7 @@
   background-color: $color-secondary-light;
   border-radius: 30px;
   padding: 40px;
+  margin-bottom: 40px;
   .upper {
     display: flex;
     flex-direction: row;
@@ -31,11 +32,17 @@
   }
   .ng-select ::ng-deep .ng-dropdown-panel {
     background-color: $color-light;
-    padding: 14px;
     border-radius: 15px;
     position: absolute;
     left: 0;
     top: calc(100% + 4px);
+    box-shadow: 0px 1px 4px $color-primary-transparent;
+    padding: 14px;
+    height: auto;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host{
+    max-height: 216px;
+    // width: 100px;
   }
   ::ng-deep .ng-option {
     color: $color-secondary-dark;
@@ -53,6 +60,41 @@
     margin-bottom: 4px;
   }
 
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+    background-color: $color-primary-transparent;
+    border-radius: 13px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {
+    background: $color-pag-disabled;
+    border-radius: 13px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb:hover {
+    background-color: $color-secondary-dark;
+  }
+  ::ng-deep .ng-select .ng-clear-wrapper{
+    position: absolute;
+    top: 1px;
+    right: -22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  }
+  ::ng-deep .ng-select .ng-select-container{
+    overflow: unset;
+  }
+  ::ng-deep .ng-select .ng-clear-wrapper .ng-clear{
+    font-size: 36px;
+    font-weight: 300
+  }
+  ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input{
+    font-size: 16px;
+    font-weight: 500
+  }
   .gender,
   .type {
     @extend %input;
@@ -61,18 +103,34 @@
   .input {
     @extend %input;
     width: 100%;
+    padding-right: 55px;
   }
   .imgSearch {
     position: absolute;
-    top: 14px;
+    top: 15px;
     right: 14px;
     cursor: pointer;
+    z-index: 100;
+  }
+  .imgChevron {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 15px;
+    right: 14px;
+    z-index: 100;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+  .down{
+    transform: rotate(90deg);
   }
   .imgClear {
     position: absolute;
-    top: 14px;
+    top: 15px;
     right: 32px;
     cursor: pointer;
+    z-index: 100;
   }
   .lower {
     display: inline-flex;

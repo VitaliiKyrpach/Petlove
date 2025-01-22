@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Friends, NewsData, PetData } from '../interfaces/interfaces';
+import { Friends, Locations, NewsData, PetData } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -27,6 +27,9 @@ export class ServiceService {
   }
   public getSpecies():Observable<string[]>{
     return this.http.get<string[]>(`${this.api}/notices/species`)
+  }
+  public getLocations(): Observable<Locations[]>{
+    return this.http.get<Locations[]>(`${this.api}/cities/locations`)
   }
 }
 

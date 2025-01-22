@@ -22,7 +22,13 @@
         (click)="handleInput(inputTypes.Query)"
       ></svg-icon-sprite>
     </div>
-    <ng-select
+    <div class="btnWrapper">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-arrow-left'"
+        [class]="'imgChevron'"
+      [class.down]="chevrons.category"
+      ></svg-icon-sprite>
+      <ng-select
       class="category"
       [(ngModel)]="category"
       (change)="selectCategory(selectorTypes.Category)"
@@ -30,12 +36,15 @@
       placeholder="Category"
       [fixedPlaceholder]="false"
       [searchable]="false"
-    >
+      (open)="handleChevron(selectorTypes.Category)"
+      (close)="handleChevron(selectorTypes.Category)"
+      >
       <ng-option value="">Show All</ng-option>
       @for(category of categories$ | async; track category){
-      <ng-option [value]="category">{{ category | capitalize }}</ng-option>
+        <ng-option [value]="category">{{ category | capitalize }}</ng-option>
       }
     </ng-select>
+  </div>
     <!-- <select
       class="category"
       [(ngModel)]="category"
@@ -47,7 +56,13 @@
       <option [value]="category">{{ category }}</option>
       }
     </select> -->
-    <ng-select
+    <div class="btnWrapper">
+      <svg-icon-sprite
+      [src]="'images/sprite.svg#icon-arrow-left'"
+      [class]="'imgChevron'"
+      [class.down]="chevrons.gender"
+    ></svg-icon-sprite>
+      <ng-select
       class="gender"
       [(ngModel)]="gender"
       (change)="selectCategory(selectorTypes.Gender)"
@@ -55,12 +70,15 @@
       placeholder="By gender"
       [fixedPlaceholder]="false"
       [searchable]="false"
-    >
+      (open)="handleChevron(selectorTypes.Gender)"
+      (close)="handleChevron(selectorTypes.Gender)"
+      >
       <ng-option value="">Show All</ng-option>
       @for(gender of gender$ | async; track gender){
-      <ng-option [value]="gender">{{ gender | capitalize }}</ng-option>
+        <ng-option [value]="gender">{{ gender | capitalize }}</ng-option>
       }
     </ng-select>
+  </div>
     <!-- <select
       class="gender"
       [(ngModel)]="gender"
@@ -72,7 +90,13 @@
       <option [value]="gender">{{ gender }}</option>
       }
     </select> -->
-    <ng-select
+    <div class="btnWrapper">
+      <svg-icon-sprite
+      [src]="'images/sprite.svg#icon-arrow-left'"
+      [class]="'imgChevron'"
+      [class.down]="chevrons.type"
+    ></svg-icon-sprite>
+      <ng-select
       class="type"
       [(ngModel)]="type"
       (change)="selectCategory(selectorTypes.Type)"
@@ -80,12 +104,15 @@
       placeholder="By type"
       [fixedPlaceholder]="false"
       [searchable]="false"
+      (open)="handleChevron(selectorTypes.Type)"
+      (close)="handleChevron(selectorTypes.Type)"
     >
-      <ng-option value="">Show All</ng-option>
+    <ng-option value="">Show All</ng-option>
       @for(type of type$ | async; track type){
-      <ng-option [value]="type">{{ type | capitalize }}</ng-option>
+        <ng-option [value]="type">{{ type | capitalize }}</ng-option>
       }
     </ng-select>
+  </div>
     <!-- <select
       class="type"
       [(ngModel)]="type"
@@ -97,7 +124,7 @@
       <option [value]="type">{{ type }}</option>
       }
     </select> -->
-    <div class="btnWrapper location">
+    <!-- <div class="btnWrapper location">
       <input
         class="input"
         type="text"
@@ -118,7 +145,34 @@
         [class]="'imgSearch'"
         (click)="handleInput(inputTypes.Location)"
       ></svg-icon-sprite>
-    </div>
+    </div> -->
+    <div class="btnWrapper location">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-search-conv'"
+        [width]="'18px'"
+        [class]="'imgSearch'"
+        (click)="handleInput(inputTypes.Location)"
+      ></svg-icon-sprite>
+      @if(locationQuery){
+        <svg-icon-sprite
+          [src]="'images/sprite.svg#icon-cross-small-converted'"
+          [width]="'18px'"
+          [class]="'imgClear'"
+          (click)="locationQuery = ''"
+        ></svg-icon-sprite>
+        }
+      <ng-select
+      class="input"
+      [(ngModel)]="locationQuery"
+      (change)="handleInput(inputTypes.Location)"
+      placeholder="Location"
+      [fixedPlaceholder]="false"
+    >
+      @for(location of locations$ | async; track location._id){
+        <ng-option [value]="location._id">{{ location.stateEn }}, {{location.cityEn}}</ng-option>
+      }
+    </ng-select>
+  </div>
   </div>
   <div class="divider"></div>
   <div class="lower">

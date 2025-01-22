@@ -98,3 +98,10 @@ export enum InputType {
     Query = 'query',
     Location = 'location'
 }
+export interface Locations{
+    _id: string,
+    useCounty: string,
+    stateEn: string,
+    cityEn: string,
+    countyEn: string,
+    }
