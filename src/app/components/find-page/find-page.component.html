@@ -1,50 +1,54 @@
 <section class="pets">
-    <div class="container">
-        <h2 class="title">Find your favorite pet</h2>
-        <app-pet-filters/>
-        <ul class="cardList">
-            @for(pet of pets; track pet._id){
-                <li class="card">
-                    <img class="img" [src]="pet.imgURL" alt="pet photo">
-                    <div><h3 class="cardTitle">{{pet.title}}</h3></div>
-                    <ul class="dataList">
-                        <li>
-                            <p class="bioTitle">Name</p>
-                            <p class="bio">{{pet.name}}</p>
-                        </li>
-                        <li>
-                            <p class="bioTitle">Birthday</p>
-                            <p class="bio">{{pet.birthday | date: 'dd.MM.yyyy'}}</p>
-                        </li>
-                        <li>
-                            <p class="bioTitle">Sex</p>
-                            <p class="bio">{{pet.sex}}</p>
-                        </li>
-                        <li>
-                            <p class="bioTitle">Species</p>
-                            <p class="bio">{{pet.species}}</p>
-                        </li>
-                        <li>
-                            <p class="bioTitle">Category</p>
-                            <p class="bio">{{pet.category}}</p>
-                        </li>
-                    </ul>
-                    <p class="comment">{{pet.comment}}</p>
-                    <p class="price">
-                        @if(pet.price){${{pet.price}}}
-                        @else{FREE}
-                    </p>
-                    <div class="bottom">
-                        <button class="moreInfo" type="button">Learn more</button>
-                        <button class="heart" type="button"> <svg-icon-sprite
-                            [src]="'images/sprite.svg#icon-heart'"
-                            [width]="'18px'"
-
-                            ></svg-icon-sprite></button>
-                    </div>
-                </li>
-            }
+  <div class="container">
+    <h2 class="title">Find your favorite pet</h2>
+    <app-pet-filters (petFilters)="petFilters($event)" />
+    @if(!pets.length && filters !== null){
+    <p class="empty">There are no items found!</p>
+    }@else{
+    <ul class="cardList">
+      @for(pet of pets; track pet._id){
+      <li class="card">
+        <img class="img" [src]="pet.imgURL" alt="pet photo" />
+        <div>
+          <h3 class="cardTitle">{{ pet.title }}</h3>
+        </div>
+        <ul class="dataList">
+          <li>
+            <p class="bioTitle">Name</p>
+            <p class="bio">{{ pet.name }}</p>
+          </li>
+          <li>
+            <p class="bioTitle">Birthday</p>
+            <p class="bio">{{ pet.birthday | date : "dd.MM.yyyy" }}</p>
+          </li>
+          <li>
+            <p class="bioTitle">Sex</p>
+            <p class="bio">{{ pet.sex }}</p>
+          </li>
+          <li>
+            <p class="bioTitle">Species</p>
+            <p class="bio">{{ pet.species }}</p>
+          </li>
+          <li>
+            <p class="bioTitle">Category</p>
+            <p class="bio">{{ pet.category }}</p>
+          </li>
         </ul>
-        <app-pagination [data$]="PetData$" (newPage)="handlePage($event)"/>
-    </div>
+        <p class="comment">{{ pet.comment }}</p>
+        <p class="price">@if(pet.price){${{ pet.price }}} @else{FREE}</p>
+        <div class="bottom">
+          <button class="moreInfo" type="button">Learn more</button>
+          <button class="heart" type="button">
+            <svg-icon-sprite
+              [src]="'images/sprite.svg#icon-heart'"
+              [width]="'18px'"
+            ></svg-icon-sprite>
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+    }
+    <app-pagination [data$]="PetData$" (newPage)="handlePage($event)" />
+  </div>
 </section>

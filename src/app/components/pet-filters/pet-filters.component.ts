@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ServiceService } from '../../services/service.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { InputType, Locations, SelectorType } from '../../interfaces/interfaces';
+import {
+  Chevrons,
+  Filters,
+  InputType,
+  Locations,
+  SelectorType,
+} from '../../interfaces/interfaces';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import {
   NgLabelTemplateDirective,
@@ -30,10 +36,11 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
   styleUrl: './pet-filters.component.scss',
 })
 export class PetFiltersComponent implements OnInit {
+  petFilters = output<any>();
   public categories$!: Observable<string[]>;
   public gender$!: Observable<string[]>;
   public type$!: Observable<string[]>;
-  public locations$!: Observable<Locations[]>
+  public locations$!: Observable<Locations[]>;
   public category!: string;
   public gender!: string;
   public type!: string;
@@ -41,12 +48,14 @@ export class PetFiltersComponent implements OnInit {
   inputTypes = InputType;
   public query: string = '';
   public locationQuery!: string;
+  public sortPopular!: 'true' | 'false';
+  public sortPrice!: 'true' | 'false';
 
-  public chevrons = {
+  public chevrons: Chevrons = {
     category: false,
     gender: false,
-    type: false
-  }
+    type: false,
+  };
 
   constructor(private service: ServiceService) {}
 
@@ -54,18 +63,38 @@ export class PetFiltersComponent implements OnInit {
     this.categories$ = this.service.getCategory();
     this.gender$ = this.service.getGender();
     this.type$ = this.service.getSpecies();
-    this.locations$ = this.service.getLocations()
+    this.locations$ = this.service.getLocations();
   }
 
-  public selectCategory(type: SelectorType) {
-    console.log(type);
-  }
-  public handleInput(type: InputType, input?: string) {
-    console.log(type, this.query, this.locationQuery)
+  public handleSubmit(): void {
+    let filters: Filters = {};
+    if (this.query && this.query.trim() !== '') {
+      filters.keyword = this.query;
+    }
+    if (this.locationQuery && this.locationQuery.trim() !== '') {
+      filters.locationId = this.locationQuery;
+    }
+    this.sortPrice && (filters.byPrice = this.sortPrice === 'true');
+    this.sortPopular && (filters.byPopularity = this.sortPopular === 'true');
+    this.category && (filters.category = this.category);
+    this.gender && (filters.sex = this.gender);
+    this.type && (filters.species = this.type);
 
+    this.petFilters.emit(filters);
   }
-  public handleChevron(type: SelectorType){
-    this.chevrons[type] = !this.chevrons[type]
+  public handleChevron(type: SelectorType): void {
+    this.chevrons[type] = !this.chevrons[type];
   }
-  
+  public clearInput(type: InputType): void {
+    switch (type) {
+      case 'query':
+        this.query = '';
+        this.handleSubmit();
+        break;
+      case 'location':
+        this.locationQuery = '';
+        this.handleSubmit();
+        break;
+    }
+  }
 }
