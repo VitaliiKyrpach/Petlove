@@ -9,6 +9,7 @@ import { Filters, Pages, Pet, PetData } from '../../interfaces/interfaces';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { PetFiltersComponent } from '../pet-filters/pet-filters.component';
+import { PetCardComponent } from '../pet-card/pet-card.component';
 
 @Component({
   selector: 'app-find-page',
@@ -19,6 +20,7 @@ import { PetFiltersComponent } from '../pet-filters/pet-filters.component';
     IconSpriteModule,
     PaginationComponent,
     PetFiltersComponent,
+    PetCardComponent,
   ],
   templateUrl: './find-page.component.html',
   styleUrl: './find-page.component.scss',

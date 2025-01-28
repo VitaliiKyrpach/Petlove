@@ -1,0 +1,97 @@
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 40px 70px;
+  .imgWrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0px auto 16px;
+  }
+  .img {
+    border-radius: 50%;
+  }
+  .cardTitle {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .bioList {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 16px;
+  }
+  .bioTitle {
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: $color-secondary-dark;
+    margin-bottom: 4px;
+  }
+  .bio {
+    font-size: 12px;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+  }
+  .comment {
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .price {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
+  }
+  .bottom {
+    display: flex;
+    gap: 10px;
+  }
+  .category {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline;
+    color: $color-secondary;
+    background-color: $color-secondary-light;
+    border-radius: 30px;
+    padding: 8px 14px;
+  }
+  .add {
+    @extend %button;
+    width: 160px;
+    height: 48px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact {
+    @extend %button;
+    width: 160px;
+    height: 48px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: $color-secondary;
+    background-color: $color-secondary-light;
+    transition: background-color 150ms ease;
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+  }
+}

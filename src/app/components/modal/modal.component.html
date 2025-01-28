@@ -1,0 +1,14 @@
+@if(isOpen){
+<div appCloseModal class="backdrop" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button type="button" class="close" (click)="closeModal()">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+      ></svg-icon-sprite>
+    </button>
+    @if(type === 'petModal'){
+    <app-pet-modal [data]="data" />
+    }
+  </div>
+</div>
+}

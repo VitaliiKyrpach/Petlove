@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="imgWrapper">
+    <div class="category">{{ data.category }}</div>
+    <img class="img" [src]="data.imgURL" alt="pet photo" />
+  </div>
+  <h3 class="cardTitle">{{ data.title }}</h3>
+  <ul class="bioList">
+    <li>
+      <p class="bioTitle">Name</p>
+      <p class="bio">{{ data.name }}</p>
+    </li>
+    <li>
+      <p class="bioTitle">Birthday</p>
+      <p class="bio">{{ data.birthday | date : "dd.MM.yyyy" }}</p>
+    </li>
+    <li>
+      <p class="bioTitle">Sex</p>
+      <p class="bio">{{ data.sex }}</p>
+    </li>
+    <li>
+      <p class="bioTitle">Species</p>
+      <p class="bio">{{ data.species }}</p>
+    </li>
+  </ul>
+  <p class="comment">{{ data.comment }}</p>
+  <p class="price">@if(data.price){${{ data.price }}} @else{FREE}</p>
+  <div class="bottom">
+    <button type="button" class="add">
+      <span>Add to</span>
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-heart'"
+        [width]="'18px'"
+      ></svg-icon-sprite>
+    </button>
+    <button type="button" class="contact">Contact</button>
+  </div>
+</div>

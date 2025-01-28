@@ -98,6 +98,12 @@ export enum InputType {
   Query = 'query',
   Location = 'location',
 }
+export enum InputSort {
+  Cheap = 'cheap',
+  Expensive = 'expensive',
+  Popular = 'popular',
+  Unpopular = 'unpopular',
+}
 export interface Locations {
   _id: string;
   useCounty: string;

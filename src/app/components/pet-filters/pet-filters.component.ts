@@ -2,10 +2,11 @@ import { Component, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ServiceService } from '../../services/service.service';
 import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {
   Chevrons,
   Filters,
+  InputSort,
   InputType,
   Locations,
   SelectorType,
@@ -31,6 +32,7 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
     NgSelectComponent,
     NgSelectModule,
     CapitalizePipe,
+    CommonModule,
   ],
   templateUrl: './pet-filters.component.html',
   styleUrl: './pet-filters.component.scss',
@@ -46,11 +48,17 @@ export class PetFiltersComponent implements OnInit {
   public type!: string;
   selectorTypes = SelectorType;
   inputTypes = InputType;
+  inputSort = InputSort;
   public query: string = '';
   public locationQuery!: string;
   public sortPopular!: 'true' | 'false';
   public sortPrice!: 'true' | 'false';
-
+  public sort = {
+    cheap: false,
+    expensive: false,
+    popular: false,
+    unpopular: false,
+  };
   public chevrons: Chevrons = {
     category: false,
     gender: false,
@@ -65,6 +73,7 @@ export class PetFiltersComponent implements OnInit {
     this.type$ = this.service.getSpecies();
     this.locations$ = this.service.getLocations();
   }
+  // public handleSort(type: InputSort) {}
 
   public handleSubmit(): void {
     let filters: Filters = {};

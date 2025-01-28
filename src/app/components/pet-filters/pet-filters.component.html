@@ -131,7 +131,12 @@
       (change)="handleSubmit()"
       [(ngModel)]="sortPopular"
     />
-    <label class="radio" for="popular">Popular</label>
+    <label
+      class="radio"
+      [ngClass]="sortPopular === 'false' ? 'checked' : ''"
+      for="popular"
+      >Popular</label
+    >
     <input
       class="radioInput"
       type="radio"
@@ -141,7 +146,12 @@
       (change)="handleSubmit()"
       [(ngModel)]="sortPopular"
     />
-    <label class="radio" for="unpopular">Unpopular</label>
+    <label
+      class="radio"
+      [ngClass]="sortPopular === 'true' ? 'checked' : ''"
+      for="unpopular"
+      >Unpopular</label
+    >
     <input
       class="radioInput"
       type="radio"
@@ -151,7 +161,12 @@
       (change)="handleSubmit()"
       [(ngModel)]="sortPrice"
     />
-    <label class="radio" for="cheap">Cheap</label>
+    <label
+      class="radio"
+      [ngClass]="sortPrice === 'true' ? 'checked' : ''"
+      for="cheap"
+      >Cheap</label
+    >
     <input
       class="radioInput"
       type="radio"
@@ -161,6 +176,11 @@
       (change)="handleSubmit()"
       [(ngModel)]="sortPrice"
     />
-    <label class="radio" for="expensive">Expensive</label>
+    <label
+      class="radio"
+      [ngClass]="sortPrice === 'false' ? 'checked' : ''"
+      for="expensive"
+      >Expensive</label
+    >
   </div>
 </section>
