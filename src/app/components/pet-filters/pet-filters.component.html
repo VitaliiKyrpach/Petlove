@@ -125,7 +125,7 @@
     <input
       class="radioInput"
       type="radio"
-      name="sort"
+      name="sortPopular"
       id="popular"
       value="false"
       (change)="handleSubmit()"
@@ -135,12 +135,19 @@
       class="radio"
       [ngClass]="sortPopular === 'false' ? 'checked' : ''"
       for="popular"
-      >Popular</label
-    >
+      >Popular @if(sortPopular === 'false'){
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+        [width]="'18px'"
+        [class]="'imgClearSort'"
+        (click)="clearSort(inputSort.Popularity)"
+      ></svg-icon-sprite>
+      }
+    </label>
     <input
       class="radioInput"
       type="radio"
-      name="sort"
+      name="sortPopular"
       id="unpopular"
       value="true"
       (change)="handleSubmit()"
@@ -150,12 +157,19 @@
       class="radio"
       [ngClass]="sortPopular === 'true' ? 'checked' : ''"
       for="unpopular"
-      >Unpopular</label
-    >
+      >Unpopular @if(sortPopular === 'true'){
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+        [width]="'18px'"
+        [class]="'imgClearSort'"
+        (click)="clearSort(inputSort.Popularity)"
+      ></svg-icon-sprite>
+      }
+    </label>
     <input
       class="radioInput"
       type="radio"
-      name="sort"
+      name="sortPrice"
       id="cheap"
       value="true"
       (change)="handleSubmit()"
@@ -165,12 +179,19 @@
       class="radio"
       [ngClass]="sortPrice === 'true' ? 'checked' : ''"
       for="cheap"
-      >Cheap</label
-    >
+      >Cheap @if(sortPrice === 'true'){
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+        [width]="'18px'"
+        [class]="'imgClearSort'"
+        (click)="clearSort(inputSort.Price)"
+      ></svg-icon-sprite>
+      }
+    </label>
     <input
       class="radioInput"
       type="radio"
-      name="sort"
+      name="sortPrice"
       id="expensive"
       value="false"
       (change)="handleSubmit()"
@@ -180,7 +201,14 @@
       class="radio"
       [ngClass]="sortPrice === 'false' ? 'checked' : ''"
       for="expensive"
-      >Expensive</label
-    >
+      >Expensive @if(sortPrice === 'false'){
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-cross-small-converted'"
+        [width]="'18px'"
+        [class]="'imgClearSort'"
+        (click)="clearSort(inputSort.Price)"
+      ></svg-icon-sprite>
+      }
+    </label>
   </div>
 </section>

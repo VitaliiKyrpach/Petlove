@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+.tabsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 32px;
+  .tab {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    background-color: $color-light;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    width: 142px;
+    height: 48px;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-pag-disabled;
+    }
+  }
+  .active {
+    color: $color-light;
+    background-color: $color-secondary;
+    &:hover {
+      background-color: $color-secondary-add;
+    }
+  }
+}

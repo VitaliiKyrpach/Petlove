@@ -1,0 +1,32 @@
+<div class="userHeader">
+  <p class="label">
+    User
+    <svg-icon-sprite
+      [src]="'images/sprite.svg#icon-user'"
+      [width]="'18px'"
+    ></svg-icon-sprite>
+  </p>
+  <div class="avatarWrapper">
+    <div class="avatarSVG">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-user'"
+        [width]="'50px'"
+      ></svg-icon-sprite>
+    </div>
+    <input class="inputFile" type="file" id="uploadPhoto" />
+    <label class="text" for="uploadPhoto">Upload photo</label>
+  </div>
+  <button type="button" class="editBtn">
+    <svg-icon-sprite
+      [src]="'images/sprite.svg#icon-edit'"
+      [width]="'16px'"
+      [class]="'editImg'"
+    ></svg-icon-sprite>
+  </button>
+</div>
+<div class="information">
+  <h3 class="title">My information</h3>
+  <p class="bio">Name</p>
+  <p class="bio">Email</p>
+  <p class="bio">+380</p>
+</div>

@@ -20,7 +20,10 @@ body {
   color: $color-primary-dark;
   background-color: $color-back;
 }
-input{
+button {
+  font-family: "manrope", sans-serif;
+}
+input {
   font-family: "manrope", sans-serif;
 }
 body::-webkit-scrollbar {

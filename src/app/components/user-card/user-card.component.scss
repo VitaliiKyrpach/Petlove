@@ -1,0 +1,91 @@
+@import "../../../styles/variables";
+.userHeader {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+  .label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: $color-secondary;
+    border-radius: 30px;
+    width: 80px;
+    height: 38px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    color: $color-light;
+  }
+  .avatarWrapper {
+    display: inline-block;
+    .avatarSVG {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 110px;
+      height: 110px;
+      background-color: $color-secondary-light;
+      border-radius: 50%;
+      color: $color-secondary;
+      margin-bottom: 8px;
+    }
+    .inputFile {
+      display: none;
+    }
+    .text {
+      display: block;
+      font-size: 14px;
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      text-align: center;
+      text-decoration: underline;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+
+  .editBtn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 38px;
+    height: 38px;
+    color: $color-secondary;
+    background-color: $color-secondary-light;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+    .editImg {
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+.information {
+  margin-bottom: 40px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+  margin-bottom: 20px;
+}
+.bio {
+  letter-spacing: -0.03em;
+  padding: 16px;
+  border-radius: 30px;
+  border: 1px solid $color-secondary;
+  &:not(:last-child) {
+    margin-bottom: 14px;
+  }
+}

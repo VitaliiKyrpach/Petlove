@@ -40,7 +40,7 @@
     padding: 14px;
     height: auto;
   }
-  ::ng-deep .ng-dropdown-panel .scroll-host{
+  ::ng-deep .ng-dropdown-panel .scroll-host {
     max-height: 216px;
     // width: 100px;
   }
@@ -74,26 +74,31 @@
   ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb:hover {
     background-color: $color-secondary-dark;
   }
-  ::ng-deep .ng-select .ng-clear-wrapper{
+  ::ng-deep .ng-select .ng-clear-wrapper {
     position: absolute;
     top: 1px;
     right: -22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 18px;
-  height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
   }
-  ::ng-deep .ng-select .ng-select-container{
+  ::ng-deep .ng-select .ng-select-container {
     overflow: unset;
   }
-  ::ng-deep .ng-select .ng-clear-wrapper .ng-clear{
+  ::ng-deep .ng-select .ng-clear-wrapper .ng-clear {
     font-size: 36px;
-    font-weight: 300
+    font-weight: 300;
   }
-  ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input{
+  ::ng-deep
+    .ng-select
+    .ng-select-container
+    .ng-value-container
+    .ng-input
+    > input {
     font-size: 16px;
-    font-weight: 500
+    font-weight: 500;
   }
   .gender,
   .type {
@@ -122,7 +127,7 @@
     transform: rotate(-90deg);
     pointer-events: none;
   }
-  .down{
+  .down {
     transform: rotate(90deg);
   }
   .imgClear {
@@ -141,6 +146,24 @@
     display: none;
   }
   .radio {
+    position: relative;
     @extend %input;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  .checked {
+    background-color: $color-secondary;
+    color: $color-light;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-secondary-add;
+    }
+  }
+  .imgClearSort {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
   }
 }

@@ -51,8 +51,8 @@ export class PetFiltersComponent implements OnInit {
   inputSort = InputSort;
   public query: string = '';
   public locationQuery!: string;
-  public sortPopular!: 'true' | 'false';
-  public sortPrice!: 'true' | 'false';
+  public sortPopular!: 'true' | 'false' | null;
+  public sortPrice!: 'true' | 'false' | null;
   public sort = {
     cheap: false,
     expensive: false,
@@ -73,7 +73,17 @@ export class PetFiltersComponent implements OnInit {
     this.type$ = this.service.getSpecies();
     this.locations$ = this.service.getLocations();
   }
-  // public handleSort(type: InputSort) {}
+  public clearSort(type: InputSort) {
+    switch (type) {
+      case 'price':
+        this.sortPrice = null;
+        break;
+      case 'popularity':
+        this.sortPopular = null;
+        break;
+    }
+    this.handleSubmit();
+  }
 
   public handleSubmit(): void {
     let filters: Filters = {};

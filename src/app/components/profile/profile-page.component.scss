@@ -1,0 +1,33 @@
+@import "../../../styles/variables";
+.profile {
+  margin-top: 16px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    .userSide {
+      width: 520px;
+      background-color: $color-light;
+      border-radius: 60px;
+      padding: 40px;
+    }
+    .logoutBtn {
+      font-size: 16px;
+      line-height: 1.25;
+      color: $color-secondary;
+      padding: 15px 35px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 30px;
+      background-color: $color-secondary-light;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+      &:hover {
+        background-color: $color-secondary-hover;
+      }
+    }
+  }
+}
