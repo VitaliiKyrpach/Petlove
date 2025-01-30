@@ -1,0 +1,51 @@
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+
+.wrapper {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  .text {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  .bottom {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .yesBtn {
+    @extend %button;
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  .noBtn {
+    @extend %button;
+
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    background-color: $color-pag-disabled;
+    color: $color-primary-dark;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-primary-transparent;
+    }
+  }
+}

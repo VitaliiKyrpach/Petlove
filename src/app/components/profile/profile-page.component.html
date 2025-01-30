@@ -3,7 +3,9 @@
     <div class="userSide">
       <app-user-card />
       <app-user-pets />
-      <button type="button" class="logoutBtn">log out</button>
+      <button type="button" class="logoutBtn" (click)="openModal()">
+        log out
+      </button>
     </div>
     <app-user-notices />
   </div>

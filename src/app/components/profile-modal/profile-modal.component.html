@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <p class="label">Edit information</p>
+
+  <img
+    class="img"
+    [src]="avatarPhoto || 'images/userPicture.png'"
+    alt="picture of a user"
+  />
+  <!-- [src]="avatarPhoto || 'images/userPicture.png'" -->
+  <form class="form" [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <div class="fileWrapper">
+      @if(avatar && avatar.invalid){
+      <p class="textError">{{ errors.avatar }}</p>
+      }
+      <p class="avatarUrl">
+        @if(filename === ''){ avatar address } @else{{{filename}}}
+      </p>
+      <input
+        class="uploadInpit"
+        type="file"
+        id="upload"
+        formControlName="avatar"
+        (change)="onFileChange($event)"
+      />
+      <label class="upload" for="upload">
+        <span class="text">Upload photo</span>
+        <svg-icon-sprite
+          [src]="'images/sprite.svg#icon-upload-cloud'"
+          [width]="'20px'"
+          [class]="'icon'"
+        ></svg-icon-sprite
+      ></label>
+    </div>
+    <div class="inputWrapper">
+      <input
+        class="input"
+        type="text"
+        placeholder="Name"
+        formControlName="name"
+      />
+    </div>
+    <div class="inputWrapper">
+      @if(email && email.invalid){
+      <p class="textError">{{ errors.email }}</p>
+      } @if(errors.email){
+      <div class="svgError">
+        <svg-icon-sprite
+          [src]="'images/sprite.svg#icon-cross-small-converted'"
+          [width]="'22px'"
+        ></svg-icon-sprite>
+      </div>
+      }
+      <input
+        class="input"
+        [ngClass]="errors.email ? 'error' : ''"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+        (blur)="updErrorMsg('email')"
+      />
+    </div>
+    <div class="inputWrapper">
+      @if(phone && phone.invalid){
+      <p class="textError">{{ errors.phone }}</p>
+      } @if(errors.phone){
+      <div class="svgError">
+        <svg-icon-sprite
+          [src]="'images/sprite.svg#icon-cross-small-converted'"
+          [width]="'22px'"
+        ></svg-icon-sprite>
+      </div>
+      }
+      <input
+        class="input"
+        [ngClass]="errors.phone ? 'error' : ''"
+        type="tel"
+        placeholder="+380"
+        formControlName="phone"
+        (blur)="updErrorMsg('phone')"
+      />
+    </div>
+    <button
+      class="submitBtn"
+      type="submit"
+      [disabled]="!profileForm.valid || !profileForm.dirty"
+    >
+      Save
+    </button>
+  </form>
+</div>

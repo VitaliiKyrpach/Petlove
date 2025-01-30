@@ -1,0 +1,76 @@
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+
+.wrapper {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  .label {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+    color: $color-secondary;
+    margin-bottom: 20px;
+  }
+  .text {
+    width: 346px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .content {
+    width: 300px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .loginBtn {
+    @extend %button;
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  .profileBtn {
+    @extend %button;
+    width: 250px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  .regBtn {
+    @extend %button;
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: $color-secondary;
+    background-color: $color-secondary-light;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+}

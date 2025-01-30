@@ -2,7 +2,10 @@
   font-family: "manrope", sans-serif;
   color: $color-light;
   border-radius: 30px;
+  border: none;
+  outline: none;
   background-color: $color-secondary;
+  cursor: pointer;
   transition: background-color 150ms ease;
   &:hover {
     background-color: $color-secondary-add;

@@ -1,0 +1,29 @@
+@if(type === 'attention'){
+<div class="wrapper">
+  <img class="img" src="images/dogPicture.png" alt="picture of a dog" />
+  <p class="label">Attention</p>
+  <p class="text">
+    We would like to remind you that certain functionality is available only to
+    authorized users.If you have an account, please log in with your
+    credentials. If you do not already have an account, you must register to
+    access these features.
+  </p>
+  <div class="bottom">
+    <button type="button" class="loginBtn">Login</button>
+    <button type="button" class="regBtn">Registration</button>
+  </div>
+</div>
+} @else{
+
+<div class="wrapper">
+  <img class="img" src="images/catPicture.png" alt="picture of a cat" />
+  <p class="label">Congrats</p>
+  <p class="content">
+    The first fluff in the favorites! May your friendship be the happiest and
+    filled with fun.
+  </p>
+  <button type="button" class="profileBtn" (click)="goToProfile()">
+    Go to profile
+  </button>
+</div>
+}

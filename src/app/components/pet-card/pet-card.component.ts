@@ -15,6 +15,6 @@ export class PetCardComponent {
   @Input() pet!: Pet;
   modalService = inject(ModalService);
   public openModal() {
-    this.modalService.openModal(this.pet, 'petModal');
+    this.modalService.openModal('petModal', this.pet);
   }
 }

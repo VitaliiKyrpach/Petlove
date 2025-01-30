@@ -1,0 +1,116 @@
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
+.wrapper {
+  padding: 50px;
+  .label {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.33;
+    margin-bottom: 20px;
+  }
+  .img {
+    display: block;
+    width: 86px;
+    height: 86px;
+    margin: 0px auto 12px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  .fileWrapper {
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .avatarUrl {
+    width: 226px;
+    height: 42px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    border-radius: 30px;
+    border: 1px solid $color-secondary;
+    outline: none;
+  }
+  .uploadInpit {
+    display: none;
+  }
+  .upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: none;
+    position: relative;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    width: 146px;
+    height: 42px;
+    background-color: $color-secondary-light;
+    border-radius: 30px;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+    .text {
+      color: $color-primary-dark;
+    }
+  }
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  .inputWrapper {
+    position: relative;
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+  .textError {
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    font-size: 12px;
+    line-height: 1.16;
+    color: $color-error;
+  }
+
+  .svgError {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    color: $color-error;
+  }
+  .input {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    width: 380px;
+    padding: 16px;
+    border-radius: 30px;
+    border: 1px solid $color-secondary;
+    outline: none;
+  }
+  .error {
+    border-color: $color-error;
+  }
+  .submitBtn {
+    @extend %button;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    height: 52px;
+    margin-top: 40px;
+    &[disabled] {
+      cursor: not-allowed;
+    }
+  }
+}

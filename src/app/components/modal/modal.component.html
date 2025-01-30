@@ -8,6 +8,12 @@
     </button>
     @if(type === 'petModal'){
     <app-pet-modal [data]="data" />
+    } @else if(type === 'logoutModal'){
+    <app-close-modal />
+    } @else if (type === 'attention' || type === 'congrats'){
+    <app-attention-modal [type]="type" />
+    } @else if(type === 'profile'){
+    <app-profile-modal />
     }
   </div>
 </div>
