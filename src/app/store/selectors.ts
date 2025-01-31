@@ -1,7 +1,26 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { InitState } from "../interfaces/interfaces";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { InitAuthState, InitState } from '../interfaces/interfaces';
 
-export const selectFeatureData = createFeatureSelector<InitState>('data')
-export const selectFriends = createSelector(selectFeatureData, state=> state.friends)
-export const selectNews = createSelector(selectFeatureData, state=> state.news)
-export const selectPets = createSelector(selectFeatureData, state=> state.pets)
+export const selectFeatureData = createFeatureSelector<InitState>('data');
+export const selectFriends = createSelector(
+  selectFeatureData,
+  (state) => state.friends
+);
+export const selectNews = createSelector(
+  selectFeatureData,
+  (state) => state.news
+);
+export const selectPets = createSelector(
+  selectFeatureData,
+  (state) => state.pets
+);
+
+export const selectFeatureAuth = createFeatureSelector<InitAuthState>('auth');
+export const selectIsLoggedIn = createSelector(
+  selectFeatureAuth,
+  (state) => state.isLoggedIn
+);
+export const selectError = createSelector(
+  selectFeatureAuth,
+  (state) => state.error
+);

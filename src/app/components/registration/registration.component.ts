@@ -1,9 +1,23 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { IsShown, RegErrors, RegForm } from '../../interfaces/interfaces';
+import {
+  AuthError,
+  IsShown,
+  RegErrors,
+  RegForm,
+} from '../../interfaces/interfaces';
+import { Store } from '@ngrx/store';
+import { registration } from '../../store/actions-auth';
+import { selectError } from '../../store/selectors';
 
 @Component({
   selector: 'app-registration',
@@ -12,22 +26,45 @@ import { IsShown, RegErrors, RegForm } from '../../interfaces/interfaces';
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
-export class RegistrationComponent {
-  constructor(private router: Router) {}
-  public isShown:IsShown = {
+export class RegistrationComponent implements OnInit {
+  public error!: AuthError;
+  constructor(
+    private router: Router,
+    private store: Store,
+    private cdRef: ChangeDetectorRef
+  ) {}
+  ngOnInit(): void {
+    this.store.select(selectError).subscribe((data) => {
+      console.log(data);
+      this.error = data;
+    });
+  }
+  public isShown: IsShown = {
     pass: false,
     confirm: false,
   };
   public regForm: FormGroup<RegForm> = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(7),
+    ]),
     confirm: new FormControl('', [Validators.required]),
   });
 
   public onSubmit(): void {
-    console.log(this.regForm.value);
-    this.regForm.reset()
+    const data = {
+      name: this.name.value,
+      email: this.email.value,
+      password: this.password.value,
+    };
+    console.log(data);
+    this.store.dispatch(registration({ data, event: 'registration' }));
+    this.regForm.reset();
   }
 
   public redirect(): void {
@@ -41,59 +78,56 @@ export class RegistrationComponent {
     name: '',
     email: '',
     password: '',
-    confirm: ''
+    confirm: '',
+  };
+
+  get name(): FormControl {
+    return this.regForm.get('name') as FormControl;
+  }
+  get email(): FormControl {
+    return this.regForm.get('email') as FormControl;
+  }
+  get password(): FormControl {
+    return this.regForm.get('password') as FormControl;
+  }
+  get confirm(): FormControl {
+    return this.regForm.get('confirm') as FormControl;
   }
 
-  get name(): FormControl{
-    return this.regForm.get('name') as FormControl
-  }
-  get email(): FormControl{
-    return this.regForm.get('email') as FormControl
-  }
-  get password(): FormControl{
-    return this.regForm.get('password') as FormControl
-  }
-  get confirm(): FormControl{
-    return this.regForm.get('confirm') as FormControl
-  }
-
-  public confirmPass():void{
-    console.log(this.password.value)
-  }
-  public updErrorMsg(type: string): void{
-    switch (type){
+  public updErrorMsg(type: string): void {
+    switch (type) {
       case 'name':
-        if(this.name && this.name.hasError('required')){
-          this.errors.name = 'Name is required'
-        }else{
-          this.errors.name = ''
+        if (this.name && this.name.hasError('required')) {
+          this.errors.name = 'Name is required';
+        } else {
+          this.errors.name = '';
         }
         break;
       case 'email':
-        if(this.email && this.email.hasError('required')){
-          this.errors.email = 'Email is required'
-        } else if(this.email && this.email.hasError('pattern')){
-          this.errors.email = 'Email is invalid'
-        }else{
-          this.errors.email = ''
+        if (this.email && this.email.hasError('required')) {
+          this.errors.email = 'Email is required';
+        } else if (this.email && this.email.hasError('pattern')) {
+          this.errors.email = 'Email is invalid';
+        } else {
+          this.errors.email = '';
         }
         break;
       case 'password':
-        if(this.password && this.password.hasError('required')){
-          this.errors.password = 'Password is required'
-        } else if( this.password && this.password.hasError('minlength')){
-          this.errors.password = 'Password must contain minimum 7 symbols'
+        if (this.password && this.password.hasError('required')) {
+          this.errors.password = 'Password is required';
+        } else if (this.password && this.password.hasError('minlength')) {
+          this.errors.password = 'Password must contain minimum 7 symbols';
         } else {
-          this.errors.password = ''
+          this.errors.password = '';
         }
         break;
       case 'confirm':
-        if(this.confirm && this.confirm.hasError('required')){
-          this.errors.confirm = 'Confirmation password is required'
-        }else if(this.confirm.value !== this.password.value){
-          this.errors.confirm = 'Confirmation password does not match'
-        } else{
-          this.errors.confirm = ''
+        if (this.confirm && this.confirm.hasError('required')) {
+          this.errors.confirm = 'Confirmation password is required';
+        } else if (this.confirm.value !== this.password.value) {
+          this.errors.confirm = 'Confirmation password does not match';
+        } else {
+          this.errors.confirm = '';
         }
     }
   }

@@ -1,24 +1,50 @@
 <header class="header" [ngClass]="path === '/' ? 'fixed' : 'relative'">
-    <div class="container">
-        <nav class="nav " [ngClass]="path === '/' ? 'home' : ''">
-            <a routerLink="" class="logo" [ngClass]="path === '/' ? 'home' : ''"><span>petl</span>
-                <span class="heart" [ngClass]="path === '/' ? 'home' : ''">
-                    <svg-icon-sprite
-                    [src]="'images/sprite.svg#icon-heart'"
-                    [width]="'23px'"
-                    ></svg-icon-sprite>
-                </span>
-                <span>ve</span></a>
-            <ul class="navLinkGrp">
-            <li><a routerLink="news" routerLinkActive="activeLink" class="navLink" [ngClass]="path === '/' ? 'home' : ''">News</a></li>
-            <li><a routerLink="notices" routerLinkActive="activeLink" class="navLink" [ngClass]="path === '/' ? 'home' : ''">Find pet</a></li>
-            <li><a routerLink="friends" routerLinkActive="activeLink" class="navLink" [ngClass]="path === '/' ? 'home' : ''">Our friends</a></li>
-        </ul>
-        @if(isLoged){
-            <app-user-nav />
-        }@else{
-            <app-auth-nav [path]="path"/>
-        }
+  <div class="container">
+    <nav class="nav" [ngClass]="path === '/' ? 'home' : ''">
+      <a routerLink="" class="logo" [ngClass]="path === '/' ? 'home' : ''"
+        ><span>petl</span>
+        <span class="heart" [ngClass]="path === '/' ? 'home' : ''">
+          <svg-icon-sprite
+            [src]="'images/sprite.svg#icon-heart'"
+            [width]="'23px'"
+          ></svg-icon-sprite>
+        </span>
+        <span>ve</span></a
+      >
+      <ul class="navLinkGrp">
+        <li>
+          <a
+            routerLink="news"
+            routerLinkActive="activeLink"
+            class="navLink"
+            [ngClass]="path === '/' ? 'home' : ''"
+            >News</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="notices"
+            routerLinkActive="activeLink"
+            class="navLink"
+            [ngClass]="path === '/' ? 'home' : ''"
+            >Find pet</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="friends"
+            routerLinkActive="activeLink"
+            class="navLink"
+            [ngClass]="path === '/' ? 'home' : ''"
+            >Our friends</a
+          >
+        </li>
+      </ul>
+      @if(isLogged){
+      <app-user-nav />
+      }@else{
+      <app-auth-nav [path]="path" />
+      }
     </nav>
-</div>
+  </div>
 </header>

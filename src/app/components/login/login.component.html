@@ -27,47 +27,54 @@
         <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="inputWrapper">
             @if(email && email.invalid){
-              <p class="textError">{{errors.email}}</p>
-            }
-            @if(errors.email){
-              <div class="svgError">
-                <svg-icon-sprite
+            <p class="textError">{{ errors.email }}</p>
+            } @if(errors.email){
+            <div class="svgError">
+              <svg-icon-sprite
                 [src]="'images/sprite.svg#icon-cross-small-converted'"
                 [width]="'22px'"
-                ></svg-icon-sprite>
-              </div>
+              ></svg-icon-sprite>
+            </div>
             }
             <input
-            type="email"
-            formControlName="email"
-            placeholder="Email"
-            class="input"
-            [ngClass]="errors.email ? 'error' : ''"
-            (blur)="updErrorMsg('email')"
+              type="email"
+              formControlName="email"
+              placeholder="Email"
+              class="input"
+              [ngClass]="errors.email ? 'error' : ''"
+              (blur)="updErrorMsg('email')"
             />
           </div>
           <div class="inputWrapper">
             @if(password && password.invalid){
-              <p class="textError">{{errors.password}}</p>
-            }
-            @if(errors.password){
-              <div class="svgError">
-                <svg-icon-sprite
+            <p class="textError">{{ errors.password }}</p>
+            } @if(errors.password){
+            <div class="svgError">
+              <svg-icon-sprite
                 [src]="'images/sprite.svg#icon-cross-small-converted'"
                 [width]="'22px'"
-                ></svg-icon-sprite>
-              </div>
+              ></svg-icon-sprite>
+            </div>
             }
             <input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            class="input"
-            [ngClass]="errors.password ? 'error' : ''"
-            (blur)="updErrorMsg('password')"
+              type="password"
+              formControlName="password"
+              placeholder="Password"
+              class="input"
+              [ngClass]="errors.password ? 'error' : ''"
+              (blur)="updErrorMsg('password')"
             />
           </div>
-          <button type="submit" class="submitBtn" [disabled]="!loginForm.valid || !loginForm.dirty">LOG IN</button>
+          @if(error.message !== '' && error.type === 'login'){
+          <p class="errorAuth">*{{ error.message }}</p>
+          }
+          <button
+            type="submit"
+            class="submitBtn"
+            [disabled]="!loginForm.valid || !loginForm.dirty"
+          >
+            LOG IN
+          </button>
         </form>
         <p class="textLower">
           Don’t have an account?<button

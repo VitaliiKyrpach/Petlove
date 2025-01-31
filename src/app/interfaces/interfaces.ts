@@ -61,6 +61,23 @@ export interface InitState {
   news: NewsData;
   pets: PetData;
 }
+
+export interface InitAuthState {
+  user: {
+    name: string | null;
+    email: string | null;
+    avatar: string | null;
+    phone: string | null;
+    pets: Pet[];
+  };
+  token: string | null;
+  isLoggedIn: boolean;
+  error: AuthError;
+}
+export interface AuthError {
+  type: string;
+  message: string;
+}
 export interface Pages {
   page: number;
   totalPages: number;

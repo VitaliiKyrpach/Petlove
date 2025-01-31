@@ -74,7 +74,14 @@
       margin-bottom: 32px;
     }
   }
+  .errorAuth {
+    position: absolute;
+    left: 5px;
+    bottom: 54px;
+    color: $color-error;
+  }
   .loginForm {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -97,10 +104,10 @@
         border-color: $color-secondary;
       }
     }
-    .input.error{
+    .input.error {
       border-color: $color-error;
     }
-    .svgError{
+    .svgError {
       position: absolute;
       top: 14px;
       right: 16px;
@@ -108,8 +115,8 @@
     }
     .inputWrapper {
       position: relative;
-    } 
-    .textError{
+    }
+    .textError {
       position: absolute;
       top: -14px;
       left: 10px;
@@ -124,7 +131,7 @@
       border: none;
       cursor: pointer;
     }
-    .submitBtn[disabled]{
+    .submitBtn[disabled] {
       // color: $color-secondary;
       // background-color: $color-secondary-light;
       cursor: not-allowed;

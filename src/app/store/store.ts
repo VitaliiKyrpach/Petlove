@@ -1,7 +1,9 @@
-import { dataEffects } from "./effects";
-import { dataReducer } from "./reducer";
+import { dataEffects } from './effects';
+import { dataReducer } from './reducer';
+import { authReducer } from './reducer-auth';
 
 export const store = {
-    data: dataReducer
-}
-export const effects = [dataEffects]
+  auth: authReducer,
+  data: dataReducer,
+};
+export const effects = [dataEffects];
