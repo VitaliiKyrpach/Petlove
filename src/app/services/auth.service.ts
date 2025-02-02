@@ -19,4 +19,8 @@ export class AuthService {
   public logout() {
     return this.http.post<any>(`${this.api}/users/signout`, {});
   }
+
+  public getUser() {
+    return this.http.get<any>(`${this.api}/users/current/full`);
+  }
 }

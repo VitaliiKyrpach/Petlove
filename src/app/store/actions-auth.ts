@@ -26,4 +26,22 @@ export const registrationFailure = createAction(
   props<{ error: any; event: string }>()
 );
 
-export const logout = createAction('[Auth] Logout');
+export const logout = createAction('[Auth] Logout', props<{ event: string }>());
+export const logoutSuccess = createAction('[Auth] Logout Success');
+export const logoutFail = createAction(
+  '[Auth] Logout Fail',
+  props<{ error: any; event: string }>()
+);
+
+export const getUser = createAction(
+  '[Auth] Get User',
+  props<{ event: string }>()
+);
+export const getUserSuccess = createAction(
+  '[Auth] Get User Success',
+  props<any>()
+);
+export const getUserFailure = createAction(
+  '[Auth] get User Fail',
+  props<{ error: any; event: string }>()
+);

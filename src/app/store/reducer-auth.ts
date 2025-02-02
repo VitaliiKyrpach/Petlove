@@ -1,16 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  getUser,
+  getUserFailure,
+  getUserSuccess,
   loginFailure,
   loginSuccess,
   logout,
+  logoutFail,
+  logoutSuccess,
   registrationFailure,
   registrationSuccess,
 } from './actions-auth';
+import { InitAuthState } from '../interfaces/interfaces';
 
-export const initialAuthState = {
+export const initialAuthState: InitAuthState = {
   user: { name: null, email: null, avatar: null, phone: null, pets: [] },
   token: null,
   isLoggedIn: false,
+  isRefresh: false,
   error: {
     type: '',
     message: '',
@@ -20,6 +27,7 @@ export const initialAuthState = {
 export const authReducer = createReducer(
   initialAuthState,
   on(loginSuccess, (state, { data }) => {
+    console.log(data);
     return {
       ...state,
       user: {
@@ -69,7 +77,51 @@ export const authReducer = createReducer(
       },
     };
   }),
-  on(logout, (state) => {
+  on(getUser, (state) => {
+    return {
+      ...state,
+      isRefresh: true,
+    };
+  }),
+  on(getUserSuccess, (state, { data }) => {
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        name: data.name,
+        email: data.email,
+        avatar: data.avatar,
+        phone: data.phone,
+        pets: data.pets,
+      },
+      token: data.token,
+      isLoggedIn: true,
+      isRefresh: false,
+      error: {
+        type: '',
+        message: '',
+      },
+    };
+  }),
+  on(getUserFailure, (state, { error, event }) => {
+    return {
+      ...initialAuthState,
+      error: {
+        message: error.error.message,
+        type: event,
+      },
+    };
+  }),
+  on(logoutSuccess, (state) => {
     return initialAuthState;
+  }),
+  on(logoutFail, (state, { error, event }) => {
+    return {
+      ...state,
+      error: {
+        message: error.error.message,
+        type: event,
+      },
+    };
   })
 );

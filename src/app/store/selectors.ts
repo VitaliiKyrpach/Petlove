@@ -20,6 +20,10 @@ export const selectIsLoggedIn = createSelector(
   selectFeatureAuth,
   (state) => state.isLoggedIn
 );
+export const selectIsRefresh = createSelector(
+  selectFeatureAuth,
+  (state) => state.isRefresh
+);
 export const selectError = createSelector(
   selectFeatureAuth,
   (state) => state.error

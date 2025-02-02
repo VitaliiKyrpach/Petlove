@@ -11,7 +11,7 @@ import { UserNavComponent } from '../user-nav/user-nav.component';
 import { filter } from 'rxjs';
 import { NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { selectIsLoggedIn } from '../../store/selectors';
+import { selectIsLoggedIn, selectIsRefresh } from '../../store/selectors';
 
 @Component({
   selector: 'app-header',
@@ -29,12 +29,17 @@ import { selectIsLoggedIn } from '../../store/selectors';
 })
 export class HeaderComponent implements OnInit {
   public isLogged: boolean = false;
+  public isRefresh: boolean = false;
   public path: string = '';
   constructor(private router: Router, private store: Store) {}
   ngOnInit(): void {
     this.store.select(selectIsLoggedIn).subscribe((data) => {
       this.isLogged = data;
-      console.log(data);
+      console.log('isLoggedIn', data);
+    });
+    this.store.select(selectIsRefresh).subscribe((data) => {
+      this.isRefresh = data;
+      console.log('isRefresh', data);
     });
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

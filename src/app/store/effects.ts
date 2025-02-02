@@ -11,9 +11,15 @@ import {
   getPetsSuccess,
 } from './actions';
 import {
+  getUser,
+  getUserFailure,
+  getUserSuccess,
   login,
   loginFailure,
   loginSuccess,
+  logout,
+  logoutFail,
+  logoutSuccess,
   registration,
   registrationFailure,
   registrationSuccess,
@@ -69,7 +75,10 @@ export class dataEffects {
       ofType(login),
       switchMap((action) => {
         return this.authService.logIn(action.data).pipe(
-          map((data) => loginSuccess({ data })),
+          map((data) => {
+            localStorage.setItem('token', data.token);
+            return loginSuccess({ data });
+          }),
           catchError((error) => {
             return of(loginFailure({ error, event: action.event }));
           })
@@ -82,9 +91,44 @@ export class dataEffects {
       ofType(registration),
       switchMap((action) => {
         return this.authService.registration(action.data).pipe(
-          map((data) => registrationSuccess({ data })),
+          map((data) => {
+            localStorage.setItem('token', data.token);
+            return registrationSuccess({ data });
+          }),
           catchError((error) => {
             return of(registrationFailure({ error, event: action.event }));
+          })
+        );
+      })
+    )
+  );
+
+  loadUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getUser),
+      switchMap((action) => {
+        return this.authService.getUser().pipe(
+          map((data) => {
+            return getUserSuccess({ data });
+          }),
+          catchError((error) => {
+            return of(getUserFailure({ error, event: action.event }));
+          })
+        );
+      })
+    )
+  );
+  loadLogout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logout),
+      switchMap((action) => {
+        return this.authService.logout().pipe(
+          map(() => {
+            localStorage.removeItem('token');
+            return logoutSuccess();
+          }),
+          catchError((error) => {
+            return of(logoutFail({ error, event: action.event }));
           })
         );
       })

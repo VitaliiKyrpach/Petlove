@@ -40,11 +40,11 @@
           >
         </li>
       </ul>
-      @if(isLogged){
+      @if(!isRefresh){ @if(isLogged){
       <app-user-nav />
       }@else{
       <app-auth-nav [path]="path" />
-      }
+      } }
     </nav>
   </div>
 </header>

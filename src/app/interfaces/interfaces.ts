@@ -72,6 +72,7 @@ export interface InitAuthState {
   };
   token: string | null;
   isLoggedIn: boolean;
+  isRefresh: boolean;
   error: AuthError;
 }
 export interface AuthError {
