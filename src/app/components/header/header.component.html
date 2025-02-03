@@ -41,7 +41,7 @@
         </li>
       </ul>
       @if(!isRefresh){ @if(isLogged){
-      <app-user-nav />
+      <app-user-nav [path]="path" />
       }@else{
       <app-auth-nav [path]="path" />
       } }

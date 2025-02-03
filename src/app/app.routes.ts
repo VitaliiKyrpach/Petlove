@@ -7,6 +7,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfilePageComponent } from './components/profile/profile-page.component';
+import { AuthGuard } from './guard/auth-guard.guard';
 
 export const routes: Routes = [
   {
@@ -16,14 +17,19 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'registration',
     component: RegistrationComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'profile',
     component: ProfilePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'news',

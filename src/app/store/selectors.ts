@@ -16,6 +16,10 @@ export const selectPets = createSelector(
 );
 
 export const selectFeatureAuth = createFeatureSelector<InitAuthState>('auth');
+export const selectUser = createSelector(
+  selectFeatureAuth,
+  (state) => state.user
+);
 export const selectIsLoggedIn = createSelector(
   selectFeatureAuth,
   (state) => state.isLoggedIn
