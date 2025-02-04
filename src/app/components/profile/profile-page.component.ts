@@ -12,7 +12,7 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
-  modalService = inject(ModalService);
+  private modalService = inject(ModalService);
   public openModal() {
     this.modalService.openModal('logoutModal');
   }

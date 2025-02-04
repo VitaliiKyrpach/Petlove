@@ -5,7 +5,6 @@ import {
   getUserSuccess,
   loginFailure,
   loginSuccess,
-  logout,
   logoutFail,
   logoutSuccess,
   registrationFailure,

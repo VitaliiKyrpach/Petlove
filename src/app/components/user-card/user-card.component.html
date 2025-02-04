@@ -26,7 +26,11 @@
 </div>
 <div class="information">
   <h3 class="title">My information</h3>
-  <p class="bio">Name</p>
-  <p class="bio">Email</p>
-  <p class="bio">+380</p>
+  <p class="bio">{{ user.name }}</p>
+  <p class="bio">{{ user.email }}</p>
+  @if(user.phone){
+  <p class="bio">{{ user.phone }}</p>
+  }@else{
+  <p class="bio placeholder">+380</p>
+  }
 </div>

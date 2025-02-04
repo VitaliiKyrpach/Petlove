@@ -6,16 +6,20 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class ModalService {
   public modalOpen$ = new BehaviorSubject<boolean>(false);
-  public data$ = new Subject<any>();
+  public id$ = new Subject<string | null>();
   public type$ = new Subject<string>();
   constructor() {}
-  public openModal(type: string, data?: any): void {
+  public openModal(type: string, id?: string): void {
     this.modalOpen$.next(true);
-    this.data$.next(data);
+    if (id) {
+      this.id$.next(id);
+    } else {
+      this.id$.next(null);
+    }
     this.type$.next(type);
   }
   public closeModal(): void {
     this.modalOpen$.next(false);
-    this.data$.next(null);
+    this.id$.next(null);
   }
 }

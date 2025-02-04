@@ -9,8 +9,10 @@
     access these features.
   </p>
   <div class="bottom">
-    <button type="button" class="loginBtn">Login</button>
-    <button type="button" class="regBtn">Registration</button>
+    <button type="button" class="loginBtn" (click)="goToLogin()">Login</button>
+    <button type="button" class="regBtn" (click)="goToReg()">
+      Registration
+    </button>
   </div>
 </div>
 } @else{

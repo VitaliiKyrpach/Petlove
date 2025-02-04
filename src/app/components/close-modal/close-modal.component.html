@@ -2,7 +2,11 @@
   <img class="img" src="images/catPicture.png" alt="picture of a cat" />
   <p class="text">Already leaving?</p>
   <div class="bottom">
-    <button type="button" class="yesBtn">Yes</button>
-    <button type="button" class="noBtn" (click)="closeModal()">Cansel</button>
+    <button type="button" class="yesBtn" (click)="closeModal('yes')">
+      Yes
+    </button>
+    <button type="button" class="noBtn" (click)="closeModal('no')">
+      Cansel
+    </button>
   </div>
 </div>

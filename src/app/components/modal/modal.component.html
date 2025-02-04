@@ -7,7 +7,7 @@
       ></svg-icon-sprite>
     </button>
     @if(type === 'petModal'){
-    <app-pet-modal [data]="data" />
+    <app-pet-modal [id]="id" />
     } @else if(type === 'logoutModal'){
     <app-close-modal />
     } @else if (type === 'attention' || type === 'congrats'){

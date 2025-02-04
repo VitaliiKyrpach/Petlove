@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
+import { Store } from '@ngrx/store';
+import { logout } from '../../store/actions-auth';
 
 @Component({
   selector: 'app-close-modal',
@@ -10,7 +12,15 @@ import { ModalService } from '../../services/modal.service';
 })
 export class CloseModalComponent {
   modalService = inject(ModalService);
-  public closeModal() {
-    this.modalService.closeModal();
+  constructor(private store: Store) {}
+  public closeModal(action: string) {
+    switch (action) {
+      case 'no':
+        this.modalService.closeModal();
+        break;
+      case 'yes':
+        this.store.dispatch(logout({ event: 'logout' }));
+        this.modalService.closeModal();
+    }
   }
 }

@@ -5,6 +5,7 @@ import {
   Friends,
   Locations,
   NewsData,
+  Pet,
   PetData,
 } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
@@ -28,6 +29,9 @@ export class ServiceService {
   public getPets(page: number, filters: Filters | null): Observable<PetData> {
     let params: Params = { ...filters, page };
     return this.http.get<PetData>(`${this.api}/notices`, { params });
+  }
+  public getPet(id: string): Observable<Pet> {
+    return this.http.get<Pet>(`${this.api}/notices/${id}`);
   }
   public getCategory(): Observable<string[]> {
     return this.http.get<string[]>(`${this.api}/notices/categories`);

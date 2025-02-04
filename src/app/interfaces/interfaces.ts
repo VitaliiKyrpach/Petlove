@@ -63,17 +63,18 @@ export interface InitState {
 }
 
 export interface InitAuthState {
-  user: {
-    name: string | null;
-    email: string | null;
-    avatar: string | null;
-    phone: string | null;
-    pets: Pet[];
-  };
+  user: User;
   token: string | null;
   isLoggedIn: boolean;
   isRefresh: boolean;
   error: AuthError;
+}
+export interface User {
+  name: string | null;
+  email: string | null;
+  avatar: string | null;
+  phone: string | null;
+  pets: Pet[];
 }
 export interface AuthError {
   type: string;
