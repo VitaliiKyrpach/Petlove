@@ -30,6 +30,12 @@ export interface RegForm {
   password: FormControl<string | null>;
   confirm: FormControl<string | null>;
 }
+export interface EditForm {
+  name: FormControl<string | null>;
+  email: FormControl<string | null>;
+  phone: FormControl<string | null>;
+  avatar: FormControl<string | null>;
+}
 export interface RegErrors {
   name: string;
   email: string;
@@ -63,18 +69,20 @@ export interface InitState {
 }
 
 export interface InitAuthState {
-  user: User;
+  user: UserData;
   token: string | null;
   isLoggedIn: boolean;
   isRefresh: boolean;
   error: AuthError;
+}
+export interface UserData extends User {
+  pets: Pet[];
 }
 export interface User {
   name: string | null;
   email: string | null;
   avatar: string | null;
   phone: string | null;
-  pets: Pet[];
 }
 export interface AuthError {
   type: string;

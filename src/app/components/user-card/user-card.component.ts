@@ -3,7 +3,7 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/selectors';
-import { User } from '../../interfaces/interfaces';
+import { User, UserData } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-user-card',
@@ -13,13 +13,13 @@ import { User } from '../../interfaces/interfaces';
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent implements OnInit {
-  public user!: User;
+  public user!: UserData;
   private modalService = inject(ModalService);
   constructor(private store: Store) {}
   ngOnInit(): void {
     this.store.select(selectUser).subscribe((data) => (this.user = data));
   }
   public openModal() {
-    this.modalService.openModal('profile');
+    this.modalService.openModal('profile', this.user);
   }
 }

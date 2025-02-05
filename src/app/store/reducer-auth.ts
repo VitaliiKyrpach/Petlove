@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  editUserFailure,
+  editUserSuccess,
   getUser,
   getUserFailure,
   getUserSuccess,
@@ -111,6 +113,21 @@ export const authReducer = createReducer(
       },
     };
   }),
+  on(editUserSuccess, (state, {data})=>{
+    return {
+      ...state,
+      user: data
+    }
+  }),
+  on(editUserFailure, (state, { error, event }) => {
+    return {
+      ...state,
+      error: {
+        message: error.error.message,
+        type: event,
+      },
+    };
+  }), 
   on(logoutSuccess, (state) => {
     return initialAuthState;
   }),

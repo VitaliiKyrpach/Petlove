@@ -6,6 +6,7 @@ import { CloseModalDirective } from '../../directives/close-modal.directive';
 import { CloseModalComponent } from '../close-modal/close-modal.component';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { AttentionModalComponent } from '../attention-modal/attention-modal.component';
+import { User } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-modal',
@@ -24,12 +25,20 @@ import { AttentionModalComponent } from '../attention-modal/attention-modal.comp
 export class ModalComponent implements OnInit {
   modalService = inject(ModalService);
   public isOpen: boolean = false;
+  public data!:  User | null;
   public id!: string | null;
   public type!: string;
 
   ngOnInit(): void {
     this.modalService.modalOpen$.subscribe((open) => (this.isOpen = open));
-    this.modalService.id$.subscribe((id) => (this.id = id));
+    this.modalService.data$.subscribe((data) => {
+      console.log(data)
+      if (typeof data === 'string') {
+        this.id = data;
+      } else if (data && (data as User).name) {
+        this.data = data as User;
+      }
+    });
     this.modalService.type$.subscribe((type) => (this.type = type));
     console.log(this.type);
   }

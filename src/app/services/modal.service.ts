@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { User } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   public modalOpen$ = new BehaviorSubject<boolean>(false);
-  public id$ = new Subject<string | null>();
+  public data$ = new Subject<string | User | null>();
   public type$ = new Subject<string>();
   constructor() {}
-  public openModal(type: string, id?: string): void {
+  public openModal(type: string, data?: string | User): void {
     this.modalOpen$.next(true);
-    if (id) {
-      this.id$.next(id);
+    if (data) {
+      this.data$.next(data);
     } else {
-      this.id$.next(null);
+      this.data$.next(null);
     }
     this.type$.next(type);
   }
   public closeModal(): void {
     this.modalOpen$.next(false);
-    this.id$.next(null);
+    this.data$.next(null);
   }
 }

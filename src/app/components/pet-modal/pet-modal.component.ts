@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { Pet } from '../../interfaces/interfaces';
+import { Pet, User } from '../../interfaces/interfaces';
 import { DatePipe } from '@angular/common';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ServiceService } from '../../services/service.service';

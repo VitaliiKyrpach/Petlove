@@ -88,4 +88,7 @@
   &:not(:last-child) {
     margin-bottom: 14px;
   }
+  &.placeholder{
+    border-color: $color-primary-transparent;
+  }
 }

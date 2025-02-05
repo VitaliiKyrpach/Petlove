@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +23,9 @@ export class AuthService {
 
   public getUser() {
     return this.http.get<any>(`${this.api}/users/current/full`);
+  }
+
+  public editUser(data: User){
+    return this.http.patch<User>(`${this.api}/users/current/edit`, data)
   }
 }

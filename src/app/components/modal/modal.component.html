@@ -13,7 +13,7 @@
     } @else if (type === 'attention' || type === 'congrats'){
     <app-attention-modal [type]="type" />
     } @else if(type === 'profile'){
-    <app-profile-modal />
+    <app-profile-modal [data]="data"/>
     }
   </div>
 </div>

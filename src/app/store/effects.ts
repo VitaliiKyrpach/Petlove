@@ -11,6 +11,9 @@ import {
   getPetsSuccess,
 } from './actions';
 import {
+  editUser,
+  editUserFailure,
+  editUserSuccess,
   getUser,
   getUserFailure,
   getUserSuccess,
@@ -129,6 +132,21 @@ export class dataEffects {
           }),
           catchError((error) => {
             return of(logoutFail({ error, event: action.event }));
+          })
+        );
+      })
+    )
+  );
+  loadEditUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editUser),
+      switchMap((action) => {
+        return this.authService.editUser(action.user).pipe(
+          map((data) => {
+            return editUserSuccess({ data });
+          }),
+          catchError((error) => {
+            return of(editUserFailure({ error, event: action.event }));
           })
         );
       })

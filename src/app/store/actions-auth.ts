@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from '../interfaces/interfaces';
 
 export const login = createAction(
   '[Auth] Login',
@@ -42,6 +43,9 @@ export const getUserSuccess = createAction(
   props<any>()
 );
 export const getUserFailure = createAction(
-  '[Auth] get User Fail',
+  '[Auth] Get User Fail',
   props<{ error: any; event: string }>()
 );
+export const editUser = createAction('[Auth] Edit User', props<{event: string, user: User}>())
+export const editUserSuccess = createAction('[Auth] Edit User Success', props<{data: any}>())
+export const editUserFailure = createAction('[Auth] Edit User Fail', props<{ error: any; event: string }>())
