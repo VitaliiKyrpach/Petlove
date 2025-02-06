@@ -1,12 +1,12 @@
 <section class="profile">
   <div class="container wrapper">
     <div class="userSide">
-      <app-user-card />
+      <app-user-card [user]="user"/>
       <app-user-pets />
       <button type="button" class="logoutBtn" (click)="openModal()">
         log out
       </button>
     </div>
-    <app-user-notices />
+    <app-user-notices [user]="user"/>
   </div>
 </section>

@@ -15,7 +15,7 @@ import {
 import { InitAuthState } from '../interfaces/interfaces';
 
 export const initialAuthState: InitAuthState = {
-  user: { name: null, email: null, avatar: null, phone: null, pets: [] },
+  user: { name: null, email: null, avatar: null, phone: null, pets: [], noticesViewed: [], noticesFavorites: [] },
   token: null,
   isLoggedIn: false,
   isRefresh: false,
@@ -85,6 +85,7 @@ export const authReducer = createReducer(
     };
   }),
   on(getUserSuccess, (state, { data }) => {
+    console.log(data)
     return {
       ...state,
       user: {
@@ -94,6 +95,8 @@ export const authReducer = createReducer(
         avatar: data.avatar,
         phone: data.phone,
         pets: data.pets,
+        noticesViewed: data.noticesViewed,
+        noticesFavorites: data.noticesFavorites
       },
       token: data.token,
       isLoggedIn: true,
@@ -116,7 +119,11 @@ export const authReducer = createReducer(
   on(editUserSuccess, (state, {data})=>{
     return {
       ...state,
-      user: data
+      user: data,
+      error: {
+        type: '',
+        message: '',
+      },
     }
   }),
   on(editUserFailure, (state, { error, event }) => {

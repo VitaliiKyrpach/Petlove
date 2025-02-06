@@ -19,6 +19,9 @@
 @if(tab === 'favorite'){
 <p>favorite tab</p>
 } @else{
-<p>viewed tab</p>
+<ul>
+  @for(pet of user.noticesViewed; track pet._id){
+    <app-pet-card [pet]="pet" place="viewed"/>
+  }
+</ul>
 }
-<ul></ul>

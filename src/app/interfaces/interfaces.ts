@@ -77,6 +77,9 @@ export interface InitAuthState {
 }
 export interface UserData extends User {
   pets: Pet[];
+  noticesViewed: Pet[],
+  noticesFavorites: Pet[],
+
 }
 export interface User {
   name: string | null;

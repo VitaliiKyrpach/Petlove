@@ -7,7 +7,7 @@
     }@else{
     <ul class="cardList">
       @for(pet of pets; track pet._id){
-      <app-pet-card [pet]="pet" />
+      <app-pet-card [pet]="pet" place="findPage"/>
       }
     </ul>
     }

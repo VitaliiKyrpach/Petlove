@@ -8,10 +8,19 @@
   </p>
   <div class="avatarWrapper">
     <div class="avatarSVG">
-      <svg-icon-sprite
+      <img
+    class="img"
+    [src]="user.avatar || 'images/userPicture.png'"
+    alt="picture of a user"
+  />
+      <!-- @if(user.avatar){
+        <img [src]="user.avatar" alt="user avatar">
+      }@else{
+        <svg-icon-sprite
         [src]="'images/sprite.svg#icon-user'"
         [width]="'50px'"
-      ></svg-icon-sprite>
+        ></svg-icon-sprite>
+      } -->
     </div>
     <input class="inputFile" type="file" id="uploadPhoto" />
     <label class="text" for="uploadPhoto">Upload photo</label>

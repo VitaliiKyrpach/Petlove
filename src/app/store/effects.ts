@@ -146,6 +146,7 @@ export class dataEffects {
             return editUserSuccess({ data });
           }),
           catchError((error) => {
+            console.log(error)
             return of(editUserFailure({ error, event: action.event }));
           })
         );

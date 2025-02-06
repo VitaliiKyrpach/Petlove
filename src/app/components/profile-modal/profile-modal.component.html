@@ -1,9 +1,10 @@
 <div class="wrapper">
   <p class="label">Edit information</p>
+  @if(data){
 
   <img
     class="img"
-    [src]="avatarPhoto || 'images/userPicture.png'"
+    [src]="data.avatar || 'images/userPicture.png'"
     alt="picture of a user"
   />
   <!-- [src]="avatarPhoto || 'images/userPicture.png'" -->
@@ -79,12 +80,17 @@
         (blur)="updErrorMsg('phone')"
       />
     </div>
+    @if(error.type === 'editUser' && error.message !== ''){
+      <p class="textErrorBack ">{{error.message}}</p>
+    }
     <button
       class="submitBtn"
       type="submit"
-      [disabled]="!profileForm.valid || !profileForm.dirty"
-    >
+      >
+      <!-- [disabled]="!profileForm.valid || !profileForm.dirty" -->
       Save
     </button>
   </form>
+}
+
 </div>

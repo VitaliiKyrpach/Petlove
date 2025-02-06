@@ -7,9 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { EditForm, User } from '../../interfaces/interfaces';
+import { AuthError, EditForm, User } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { editUser } from '../../store/actions-auth';
+import { selectError } from '../../store/selectors';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-profile-modal',
@@ -18,8 +20,9 @@ import { editUser } from '../../store/actions-auth';
   templateUrl: './profile-modal.component.html',
   styleUrl: './profile-modal.component.scss',
 })
-export class ProfileModalComponent implements OnChanges {
-  @Input() data!: User | null;
+export class ProfileModalComponent implements OnInit {
+  @Input() data!: User;
+    public error!: AuthError;
   public filename: string = '';
   public avatarPhoto!: string;
   private avatarUrl: string = ''
@@ -32,23 +35,17 @@ export class ProfileModalComponent implements OnChanges {
     phone: new FormControl('', [Validators.required, Validators.pattern(/^\+38\d{10}$/)]),
     avatar: new FormControl(
       '',
-      Validators.pattern(/^.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/)
+      [Validators.required, Validators.pattern(/^.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/)]
     ),
   });
-  constructor(private store: Store){}
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data) {
-      this.profileForm.patchValue({
-        name: this.data.name || '',
-        email: this.data.email || '',
-        phone: this.data.phone || '',
-        avatar: this.data.avatar || ''
-      });
-    }
+  constructor(private store: Store, private modalService: ModalService){}
+  ngOnInit(): void {
+    this.store.select(selectError).subscribe(error=> this.error = error)
+    this.name.setValue(this.data.name)
+    this.email.setValue(this.data.email)
+    this.phone.setValue(this.data.phone || '')
   }
-
   public handleSubmit() {
-
     const user: User = {
       name: this.name.value,
       email: this.email.value,
@@ -56,7 +53,11 @@ export class ProfileModalComponent implements OnChanges {
       avatar: this.avatarUrl
     }
     this.store.dispatch(editUser({event: 'editUser',user}))
-    console.log(this.profileForm.value);
+    if(this.profileForm.valid){
+      this.modalService.closeModal()
+
+    }
+  
   }
 
   public errors = {

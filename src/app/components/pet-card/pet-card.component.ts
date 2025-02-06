@@ -15,6 +15,7 @@ import { selectIsLoggedIn } from '../../store/selectors';
 })
 export class PetCardComponent implements OnInit {
   @Input() pet!: Pet;
+  @Input() place!: string;
   private isLoggedIn: boolean = false;
   private modalService = inject(ModalService);
   constructor(private store: Store) {}
