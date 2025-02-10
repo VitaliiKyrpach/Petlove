@@ -1,7 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { logout } from '../../store/actions-auth';
 import { CommonModule } from '@angular/common';
 import { selectUser } from '../../store/selectors';
 import { Router } from '@angular/router';
@@ -20,13 +19,16 @@ export class UserNavComponent implements OnInit {
   private modalService = inject(ModalService);
 
   public userName!: string | null;
+  public avatar!: string | null;
 
   constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {
     this.store
       .select(selectUser)
-      .subscribe((user) => (this.userName = user.name));
+      .subscribe((user) => {this.userName = user.name
+        this.avatar = user.avatar
+      });
   }
   public handleLogout(): void {
     this.modalService.openModal('logoutModal');

@@ -1,12 +1,11 @@
 <div class="auth">
   <button type="button" (click)="handleLogout()" class="logout" [ngClass]="path === '/' ? 'home' : ''">LOG OUT</button>
   <div class="user" (click)="goToProfile()">
-    <span class="svg"
-      ><svg-icon-sprite
-      [src]="'images/sprite.svg#icon-user'"
-      [width]="'24px'"
-    ></svg-icon-sprite>
-    </span>
+    <img
+    class="img"
+    [src]="avatar || 'images/userPicture.png'"
+    alt="picture of a user"
+  />
     <p class="name" [ngClass]="path === '/' ? 'home' : ''">{{userName}}</p>
   </div>
 </div>

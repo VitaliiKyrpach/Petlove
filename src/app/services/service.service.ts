@@ -45,4 +45,18 @@ export class ServiceService {
   public getLocations(): Observable<Locations[]> {
     return this.http.get<Locations[]>(`${this.api}/cities/locations`);
   }
+  private cloudName = 'dzs583axq';
+  private uploadPreset = 'image_preset';
+  public setAvatar(file: any):Observable<any>{
+    console.log(file)
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', this.uploadPreset);
+
+    const url = `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
+
+    return this.http.post(url, formData);
+
+  }
 }
+

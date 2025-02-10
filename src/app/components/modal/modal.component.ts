@@ -25,7 +25,7 @@ import { User } from '../../interfaces/interfaces';
 export class ModalComponent implements OnInit {
   modalService = inject(ModalService);
   public isOpen: boolean = false;
-  public data!:  User | null;
+  public data!:  User ;
   public id!: string | null;
   public type!: string;
 

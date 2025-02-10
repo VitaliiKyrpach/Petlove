@@ -4,6 +4,8 @@ import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/selectors';
 import { User, UserData } from '../../interfaces/interfaces';
+import { ServiceService } from '../../services/service.service';
+import { editUser } from '../../store/actions-auth';
 
 @Component({
   selector: 'app-user-card',
@@ -14,15 +16,22 @@ import { User, UserData } from '../../interfaces/interfaces';
 })
 export class UserCardComponent  {
   @Input() user!: UserData;
+  private AvatarUrl!: string;
   private modalService = inject(ModalService);
-  constructor(private store: Store) {}
-  // ngOnInit(): void {
-  //   this.store.select(selectUser).subscribe((data) => {
-  //     console.log(data)
-  //     this.user = data});
-  // }
+  constructor(private store: Store, private service: ServiceService) {}
+ 
   public openModal() {
     this.modalService.openModal('profile', this.user);
     console.log(this.user)
   }
+  public setAvatar(data: any){
+    console.log('send', data.target.files[0])
+    this.service.setAvatar(data.target.files[0]).subscribe(res=> {
+      this.AvatarUrl = res.secure_url;
+      const user = {name: this.user.name,
+        email: this.user.email, phone: this.user.phone, avatar: res.secure_url}
+        this.store.dispatch(editUser({event: 'editUser',user}))
+      })
+  }
+
 }

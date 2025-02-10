@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 import { editUser } from '../../store/actions-auth';
 import { selectError } from '../../store/selectors';
 import { ModalService } from '../../services/modal.service';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: 'app-profile-modal',
@@ -38,7 +39,7 @@ export class ProfileModalComponent implements OnInit {
       [Validators.required, Validators.pattern(/^.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/)]
     ),
   });
-  constructor(private store: Store, private modalService: ModalService){}
+  constructor(private store: Store, private modalService: ModalService, private service: ServiceService){}
   ngOnInit(): void {
     this.store.select(selectError).subscribe(error=> this.error = error)
     this.name.setValue(this.data.name)
@@ -107,7 +108,7 @@ export class ProfileModalComponent implements OnInit {
     this.filename = file.name;
     console.log(file);
     if (file) {
-      this.avatarUrl = `https://${file.name}`
+      this.service.setAvatar(file).subscribe(res=> this.avatarUrl = res.secure_url)
       const reader = new FileReader();
       reader.onload = () => {
         this.avatarPhoto = reader.result as string;

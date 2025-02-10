@@ -13,16 +13,8 @@
     [src]="user.avatar || 'images/userPicture.png'"
     alt="picture of a user"
   />
-      <!-- @if(user.avatar){
-        <img [src]="user.avatar" alt="user avatar">
-      }@else{
-        <svg-icon-sprite
-        [src]="'images/sprite.svg#icon-user'"
-        [width]="'50px'"
-        ></svg-icon-sprite>
-      } -->
     </div>
-    <input class="inputFile" type="file" id="uploadPhoto" />
+    <input class="inputFile" type="file" id="uploadPhoto" (change)="setAvatar($event)"/>
     <label class="text" for="uploadPhoto">Upload photo</label>
   </div>
   <button type="button" class="editBtn" (click)="openModal()">
