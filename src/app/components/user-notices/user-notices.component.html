@@ -16,12 +16,18 @@
     Viewed
   </button>
 </div>
-@if(tab === 'favorite'){
-<p>favorite tab</p>
+@if(tab === 'favorite'){ @if(user.noticesFavorites.length){
+<ul></ul>
 } @else{
-<ul>
+<p class="empty">
+  Oops, <span class="color">looks like there aren't any furries</span> on our
+  adorable page yet. Do not worry! View your pets on the "find your favorite
+  pet" page and add them to your favorites.
+</p>
+} } @else{
+<ul class="cardList">
   @for(pet of user.noticesViewed; track pet._id){
-    <app-pet-card [pet]="pet" place="viewed"/>
+  <app-pet-card [pet]="pet" place="viewed" />
   }
 </ul>
 }

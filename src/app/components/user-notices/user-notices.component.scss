@@ -30,3 +30,17 @@
     }
   }
 }
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.empty {
+  max-width: 458px;
+  margin-top: 180px;
+  margin-left: 103px;
+  text-align: center;
+}
+.color {
+  color: $color-secondary;
+}

@@ -3,6 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ServiceService } from '../services/service.service';
 import { AuthService } from '../services/auth.service';
 import {
+  addToFavFailure,
+  addToFavorites,
+  addToFavSuccess,
   getFriends,
   getFriendsSuccess,
   getNews,
@@ -80,6 +83,7 @@ export class dataEffects {
         return this.authService.logIn(action.data).pipe(
           map((data) => {
             localStorage.setItem('token', data.token);
+
             return loginSuccess({ data });
           }),
           catchError((error) => {
@@ -108,14 +112,14 @@ export class dataEffects {
 
   loadUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(getUser),
-      switchMap((action) => {
+      ofType(loginSuccess, getUser),
+      switchMap(() => {
         return this.authService.getUser().pipe(
           map((data) => {
             return getUserSuccess({ data });
           }),
           catchError((error) => {
-            return of(getUserFailure({ error, event: action.event }));
+            return of(getUserFailure({ error, event: 'getUser' }));
           })
         );
       })
@@ -146,8 +150,33 @@ export class dataEffects {
             return editUserSuccess({ data });
           }),
           catchError((error) => {
-            console.log(error)
+            console.log(error);
             return of(editUserFailure({ error, event: action.event }));
+          })
+        );
+      })
+    )
+  );
+  loadEdToFav$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addToFavorites),
+      switchMap((action) => {
+        return this.service.addToFav(action.id).pipe(
+          switchMap((id) => {
+            localStorage.setItem('favorites', JSON.stringify(id));
+            return this.service.getPet(action.id).pipe(
+              map((data) => {
+                return addToFavSuccess({ data });
+              }),
+              catchError((error) => {
+                console.log(error);
+                return of(addToFavFailure({ error, event: 'getPet' }));
+              })
+            );
+          }),
+          catchError((error) => {
+            console.log(error);
+            return of(addToFavFailure({ error, event: 'addToFav' }));
           })
         );
       })

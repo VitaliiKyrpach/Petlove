@@ -6,6 +6,7 @@ import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/selectors';
 import { UserData } from '../../interfaces/interfaces';
+import { getUser } from '../../store/actions-auth';
 
 @Component({
   selector: 'app-profile-page',
@@ -15,16 +16,17 @@ import { UserData } from '../../interfaces/interfaces';
   styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
-    public user!: UserData;
-  
+  public user!: UserData;
+
   private modalService = inject(ModalService);
-    constructor(private store: Store) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-      this.store.select(selectUser).subscribe((data) => {
-        console.log(data)
-        this.user = data});
-    }
+    this.store.select(selectUser).subscribe((data) => {
+      console.log(data);
+      this.user = data;
+    });
+  }
   public openModal() {
     this.modalService.openModal('logoutModal');
   }

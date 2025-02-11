@@ -1,5 +1,13 @@
-<li class="card">
-  <img class="img" [src]="pet.imgURL" alt="pet photo" />
+<li
+  class="card"
+  [ngClass]="{ viewed: place === 'viewed', findPage: place === 'findPage' }"
+>
+  <img
+    class="img"
+    [ngClass]="{ viewed: place === 'viewed', findPage: place === 'findPage' }"
+    [src]="pet.imgURL"
+    alt="pet photo"
+  />
   <div>
     <h3 class="cardTitle">{{ pet.title }}</h3>
   </div>
@@ -28,14 +36,28 @@
   <p class="comment">{{ pet.comment }}</p>
   <p class="price">@if(pet.price){${{ pet.price }}} @else{FREE}</p>
   <div class="bottom">
-    <button class="moreInfo" type="button" (click)="openModal()">
+    <button
+      class="moreInfo"
+      [class.viewed]="place === 'viewed'"
+      type="button"
+      (click)="openModal()"
+    >
       Learn more
     </button>
-    <button class="heart" type="button" (click)="addToFav()">
+    @if(place === 'findPage'){
+    <button class="heart" type="button" (click)="addToFav(pet._id)">
+      @if(isFavorite){
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-star'"
+        [width]="'18px'"
+      ></svg-icon-sprite>
+      }@else{
       <svg-icon-sprite
         [src]="'images/sprite.svg#icon-heart'"
         [width]="'18px'"
       ></svg-icon-sprite>
+      }
     </button>
+    }
   </div>
 </li>

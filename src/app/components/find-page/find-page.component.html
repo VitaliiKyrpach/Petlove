@@ -7,7 +7,12 @@
     }@else{
     <ul class="cardList">
       @for(pet of pets; track pet._id){
-      <app-pet-card [pet]="pet" place="findPage"/>
+      <app-pet-card
+        [pet]="pet"
+        place="findPage"
+        [favorites$]="favorites$"
+        [isLoggedIn]="isLoggedIn"
+      />
       }
     </ul>
     }

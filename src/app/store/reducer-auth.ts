@@ -13,9 +13,18 @@ import {
   registrationSuccess,
 } from './actions-auth';
 import { InitAuthState } from '../interfaces/interfaces';
+import { addToFavSuccess } from './actions';
 
 export const initialAuthState: InitAuthState = {
-  user: { name: null, email: null, avatar: null, phone: null, pets: [], noticesViewed: [], noticesFavorites: [] },
+  user: {
+    name: null,
+    email: null,
+    avatar: null,
+    phone: null,
+    pets: [],
+    noticesViewed: [],
+    noticesFavorites: [],
+  },
   token: null,
   isLoggedIn: false,
   isRefresh: false,
@@ -85,7 +94,7 @@ export const authReducer = createReducer(
     };
   }),
   on(getUserSuccess, (state, { data }) => {
-    console.log(data)
+    console.log(data);
     return {
       ...state,
       user: {
@@ -96,7 +105,7 @@ export const authReducer = createReducer(
         phone: data.phone,
         pets: data.pets,
         noticesViewed: data.noticesViewed,
-        noticesFavorites: data.noticesFavorites
+        noticesFavorites: data.noticesFavorites,
       },
       token: data.token,
       isLoggedIn: true,
@@ -116,7 +125,7 @@ export const authReducer = createReducer(
       },
     };
   }),
-  on(editUserSuccess, (state, {data})=>{
+  on(editUserSuccess, (state, { data }) => {
     return {
       ...state,
       user: data,
@@ -124,7 +133,7 @@ export const authReducer = createReducer(
         type: '',
         message: '',
       },
-    }
+    };
   }),
   on(editUserFailure, (state, { error, event }) => {
     return {
@@ -134,7 +143,7 @@ export const authReducer = createReducer(
         type: event,
       },
     };
-  }), 
+  }),
   on(logoutSuccess, (state) => {
     return initialAuthState;
   }),
@@ -144,6 +153,19 @@ export const authReducer = createReducer(
       error: {
         message: error.error.message,
         type: event,
+      },
+    };
+  }),
+  on(addToFavSuccess, (state, { data }) => {
+    console.log(data);
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        noticesFavorites: {
+          ...state.user.noticesFavorites,
+          data,
+        },
       },
     };
   })

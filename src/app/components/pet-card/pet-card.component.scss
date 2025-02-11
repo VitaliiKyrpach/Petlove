@@ -4,11 +4,19 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 363px;
-  height: 472px;
-  padding: 24px;
+
   background-color: $color-light;
   border-radius: 16px;
+  &.findPage {
+    width: 363px;
+    height: 472px;
+    padding: 24px;
+  }
+  &.viewed {
+    padding: 14px;
+    width: 320px;
+    height: 422px;
+  }
   .cardTitle {
     font-weight: 700;
     font-size: 18px;
@@ -16,11 +24,17 @@
     margin-bottom: 8px;
   }
   .img {
-    height: 178px;
     width: 100%;
     object-position: center -50px;
     border-radius: 16px;
-    margin-bottom: 24px;
+    &.findPage {
+      height: 178px;
+      margin-bottom: 24px;
+    }
+    &.viewed {
+      height: 162px;
+      margin-bottom: 14px;
+    }
   }
   .dataList {
     display: flex;
@@ -63,6 +77,9 @@
     outline: none;
     border: none;
     cursor: pointer;
+    &.viewed {
+      width: 100%;
+    }
   }
   .heart {
     padding-top: 4px;

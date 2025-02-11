@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { Store } from '@ngrx/store';
 import { getUser } from './store/actions-auth';
+import { selectUser } from './store/selectors';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.store.dispatch(getUser({ event: 'getuser' }));
+      this.store.dispatch(getUser());
+      this.store.select(selectUser).subscribe((data) => {
+        const favorites = data.noticesFavorites.map((cards) => cards._id);
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        console.log(favorites);
+      });
     }
   }
 }

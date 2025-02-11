@@ -47,8 +47,8 @@ export class ServiceService {
   }
   private cloudName = 'dzs583axq';
   private uploadPreset = 'image_preset';
-  public setAvatar(file: any):Observable<any>{
-    console.log(file)
+  public setAvatar(file: any): Observable<any> {
+    console.log(file);
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', this.uploadPreset);
@@ -56,7 +56,8 @@ export class ServiceService {
     const url = `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
 
     return this.http.post(url, formData);
-
+  }
+  public addToFav(id: string): Observable<any> {
+    return this.http.post(`${this.api}/notices/favorites/add/${id}`, id);
   }
 }
-

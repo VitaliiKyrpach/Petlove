@@ -22,3 +22,16 @@ export const getPetsSuccess = createAction(
   '[Data] Get PetsSuccess',
   props<{ pets: PetData }>()
 );
+
+export const addToFavorites = createAction(
+  '[Data] Add Pet To Favorites',
+  props<{ id: string }>()
+);
+export const addToFavSuccess = createAction(
+  '[Data] Add Pet To FavoritesSuccess',
+  props<{ data: any }>()
+);
+export const addToFavFailure = createAction(
+  '[Data] Add Pet To FavoritesFail',
+  props<{ error: any; event: string }>()
+);

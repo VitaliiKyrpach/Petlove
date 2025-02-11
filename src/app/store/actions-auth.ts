@@ -34,10 +34,7 @@ export const logoutFail = createAction(
   props<{ error: any; event: string }>()
 );
 
-export const getUser = createAction(
-  '[Auth] Get User',
-  props<{ event: string }>()
-);
+export const getUser = createAction('[Auth] Get User');
 export const getUserSuccess = createAction(
   '[Auth] Get User Success',
   props<any>()
@@ -46,6 +43,15 @@ export const getUserFailure = createAction(
   '[Auth] Get User Fail',
   props<{ error: any; event: string }>()
 );
-export const editUser = createAction('[Auth] Edit User', props<{event: string, user: User}>())
-export const editUserSuccess = createAction('[Auth] Edit User Success', props<{data: any}>())
-export const editUserFailure = createAction('[Auth] Edit User Fail', props<{ error: any; event: string }>())
+export const editUser = createAction(
+  '[Auth] Edit User',
+  props<{ event: string; user: User }>()
+);
+export const editUserSuccess = createAction(
+  '[Auth] Edit User Success',
+  props<{ data: any }>()
+);
+export const editUserFailure = createAction(
+  '[Auth] Edit User Fail',
+  props<{ error: any; event: string }>()
+);
