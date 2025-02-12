@@ -60,4 +60,7 @@ export class ServiceService {
   public addToFav(id: string): Observable<any> {
     return this.http.post(`${this.api}/notices/favorites/add/${id}`, id);
   }
+  public removeFromFav(id: string):Observable<any>{
+    return this.http.delete(`${this.api}/notices/favorites/remove/${id}`)
+  }
 }

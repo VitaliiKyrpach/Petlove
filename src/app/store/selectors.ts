@@ -32,3 +32,6 @@ export const selectError = createSelector(
   selectFeatureAuth,
   (state) => state.error
 );
+export const selectFav = createSelector(
+  selectFeatureAuth, (state)=> state.user.noticesFavorites
+)

@@ -35,3 +35,6 @@ export const addToFavFailure = createAction(
   '[Data] Add Pet To FavoritesFail',
   props<{ error: any; event: string }>()
 );
+export const removeFromFav = createAction('[Data] Remove Pet From Favorites',props<{id: string}>())
+export const removeFromFavSuccess = createAction('[Data] Remove Pet From FavoritesSuccess', props<{data: any}>())
+export const removeFromFavFailure = createAction('[Data] Remove Pet From FavoritesFail',props<{error: any; event: string}>())

@@ -13,7 +13,7 @@ import {
   registrationSuccess,
 } from './actions-auth';
 import { InitAuthState } from '../interfaces/interfaces';
-import { addToFavSuccess } from './actions';
+import { addToFavFailure, addToFavSuccess, removeFromFavFailure, removeFromFavSuccess } from './actions';
 
 export const initialAuthState: InitAuthState = {
   user: {
@@ -162,11 +162,39 @@ export const authReducer = createReducer(
       ...state,
       user: {
         ...state.user,
-        noticesFavorites: {
+        noticesFavorites: [
           ...state.user.noticesFavorites,
           data,
-        },
+        ],
       },
     };
+  }), on(addToFavFailure, (state, {error, event})=> {
+    return {
+      ...state,
+      error:{
+        message: error.error.message,
+        type: event,
+      }
+    }
+  }),
+  on(removeFromFavSuccess, (state, {data})=>{
+    const newFav = state.user.noticesFavorites.filter(card=> card._id !== data._id)
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        noticesFavorites: newFav
+        
+      }
+    }
+  }),
+  on(removeFromFavFailure, (state, {error, event})=> {
+    return {
+      ...state,
+      error:{
+        message: error.error.message,
+        type: event,
+      }
+    }
   })
 );

@@ -12,6 +12,9 @@ import {
   getNewsSuccess,
   getPets,
   getPetsSuccess,
+  removeFromFav,
+  removeFromFavFailure,
+  removeFromFavSuccess,
 } from './actions';
 import {
   editUser,
@@ -162,8 +165,7 @@ export class dataEffects {
       ofType(addToFavorites),
       switchMap((action) => {
         return this.service.addToFav(action.id).pipe(
-          switchMap((id) => {
-            localStorage.setItem('favorites', JSON.stringify(id));
+          switchMap(() => {
             return this.service.getPet(action.id).pipe(
               map((data) => {
                 return addToFavSuccess({ data });
@@ -177,6 +179,30 @@ export class dataEffects {
           catchError((error) => {
             console.log(error);
             return of(addToFavFailure({ error, event: 'addToFav' }));
+          })
+        );
+      })
+    )
+  );
+  loadRemoveToFav$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(removeFromFav),
+      switchMap((action) => {
+        return this.service.removeFromFav(action.id).pipe(
+          switchMap(() => {
+            return this.service.getPet(action.id).pipe(
+              map((data) => {
+                return removeFromFavSuccess({ data });
+              }),
+              catchError((error) => {
+                console.log(error);
+                return of(removeFromFavFailure({ error, event: 'getPet' }));
+              })
+            );
+          }),
+          catchError((error) => {
+            console.log(error);
+            return of(removeFromFavFailure({ error, event: 'addToFav' }));
           })
         );
       })

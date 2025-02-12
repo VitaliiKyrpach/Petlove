@@ -22,9 +22,8 @@ export class AppComponent implements OnInit {
     if (token) {
       this.store.dispatch(getUser());
       this.store.select(selectUser).subscribe((data) => {
+        console.log(data)
         const favorites = data.noticesFavorites.map((cards) => cards._id);
-
-        localStorage.setItem('favorites', JSON.stringify(favorites));
         console.log(favorites);
       });
     }

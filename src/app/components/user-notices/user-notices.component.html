@@ -27,7 +27,7 @@
 } } @else{
 <ul class="cardList">
   @for(pet of user.noticesViewed; track pet._id){
-  <app-pet-card [pet]="pet" place="viewed" />
+  <app-pet-card [pet]="pet" place="viewed" [favorites$]="favorites$" [isLoggedIn]="true"/>
   }
 </ul>
 }

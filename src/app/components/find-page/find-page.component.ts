@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { getPets } from '../../store/actions';
-import { selectIsLoggedIn, selectPets } from '../../store/selectors';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { selectFav, selectIsLoggedIn, selectPets } from '../../store/selectors';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { Filters, Pages, Pet, PetData } from '../../interfaces/interfaces';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -26,9 +26,10 @@ import { PetCardComponent } from '../pet-card/pet-card.component';
   styleUrl: './find-page.component.scss',
 })
 export class FindPageComponent implements OnInit {
-  public favorites$ = new BehaviorSubject([]);
+  public favorites$ = new BehaviorSubject<string[]>([]);
   public isLoggedIn: boolean = false;
 
+  private destroy$ = new Subject<void>();
   public PetData$!: Observable<PetData>;
   public pets: Pet[] = [];
   public pages: Pages = {
@@ -40,15 +41,31 @@ export class FindPageComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.select(selectIsLoggedIn).subscribe((data) => {
+    this.store.select(selectIsLoggedIn).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((data) => {
       this.isLoggedIn = data;
+
       if (this.isLoggedIn) {
-        const favorites = localStorage.getItem('favorites');
-        favorites && this.favorites$.next(JSON.parse(favorites));
-      } else {
-        localStorage.removeItem('favorites');
+        this.store.select(selectFav).pipe(
+          takeUntil(this.destroy$)
+        ).subscribe((data) => {
+          const favorites = data.map((card) => card._id);  
+          this.favorites$.next(favorites);
+          console.log('favorites in findPage', favorites);
+        });
       }
     });
+    // this.store.select(selectIsLoggedIn).subscribe((data) => {
+    //   this.isLoggedIn = data;
+    //   if (this.isLoggedIn) {
+    //     this.store.select(selectFav).subscribe(data=> {
+    //       const favorites = data.map(card=> card._id)
+    //   this.favorites$.next(favorites);
+    //       console.log('favorites in findPage',favorites)
+    //     })
+    //   }
+    // });
     this.PetData$ = this.store.select(selectPets);
     this.PetData$.subscribe((data) => {
       if (!data.results.length && this.filters === null) {
@@ -73,5 +90,10 @@ export class FindPageComponent implements OnInit {
   public petFilters(filters: Filters): void {
     this.filters = filters;
     this.store.dispatch(getPets({ page: 1, filters }));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

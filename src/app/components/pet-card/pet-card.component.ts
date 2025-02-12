@@ -4,9 +4,8 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
-import { selectIsLoggedIn } from '../../store/selectors';
-import { addToFavorites } from '../../store/actions';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { addToFavorites, removeFromFav } from '../../store/actions';
+import {  Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pet-card',
@@ -18,23 +17,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PetCardComponent implements OnInit {
   @Input() pet!: Pet;
   @Input() place!: string;
-  @Input() favorites$!: Observable<any>;
+  @Input() favorites$!: Observable<string[]>;
   @Input() isLoggedIn: boolean = false;
   public isFavorite: boolean = false;
-  private modalService = inject(ModalService);
-  constructor(private store: Store) {}
-  ngOnInit(): void {
-    this.favorites$.subscribe((data) => {
-      data.map((id: string) => {
-        this.pet._id === id && (this.isFavorite = true);
-      });
-    });
 
-    console.log(this.isFavorite);
-    // this.store
-    //   .select(selectIsLoggedIn)
-    //   .subscribe((data) => (this.isLoggedIn = data));
+  private modalService = inject(ModalService);
+
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.favorites$.subscribe((favorites) => {
+      this.isFavorite = favorites.includes(this.pet._id);
+       });
   }
+
   public openModal(): void {
     if (this.isLoggedIn) {
       this.modalService.openModal('petModal', this.pet._id);
@@ -42,10 +38,15 @@ export class PetCardComponent implements OnInit {
       this.modalService.openModal('attention');
     }
   }
+
   public addToFav(id: string): void {
+
     if (this.isLoggedIn) {
-      console.log('add to fav', id);
-      this.store.dispatch(addToFavorites({ id }));
+      if(this.isFavorite){
+        this.store.dispatch(removeFromFav({id}))
+      } else{
+           this.store.dispatch(addToFavorites({ id }));
+      }
     } else {
       this.modalService.openModal('attention');
     }
