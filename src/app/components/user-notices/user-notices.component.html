@@ -17,7 +17,11 @@
   </button>
 </div>
 @if(tab === 'favorite'){ @if(user.noticesFavorites.length){
-<ul></ul>
+<ul class="cardList">
+  @for(pet of user.noticesFavorites; track pet._id){
+  <app-pet-card [pet]="pet" place="favorites" [favorites$]="favorites$" [isLoggedIn]="true"/>
+  }
+</ul>
 } @else{
 <p class="empty">
   Oops, <span class="color">looks like there aren't any furries</span> on our

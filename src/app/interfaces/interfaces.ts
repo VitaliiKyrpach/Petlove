@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 export interface Friends {
   address: string;
@@ -159,4 +160,8 @@ export interface Chevrons {
   category: boolean;
   gender: boolean;
   type: boolean;
+}
+export interface CardData {
+  id: string,
+  isFavorite$: Observable<string[]>
 }

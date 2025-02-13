@@ -29,7 +29,7 @@ export class FindPageComponent implements OnInit {
   public favorites$ = new BehaviorSubject<string[]>([]);
   public isLoggedIn: boolean = false;
 
-  private destroy$ = new Subject<void>();
+  private destroy$: Subject<void> = new Subject();
   public PetData$!: Observable<PetData>;
   public pets: Pet[] = [];
   public pages: Pages = {

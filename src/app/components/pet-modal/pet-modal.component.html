@@ -26,12 +26,20 @@
   <p class="comment">{{ data.comment }}</p>
   <p class="price">@if(data.price){${{ data.price }}} @else{FREE}</p>
   <div class="bottom">
-    <button type="button" class="add">
-      <span>Add to</span>
-      <svg-icon-sprite
+    <button type="button" class="add" (click)="handleFav()">
+      @if(isFavorite){
+        <span>Remove</span>
+        <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-trash'"
+        [width]="'18px'"
+        ></svg-icon-sprite>
+      }@else{
+        <span>Add to</span>
+        <svg-icon-sprite
         [src]="'images/sprite.svg#icon-heart'"
         [width]="'18px'"
-      ></svg-icon-sprite>
+        ></svg-icon-sprite>
+      }
     </button>
     <button type="button" class="contact">Contact</button>
   </div>

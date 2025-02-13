@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { Friends } from '../../interfaces/interfaces';
 import { AsyncPipe } from '@angular/common';
 import { AddressPipe } from '../../pipes/address.pipe';
@@ -19,8 +19,7 @@ export class FriendsPageComponent implements OnInit {
   constructor(private store: Store){}
   ngOnInit(){
    this.friends$ = this.store.select(selectFriends)
-   this.friends$.subscribe(data => {
-    console.log(data)
+   this.friends$.pipe(first()).subscribe(data => {
     if(!data.length){
       this.store.dispatch(getFriends())
     }

@@ -6,7 +6,7 @@ import { CloseModalDirective } from '../../directives/close-modal.directive';
 import { CloseModalComponent } from '../close-modal/close-modal.component';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { AttentionModalComponent } from '../attention-modal/attention-modal.component';
-import { User } from '../../interfaces/interfaces';
+import { CardData, User } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-modal',
@@ -22,28 +22,28 @@ import { User } from '../../interfaces/interfaces';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })
-export class ModalComponent implements OnInit {
-  modalService = inject(ModalService);
-  public isOpen: boolean = false;
-  public data!:  User ;
-  public id!: string | null;
-  public type!: string;
+  export class ModalComponent implements OnInit {
+    modalService = inject(ModalService);
+    public isOpen: boolean = false;
+    public data!:  User ;
+    public card!: CardData ;
+    public type!: string;
 
-  ngOnInit(): void {
-    this.modalService.modalOpen$.subscribe((open) => (this.isOpen = open));
-    this.modalService.data$.subscribe((data) => {
-      console.log(data)
-      if (typeof data === 'string') {
-        this.id = data;
-      } else if (data && (data as User).name) {
-        this.data = data as User;
-      }
-    });
-    this.modalService.type$.subscribe((type) => (this.type = type));
-    console.log(this.type);
-  }
+    ngOnInit(): void {
+      this.modalService.modalOpen$.subscribe((open) => (this.isOpen = open));
+      this.modalService.data$.subscribe((data) => {
+        console.log(data)
+        if (data && (data as CardData).id) {
+          this.card = data as CardData;
+        } else if (data && (data as User).name) {
+          this.data = data as User;
+        }
+      });
+      this.modalService.type$.subscribe((type) => (this.type = type));
+      console.log(this.type);
+    }
 
-  public closeModal() {
-    this.modalService.closeModal();
+    public closeModal() {
+      this.modalService.closeModal();
+    }
   }
-}

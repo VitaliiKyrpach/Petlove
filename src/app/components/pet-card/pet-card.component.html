@@ -1,10 +1,10 @@
 <li
   class="card"
-  [ngClass]="{ viewed: place === 'viewed', findPage: place === 'findPage' }"
+  [ngClass]="{ viewed: place === 'viewed' || place === 'favorites', findPage: place === 'findPage' }"
 >
   <img
     class="img"
-    [ngClass]="{ viewed: place === 'viewed', findPage: place === 'findPage' }"
+    [ngClass]="{ viewed: place === 'viewed' || place === 'favorites', findPage: place === 'findPage' }"
     [src]="pet.imgURL"
     alt="pet photo"
   />
@@ -44,7 +44,7 @@
     >
       Learn more
     </button>
-    @if(place === 'findPage'){
+    @if(place === 'findPage' || place === 'favorites'){
     <button class="heart" type="button" (click)="addToFav(pet._id)">
       @if(isFavorite){
       <svg-icon-sprite

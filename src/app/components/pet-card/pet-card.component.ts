@@ -5,7 +5,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { addToFavorites, removeFromFav } from '../../store/actions';
-import {  Observable } from 'rxjs';
+import {  Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-pet-card',
@@ -32,8 +32,12 @@ export class PetCardComponent implements OnInit {
   }
 
   public openModal(): void {
+    const data = {
+      id: this.pet._id,
+      isFavorite$: this.favorites$
+    }
     if (this.isLoggedIn) {
-      this.modalService.openModal('petModal', this.pet._id);
+           this.modalService.openModal('petModal',  data);
     } else {
       this.modalService.openModal('attention');
     }
