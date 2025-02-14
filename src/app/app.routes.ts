@@ -8,6 +8,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfilePageComponent } from './components/profile/profile-page.component';
 import { AuthGuard } from './guard/auth-guard.guard';
+import { AddPetPageComponent } from './components/add-pet-page/add-pet-page.component';
 
 export const routes: Routes = [
   {
@@ -17,19 +18,26 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [AuthGuard]
-
+    canActivate: [AuthGuard],
   },
   {
     path: 'registration',
     component: RegistrationComponent,
-    canActivate: [AuthGuard]
-
+    canActivate: [AuthGuard],
   },
   {
     path: 'profile',
     component: ProfilePageComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-pet',
+    loadComponent: () =>
+      import('./components/add-pet-page/add-pet-page.component').then(
+        (c) => c.AddPetPageComponent
+      ),
+    // component: AddPetPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'news',
