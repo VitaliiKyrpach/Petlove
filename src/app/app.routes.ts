@@ -32,11 +32,11 @@ export const routes: Routes = [
   },
   {
     path: 'add-pet',
-    loadComponent: () =>
-      import('./components/add-pet-page/add-pet-page.component').then(
-        (c) => c.AddPetPageComponent
-      ),
-    // component: AddPetPageComponent,
+    // loadComponent: () =>
+    //   import('./components/add-pet-page/add-pet-page.component').then(
+    //     (c) => c.AddPetPageComponent
+    //   ),
+    component: AddPetPageComponent,
     canActivate: [AuthGuard],
   },
   {
