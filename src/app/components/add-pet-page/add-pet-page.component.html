@@ -1,73 +1,129 @@
 <section class="addPet">
-    <div class="container">
-        <img src="images/addDog.jpg" alt="picture of a dog" class="img">
-        <div>
-            <h2>Add my pet / <span>Personal details</span></h2>
-            <form >
-                <div>
-                    <label for="male-sex">male</label>
-                    <input type="radio" name="sex" value="male" id="male-sex" class="sexInput">
-                    <label for="female-sex">female</label>
-                    <input type="radio" name="sex" value="female" id="female-sex" class="sexInput">
-                    <label for="multiple-sex">multiple</label>
-                    <input type="radio" name="sex" value="unknown" id="multiple-sex" class="sexInput">
-                </div>
-                <div class="fileWrapper">
-                    <!-- @if(avatar && avatar.invalid){
+  <div class="container wrapper">
+    <img src="images/addDog.jpg" alt="picture of a dog" class="img" />
+    <div class="formWrapper">
+      <h2 class="title">
+        Add my pet / <span class="span">Personal details</span>
+      </h2>
+      <form>
+        <div class="sexWrapper">
+          <label
+            for="female-sex"
+            class="sex female"
+            [ngClass]="sex === 'female' ? 'checked' : ''"
+            ><svg-icon-sprite
+              [src]="'images/sprite.svg#icon-female'"
+              [width]="'24px'"
+              [class]="'icon'"
+            ></svg-icon-sprite
+          ></label>
+          <input
+            type="radio"
+            name="sex"
+            value="female"
+            id="female-sex"
+            class="sexInput"
+            [(ngModel)]="sex"
+          />
+          <label
+            for="male-sex"
+            class="sex male"
+            [ngClass]="{ checked: sex === 'male' }"
+            ><svg-icon-sprite
+              [src]="'images/sprite.svg#icon-male'"
+              [width]="'16px'"
+              [class]="'icon'"
+            ></svg-icon-sprite
+          ></label>
+          <input
+            type="radio"
+            name="sex"
+            value="male"
+            id="male-sex"
+            class="sexInput"
+            [(ngModel)]="sex"
+          />
+          <label
+            for="multiple-sex"
+            class="sex multi"
+            [ngClass]="{ checked: sex === 'multiple' }"
+            ><svg-icon-sprite
+              [src]="'images/sprite.svg#icon-multiple'"
+              [width]="'24px'"
+              [class]="'icon'"
+            ></svg-icon-sprite
+          ></label>
+          <input
+            type="radio"
+            name="sex"
+            value="multiple"
+            id="multiple-sex"
+            class="sexInput"
+            [(ngModel)]="sex"
+          />
+        </div>
+        <div class="avatarWrapper">
+          <div class="avatarSVG">
+            <!-- [src]="user.avatar || 'images/userPicture.png'" -->
+            <svg-icon-sprite
+              [src]="'images/sprite.svg#icon-footprint'"
+              [width]="'44px'"
+              [class]="'icon'"
+            ></svg-icon-sprite>
+          </div>
+        </div>
+        <div class="fileWrapper">
+          <!-- @if(avatar && avatar.invalid){
                     <p class="textError">{{ errors.avatar }}</p>
                     } -->
-                    <p class="avatarUrl">
-                      <!-- @if(filename === ''){ avatar address } @else{{{filename}}} -->
-                    </p>
-                    <input
-                      class="uploadInpit"
-                      type="file"
-                      id="upload"
-
-                      (change)="onFileChange($event)"
-                    />
-                    <label class="upload" for="upload">
-                      <span class="text">Upload photo</span>
-                      <svg-icon-sprite
-                        [src]="'images/sprite.svg#icon-upload-cloud'"
-                        [width]="'20px'"
-                        [class]="'icon'"
-                      ></svg-icon-sprite
-                    ></label>
-                  </div>
-                <div class="inputWrapper">
-                    <input type="text" class="input" placeholder="Title">
-
-                </div>
-                <div class="inputWrapper">
-                    <input type="text" class="input" placeholder="Pet’s Name">
-
-                </div>
-                <input type="date">
-                <div class="btnWrapper">
-                    <svg-icon-sprite
-                      [src]="'images/sprite.svg#icon-arrow-left'"
-                      [class]="'imgChevron'"
-                      [class.down]="chevron"
-                    ></svg-icon-sprite>
-                    <ng-select
-                      class="category"
-                      (change)="handlepick()"
-                      [clearable]="false"
-                      placeholder="Species"
-                      [fixedPlaceholder]="false"
-                      [searchable]="false"
-                      (open)="handleChevron()"
-                      (close)="handleChevron()"
-                    >
-                      <ng-option value="">Show All</ng-option>
-                      @for(item of species$ | async; track item){
-                      <ng-option [value]="item">{{ item  }}</ng-option>
-                      }
-                    </ng-select>
-                  </div>
-               
-            </form>
+          <p class="avatarUrl">
+            <!-- @if(filename === ''){ avatar address } @else{{{filename}}} -->
+          </p>
+          <input
+            class="uploadInpit"
+            type="file"
+            id="upload"
+            (change)="onFileChange($event)"
+          />
+          <label class="upload" for="upload">
+            <span class="text">Upload photo</span>
+            <svg-icon-sprite
+              [src]="'images/sprite.svg#icon-upload-cloud'"
+              [width]="'20px'"
+              [class]="'icon'"
+            ></svg-icon-sprite
+          ></label>
         </div>
+        <div class="inputWrapper">
+          <input type="text" class="input" placeholder="Title" />
+        </div>
+        <div class="inputWrapper">
+          <input type="text" class="input" placeholder="Pet’s Name" />
+        </div>
+        <input type="date" />
+        <div class="btnWrapper">
+          <svg-icon-sprite
+            [src]="'images/sprite.svg#icon-arrow-left'"
+            [class]="'imgChevron'"
+            [class.down]="chevron"
+          ></svg-icon-sprite>
+          <ng-select
+            class="category"
+            (change)="handlepick()"
+            [clearable]="false"
+            placeholder="Species"
+            [fixedPlaceholder]="false"
+            [searchable]="false"
+            (open)="handleChevron()"
+            (close)="handleChevron()"
+          >
+            <ng-option value="">Show All</ng-option>
+            @for(item of species$ | async; track item){
+            <ng-option [value]="item">{{ item }}</ng-option>
+            }
+          </ng-select>
+        </div>
+      </form>
     </div>
+  </div>
 </section>

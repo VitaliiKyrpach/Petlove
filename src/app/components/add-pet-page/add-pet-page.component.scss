@@ -1,175 +1,253 @@
-@import '../../../styles/variables';
-@import '../../../styles/buttons';
+@import "../../../styles/variables";
+@import "../../../styles/buttons";
 
-.addPet{
-    margin-top: 16px;
-    .img{
-        width: 592px;
-        height: 654px;
-    }
-    .sexInput{
-        display: none;
-    }
-    .inputWrapper {
-        position: relative;
-        &:not(:last-child) {
-          margin-bottom: 14px;
-        }
-        .input {
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.25;
-            letter-spacing: -0.03em;
-            width: 380px;
-            padding: 16px;
-            border-radius: 30px;
-            border: 1px solid $color-primary-transparent;
-            outline: none;
-            &::placeholder {
-                color: $color-secondary-dark;
-              }
-              &:focus {
-                border-color: $color-secondary;
-              }
-          }
-      }
-      .fileWrapper {
-        position: relative;
-        display: flex;
-        margin-bottom: 20px;
-        gap: 8px;
-      }
-      .avatarUrl {
-        width: 226px;
-        height: 42px;
-        padding: 12px;
-        font-size: 14px;
-        line-height: 1.28;
-        letter-spacing: -0.02em;
-        border-radius: 30px;
-        border: 1px solid $color-secondary;
-        outline: none;
-      }
-      .uploadInpit {
-        display: none;
-      }
-      .upload {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: none;
-        position: relative;
-        gap: 8px;
-        font-size: 14px;
-        line-height: 1.28;
-        letter-spacing: -0.02em;
-        width: 146px;
-        height: 42px;
-        background-color: $color-secondary-light;
-        border-radius: 30px;
-        color: $color-secondary;
-        cursor: pointer;
-        transition: background-color 150ms linear;
-        &:hover {
-          background-color: $color-secondary-hover;
-        }
-        .text {
-          color: $color-primary-dark;
-        }
-      }
-      .icon {
-        display: flex;
-        align-items: center;
-      }
-    .btnWrapper {
-        position: relative;
-      }
-      .imgChevron {
-        height: 18px;
-        width: 18px;
-        position: absolute;
-        top: 15px;
-        right: 14px;
-        z-index: 100;
-        transform: rotate(-90deg);
-        pointer-events: none;
-      }
-      .down {
-        transform: rotate(90deg);
-      }
-      .ng-select.category {
-        @extend %input;
-        width: 200px;
-        position: relative;
-      }
-      .ng-select ::ng-deep .ng-dropdown-panel {
-        background-color: $color-light;
-        border-radius: 15px;
-        position: absolute;
-        left: 0;
-        top: calc(100% + 4px);
-        box-shadow: 0px 1px 4px $color-primary-transparent;
-        padding: 14px;
-        height: auto;
-      }
-      ::ng-deep .ng-dropdown-panel .scroll-host {
-        max-height: 216px;
-        // width: 100px;
-      }
-      ::ng-deep .ng-option {
+.addPet {
+  margin-top: 16px;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+  }
+  .img {
+    width: 592px;
+    height: 654px;
+    border-radius: 60px;
+  }
+  .formWrapper {
+    width: calc((100% - 32px) / 2);
+    background-color: $color-light;
+    border-radius: 60px;
+    padding: 60px 80px;
+    .title {
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      .span {
+        font-size: 16px;
+        line-height: 1.25;
         color: $color-secondary-dark;
       }
-      ::ng-deep .ng-option:hover {
-        color: $color-primary-dark;
+    }
+  }
+  .sexWrapper {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    .sex {
+      position: relative;
+      top: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .female {
+      color: $color-error;
+      background-color: $color-female-back;
+      &.checked {
+        background-color: $color-female-checked;
       }
-      ::ng-deep .ng-option-selected {
-        color: $color-secondary;
+    }
+    .male {
+      color: $color-male;
+      background-color: $color-male-back;
+      &.checked {
+        background-color: $color-male-checked;
       }
-      ::ng-deep .ng-option-selected:hover {
-        color: $color-secondary-add;
+    }
+    .multi {
+      color: $color-secondary;
+      background-color: $color-secondary-light;
+      &.checked {
+        background-color: $color-secondary-hover;
       }
-      ::ng-deep .ng-option:not(:last-child) {
-        margin-bottom: 4px;
+    }
+
+    .sexInput {
+      display: none;
+    }
+  }
+  .avatarWrapper {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 12px;
+    .avatarSVG {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-secondary;
+      background-color: $color-secondary-light;
+    }
+  }
+  .inputWrapper {
+    position: relative;
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+    .input {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      width: 380px;
+      padding: 16px;
+      border-radius: 30px;
+      border: 1px solid $color-primary-transparent;
+      outline: none;
+      &::placeholder {
+        color: $color-secondary-dark;
       }
-    
-      ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
-        width: 8px;
+      &:focus {
+        border-color: $color-secondary;
       }
-      ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
-        background-color: $color-primary-transparent;
-        border-radius: 13px;
-      }
-      ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {
-        background: $color-pag-disabled;
-        border-radius: 13px;
-      }
-      ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb:hover {
-        background-color: $color-secondary-dark;
-      }
-      ::ng-deep .ng-select .ng-clear-wrapper {
-        position: absolute;
-        top: 1px;
-        right: -22px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 18px;
-        height: 18px;
-      }
-      ::ng-deep .ng-select .ng-select-container {
-        overflow: unset;
-      }
-      ::ng-deep .ng-select .ng-clear-wrapper .ng-clear {
-        font-size: 36px;
-        font-weight: 300;
-      }
-      ::ng-deep
-        .ng-select
-        .ng-select-container
-        .ng-value-container
-        .ng-input
-        > input {
-        font-size: 16px;
-        font-weight: 500;
-      }
+    }
+  }
+  .fileWrapper {
+    position: relative;
+    display: flex;
+
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .avatarUrl {
+    width: 226px;
+    height: 42px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    border-radius: 30px;
+    border: 1px solid $color-secondary;
+    outline: none;
+  }
+  .uploadInpit {
+    display: none;
+  }
+  .upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: none;
+    position: relative;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    width: 146px;
+    height: 42px;
+    background-color: $color-secondary-light;
+    border-radius: 30px;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: background-color 150ms linear;
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+    .text {
+      color: $color-primary-dark;
+    }
+  }
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  .btnWrapper {
+    position: relative;
+  }
+  .imgChevron {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 15px;
+    right: 14px;
+    z-index: 100;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+  .down {
+    transform: rotate(90deg);
+  }
+  .ng-select.category {
+    @extend %input;
+    width: 200px;
+    position: relative;
+  }
+  .ng-select ::ng-deep .ng-dropdown-panel {
+    background-color: $color-light;
+    border-radius: 15px;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    box-shadow: 0px 1px 4px $color-primary-transparent;
+    padding: 14px;
+    height: auto;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host {
+    max-height: 216px;
+    // width: 100px;
+  }
+  ::ng-deep .ng-option {
+    color: $color-secondary-dark;
+  }
+  ::ng-deep .ng-option:hover {
+    color: $color-primary-dark;
+  }
+  ::ng-deep .ng-option-selected {
+    color: $color-secondary;
+  }
+  ::ng-deep .ng-option-selected:hover {
+    color: $color-secondary-add;
+  }
+  ::ng-deep .ng-option:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+    background-color: $color-primary-transparent;
+    border-radius: 13px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {
+    background: $color-pag-disabled;
+    border-radius: 13px;
+  }
+  ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb:hover {
+    background-color: $color-secondary-dark;
+  }
+  ::ng-deep .ng-select .ng-clear-wrapper {
+    position: absolute;
+    top: 1px;
+    right: -22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+  }
+  ::ng-deep .ng-select .ng-select-container {
+    overflow: unset;
+  }
+  ::ng-deep .ng-select .ng-clear-wrapper .ng-clear {
+    font-size: 36px;
+    font-weight: 300;
+  }
+  ::ng-deep
+    .ng-select
+    .ng-select-container
+    .ng-value-container
+    .ng-input
+    > input {
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
