@@ -5,7 +5,7 @@
       <h2 class="title">
         Add my pet / <span class="span">Personal details</span>
       </h2>
-      <form>
+      <form class="form">
         <div class="sexWrapper">
           <label
             for="female-sex"
@@ -100,28 +100,34 @@
         <div class="inputWrapper">
           <input type="text" class="input" placeholder="Pet’s Name" />
         </div>
-        <input type="date" />
-        <div class="btnWrapper">
-          <svg-icon-sprite
+        <div class="bottomInputs">
+
+          <p-datepicker [(ngModel)]="date" placeholder="pick a date" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"/>
+          <div class="btnWrapper">
+            <svg-icon-sprite
             [src]="'images/sprite.svg#icon-arrow-left'"
             [class]="'imgChevron'"
             [class.down]="chevron"
-          ></svg-icon-sprite>
-          <ng-select
-            class="category"
+            ></svg-icon-sprite>
+            <ng-select
+            class="species"
             (change)="handlepick()"
             [clearable]="false"
-            placeholder="Species"
+            placeholder="Type of pet"
             [fixedPlaceholder]="false"
             [searchable]="false"
             (open)="handleChevron()"
             (close)="handleChevron()"
-          >
-            <ng-option value="">Show All</ng-option>
+            >
             @for(item of species$ | async; track item){
-            <ng-option [value]="item">{{ item }}</ng-option>
+              <ng-option [value]="item">{{ item }}</ng-option>
             }
           </ng-select>
+        </div>
+        </div>
+        <div class="bottom">
+          <button type="button" class="backBtn">Back</button>
+          <button type="submit" class="submitBtn">Submit</button>
         </div>
       </form>
     </div>

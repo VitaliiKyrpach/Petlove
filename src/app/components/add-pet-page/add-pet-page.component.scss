@@ -8,6 +8,9 @@
     justify-content: center;
     gap: 32px;
   }
+  .form{
+    
+  }
   .img {
     width: 592px;
     height: 654px;
@@ -97,7 +100,7 @@
       font-weight: 500;
       line-height: 1.25;
       letter-spacing: -0.03em;
-      width: 380px;
+      width: 100%;
       padding: 16px;
       border-radius: 30px;
       border: 1px solid $color-primary-transparent;
@@ -118,7 +121,7 @@
     gap: 8px;
   }
   .avatarUrl {
-    width: 226px;
+    width: 278px;
     height: 42px;
     padding: 12px;
     font-size: 14px;
@@ -175,10 +178,16 @@
   .down {
     transform: rotate(90deg);
   }
-  .ng-select.category {
+  .btnWrapper{
+    flex-shrink: 0;
+    width: calc((100% - 12px) / 2);
+  }
+  .ng-select.species {
     @extend %input;
-    width: 200px;
+    // width: 200px;
     position: relative;
+    border: 1px solid $color-primary-transparent;
+
   }
   .ng-select ::ng-deep .ng-dropdown-panel {
     background-color: $color-light;
@@ -188,11 +197,12 @@
     top: calc(100% + 4px);
     box-shadow: 0px 1px 4px $color-primary-transparent;
     padding: 14px;
-    height: auto;
+    height: 126px;
+    overflow: hidden;
   }
   ::ng-deep .ng-dropdown-panel .scroll-host {
-    max-height: 216px;
-    // width: 100px;
+    height: 100%;
+    
   }
   ::ng-deep .ng-option {
     color: $color-secondary-dark;
@@ -250,4 +260,76 @@
     font-size: 16px;
     font-weight: 500;
   }
+  .bottomInputs{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .bottom{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .submitBtn{
+    @extend %button;
+    width: 170px;
+    height: 48px;
+  }
+  .backBtn{
+    width: 170px;
+    height: 48px;
+    font-family: "manrope", sans-serif;
+  color: $color-primary-dark;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background-color: $color-pag-disabled;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+  &:hover {
+    background-color: $color-pag;
+  }
+  }
+  ::ng-deep .p-datepicker{
+    display: flex;
+    // width: calc((100% - 12px) / 2);
+    height: 52px;
+    padding: 16px;
+    border-radius: 30px;
+    border: 1px solid $color-primary-transparent;
+  }
+  ::ng-deep .p-datepicker-input{
+    pointer-events: none;
+  }
+  ::ng-deep .p-datepicker-input-icon-container{
+    position: unset;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep .p-datepicker-input-icon .p-icon{
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep .p-datepicker-calendar-container{
+    width: 210px;
+    position: relative;
+    top: -20px;
+    left: -1px;
+    background-color: $color-light;
+    padding: 10px;
+    border-radius: 28px;
+    border: 1px solid $color-primary-transparent;
+  }
+  ::ng-deep .p-datepicker-weekday-cell{
+    background-color: $color-primary-transparent;
+  }
+  ::ng-deep .p-datepicker-day-cell:hover{
+    background-color: $color-primary-transparent;
+  }
+  // ::ng-deep .p-datepicker-input{
+  //   display: block;
+  //   width: 50px;
+  //   background-color: aqua;
+  // }
 }

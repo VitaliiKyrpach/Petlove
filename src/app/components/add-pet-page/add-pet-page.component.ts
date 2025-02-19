@@ -10,6 +10,7 @@ import {
   NgSelectModule,
 } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-add-pet-page',
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     NgSelectModule,
     CommonModule,
     FormsModule,
+    DatePickerModule
   ],
   templateUrl: './add-pet-page.component.html',
   styleUrl: './add-pet-page.component.scss',
@@ -30,6 +32,7 @@ import { FormsModule } from '@angular/forms';
 export class AddPetPageComponent implements OnInit {
   public species$!: Observable<string[]>;
   public sex!: string;
+  public date = new Date()
   public chevron: boolean = false;
   constructor(private service: ServiceService) {}
   ngOnInit(): void {
