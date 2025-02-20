@@ -26,7 +26,7 @@ export class ProfileModalComponent implements OnInit {
     public error!: AuthError;
   public filename: string = '';
   public avatarPhoto!: string;
-  private avatarUrl: string = ''
+  private avatarUrl: string = '';
   public profileForm: FormGroup<EditForm> = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl(

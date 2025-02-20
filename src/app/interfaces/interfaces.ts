@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { Form, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 export interface Friends {
@@ -36,6 +36,23 @@ export interface EditForm {
   email: FormControl<string | null>;
   phone: FormControl<string | null>;
   avatar: FormControl<string | null>;
+}
+
+export interface AddPet {
+  name: FormControl<string | null>;
+  title: FormControl<string | null>;
+  imgURL: FormControl<string | null>;
+  species: FormControl<string | null>;
+  birthday: FormControl<string | null>;
+  sex: FormControl<string | null>
+}
+export interface Pet{
+  name: string,
+  title: string,
+  imgURL: string,
+  species: string,
+  birthday: string,
+  sex: string
 }
 export interface RegErrors {
   name: string;

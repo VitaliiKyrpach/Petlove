@@ -105,6 +105,9 @@
       border-radius: 30px;
       border: 1px solid $color-primary-transparent;
       outline: none;
+      &.checked{
+        border-color: $color-secondary;
+      }
       &::placeholder {
         color: $color-secondary-dark;
       }
@@ -185,9 +188,16 @@
   .ng-select.species {
     @extend %input;
     // width: 200px;
+    height: 52px;
     position: relative;
     border: 1px solid $color-primary-transparent;
 
+    &.checked{
+      border-color: $color-secondary
+    }
+  }
+  ::ng-deep .ng-select .ng-select-container{
+    cursor: pointer;
   }
   .ng-select ::ng-deep .ng-dropdown-panel {
     background-color: $color-light;
@@ -291,13 +301,19 @@
     background-color: $color-pag;
   }
   }
+  .datePicker{
+    height: 52px;
+    border-radius: 30px;
+    border: 1px solid $color-primary-transparent;
+    &.checked{
+      border-color: $color-secondary
+    }
+  }
   ::ng-deep .p-datepicker{
     display: flex;
     // width: calc((100% - 12px) / 2);
     height: 52px;
     padding: 16px;
-    border-radius: 30px;
-    border: 1px solid $color-primary-transparent;
   }
   ::ng-deep .p-datepicker-input{
     pointer-events: none;
@@ -314,8 +330,8 @@
   ::ng-deep .p-datepicker-calendar-container{
     width: 210px;
     position: relative;
-    top: -20px;
-    left: -1px;
+    top: -22px;
+    left: -2px;
     background-color: $color-light;
     padding: 10px;
     border-radius: 28px;

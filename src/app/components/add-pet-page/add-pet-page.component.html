@@ -5,12 +5,12 @@
       <h2 class="title">
         Add my pet / <span class="span">Personal details</span>
       </h2>
-      <form class="form">
+      <form class="form" [formGroup]="addPetForm" (ngSubmit)="onSubmit()">
         <div class="sexWrapper">
           <label
             for="female-sex"
             class="sex female"
-            [ngClass]="sex === 'female' ? 'checked' : ''"
+            [ngClass]="sex.value === 'female' ? 'checked' : ''"
             ><svg-icon-sprite
               [src]="'images/sprite.svg#icon-female'"
               [width]="'24px'"
@@ -23,12 +23,12 @@
             value="female"
             id="female-sex"
             class="sexInput"
-            [(ngModel)]="sex"
+            formControlName="sex"
           />
           <label
             for="male-sex"
             class="sex male"
-            [ngClass]="{ checked: sex === 'male' }"
+            [ngClass]="{ checked: sex.value === 'male' }"
             ><svg-icon-sprite
               [src]="'images/sprite.svg#icon-male'"
               [width]="'16px'"
@@ -41,12 +41,12 @@
             value="male"
             id="male-sex"
             class="sexInput"
-            [(ngModel)]="sex"
-          />
+            formControlName="sex"
+            />
           <label
             for="multiple-sex"
             class="sex multi"
-            [ngClass]="{ checked: sex === 'multiple' }"
+            [ngClass]="{ checked: sex.value === 'multiple' }"
             ><svg-icon-sprite
               [src]="'images/sprite.svg#icon-multiple'"
               [width]="'24px'"
@@ -59,17 +59,23 @@
             value="multiple"
             id="multiple-sex"
             class="sexInput"
-            [(ngModel)]="sex"
-          />
+            formControlName="sex"
+            />
         </div>
         <div class="avatarWrapper">
           <div class="avatarSVG">
-            <!-- [src]="user.avatar || 'images/userPicture.png'" -->
-            <svg-icon-sprite
+            @if(avatarPhoto){
+
+              <img [src]="avatarPhoto" alt="pet avatar">
+            }@else{
+
+              <!-- [src]="user.avatar || 'images/userPicture.png'" -->
+              <svg-icon-sprite
               [src]="'images/sprite.svg#icon-footprint'"
               [width]="'44px'"
               [class]="'icon'"
-            ></svg-icon-sprite>
+              ></svg-icon-sprite>
+            }
           </div>
         </div>
         <div class="fileWrapper">
@@ -77,7 +83,7 @@
                     <p class="textError">{{ errors.avatar }}</p>
                     } -->
           <p class="avatarUrl">
-            <!-- @if(filename === ''){ avatar address } @else{{{filename}}} -->
+            @if(filename === ''){ pick avatar } @else{{{filename}}}
           </p>
           <input
             class="uploadInpit"
@@ -95,14 +101,15 @@
           ></label>
         </div>
         <div class="inputWrapper">
-          <input type="text" class="input" placeholder="Title" />
+          <input type="text" class="input" placeholder="Title" formControlName="title" [ngClass]="{checked: title.value !== ''}"/>
         </div>
         <div class="inputWrapper">
-          <input type="text" class="input" placeholder="Pet’s Name" />
+          <input type="text" class="input" placeholder="Pet’s Name" formControlName="name" [ngClass]="{checked: name.value !== ''}"/>
         </div>
         <div class="bottomInputs">
-
-          <p-datepicker [(ngModel)]="date" placeholder="pick a date" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"/>
+          <div class="datePicker" [ngClass]="{checked: birthday.value}">
+            <p-datepicker placeholder="pick a date" formControlName="birthday" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"/>
+          </div>
           <div class="btnWrapper">
             <svg-icon-sprite
             [src]="'images/sprite.svg#icon-arrow-left'"
@@ -111,6 +118,7 @@
             ></svg-icon-sprite>
             <ng-select
             class="species"
+            [ngClass]="{checked: species.value}"
             (change)="handlepick()"
             [clearable]="false"
             placeholder="Type of pet"
@@ -118,6 +126,7 @@
             [searchable]="false"
             (open)="handleChevron()"
             (close)="handleChevron()"
+            formControlName="species"
             >
             @for(item of species$ | async; track item){
               <ng-option [value]="item">{{ item }}</ng-option>
