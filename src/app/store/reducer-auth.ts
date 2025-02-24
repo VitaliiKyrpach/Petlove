@@ -13,7 +13,7 @@ import {
   registrationSuccess,
 } from './actions-auth';
 import { InitAuthState } from '../interfaces/interfaces';
-import { addToFavFailure, addToFavSuccess, removeFromFavFailure, removeFromFavSuccess } from './actions';
+import { addNewPetFailure, addNewPetSuccess, addToFavFailure, addToFavSuccess, removeFromFavFailure, removeFromFavSuccess } from './actions';
 
 export const initialAuthState: InitAuthState = {
   user: {
@@ -194,6 +194,25 @@ export const authReducer = createReducer(
       error:{
         message: error.error.message,
         type: event,
+      }
+    }
+  }),
+  on(addNewPetSuccess, (state, {data})=>{
+    console.log('reducer', data)
+    return {
+      ...state,
+      user:{
+        ...state.user,
+        pets: data
+      }
+    }
+  }),
+  on(addNewPetFailure, (state, {error, event})=>{
+    return {
+      ...state,
+      error:{
+        message: error.error.message,
+        type: event
       }
     }
   })

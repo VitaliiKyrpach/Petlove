@@ -7,6 +7,9 @@
       </h2>
       <form class="form" [formGroup]="addPetForm" (ngSubmit)="onSubmit()">
         <div class="sexWrapper">
+          @if(sex && sex.invalid){
+            <p class="textError">{{ errors.sex }}</p>
+            }
           <label
             for="female-sex"
             class="sex female"
@@ -65,11 +68,8 @@
         <div class="avatarWrapper">
           <div class="avatarSVG">
             @if(avatarPhoto){
-
               <img [src]="avatarPhoto" alt="pet avatar">
             }@else{
-
-              <!-- [src]="user.avatar || 'images/userPicture.png'" -->
               <svg-icon-sprite
               [src]="'images/sprite.svg#icon-footprint'"
               [width]="'44px'"
@@ -79,9 +79,9 @@
           </div>
         </div>
         <div class="fileWrapper">
-          <!-- @if(avatar && avatar.invalid){
-                    <p class="textError">{{ errors.avatar }}</p>
-                    } -->
+          @if(imgURL && imgURL.invalid){
+            <p class="textError">{{ errors.imgURL }}</p>
+            }
           <p class="avatarUrl">
             @if(filename === ''){ pick avatar } @else{{{filename}}}
           </p>
@@ -101,16 +101,28 @@
           ></label>
         </div>
         <div class="inputWrapper">
-          <input type="text" class="input" placeholder="Title" formControlName="title" [ngClass]="{checked: title.value !== ''}"/>
+          @if(title && title.invalid){
+            <p class="textError">{{ errors.title }}</p>
+            }
+          <input type="text" class="input" placeholder="Title" formControlName="title" [ngClass]="{checked: title.value !== ''}" (blur)="updErrorMsg('title')"/>
         </div>
         <div class="inputWrapper">
-          <input type="text" class="input" placeholder="Pet’s Name" formControlName="name" [ngClass]="{checked: name.value !== ''}"/>
+          @if(name && name.invalid){
+            <p class="textError">{{ errors.name }}</p>
+            }
+          <input type="text" class="input" placeholder="Pet’s Name" formControlName="name" [ngClass]="{checked: name.value !== ''}" (blur)="updErrorMsg('name')"/>
         </div>
         <div class="bottomInputs">
           <div class="datePicker" [ngClass]="{checked: birthday.value}">
-            <p-datepicker placeholder="pick a date" formControlName="birthday" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"/>
+            @if(birthday && birthday.invalid){
+              <p class="textError">{{ errors.birthday }}</p>
+              }
+            <p-datepicker placeholder="pick a date" dateFormat="yy-mm-dd" formControlName="birthday" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" (blur)="updErrorMsg('birthday')"/>
           </div>
           <div class="btnWrapper">
+            @if(species && species.invalid){
+              <p class="textError">{{ errors.species }}</p>
+              }
             <svg-icon-sprite
             [src]="'images/sprite.svg#icon-arrow-left'"
             [class]="'imgChevron'"
@@ -127,6 +139,7 @@
             (open)="handleChevron()"
             (close)="handleChevron()"
             formControlName="species"
+            (blur)="updErrorMsg('species')"
             >
             @for(item of species$ | async; track item){
               <ng-option [value]="item">{{ item }}</ng-option>
@@ -135,7 +148,7 @@
         </div>
         </div>
         <div class="bottom">
-          <button type="button" class="backBtn">Back</button>
+          <button type="button" class="backBtn" (click)="goBack()">Back</button>
           <button type="submit" class="submitBtn">Submit</button>
         </div>
       </form>

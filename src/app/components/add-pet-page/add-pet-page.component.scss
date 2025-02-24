@@ -302,6 +302,7 @@
   }
   }
   .datePicker{
+    position: relative;
     height: 52px;
     border-radius: 30px;
     border: 1px solid $color-primary-transparent;
@@ -348,4 +349,12 @@
   //   width: 50px;
   //   background-color: aqua;
   // }
+  .textError {
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    font-size: 12px;
+    line-height: 1.16;
+    color: $color-error;
+  }
 }

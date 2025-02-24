@@ -3,6 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ServiceService } from '../services/service.service';
 import { AuthService } from '../services/auth.service';
 import {
+  addNewPet,
+  addNewPetFailure,
+  addNewPetSuccess,
   addToFavFailure,
   addToFavorites,
   addToFavSuccess,
@@ -203,6 +206,23 @@ export class dataEffects {
           catchError((error) => {
             console.log(error);
             return of(removeFromFavFailure({ error, event: 'addToFav' }));
+          })
+        );
+      })
+    )
+  );
+  loadAddnewPet$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addNewPet),
+      switchMap((action) => {
+        return this.service.addNewPet(action.data).pipe(
+          map((data) => {
+            console.log('effect', data)
+            return addNewPetSuccess({ data: data.pets });
+          }),
+          catchError((error) => {
+            console.log(error);
+            return of(addNewPetFailure({ error, event: 'addNewPet' }));
           })
         );
       })

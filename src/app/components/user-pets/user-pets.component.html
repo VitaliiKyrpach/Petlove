@@ -10,6 +10,8 @@
   </button>
 </div>
 <ul class="petsList">
-  <li>pet card</li>
-  <li>pet card</li>
+  @for(pet of myPets$ | async; track pet){
+    <li>my pet</li>
+  }
 </ul>
+  

@@ -119,6 +119,14 @@ export interface PetData {
   results: Pet[];
   totalPages: number;
 }
+export interface NewPet{
+  name: string,
+  title: string,
+  imgURL: string,
+  species: string,
+  birthday: string,
+  sex: string
+}
 export interface Pet {
   birthday: string;
   category: string;
