@@ -11,7 +11,36 @@
 </div>
 <ul class="petsList">
   @for(pet of myPets$ | async; track pet){
-    <li>my pet</li>
+  <li class="petCard">
+    <img [src]="pet.imgURL" alt="pet photo" class="img" />
+    <div>
+      <h3 class="title">{{ pet.title }}</h3>
+      <ul class="bioList">
+        <li>
+          <p class="tag">Name</p>
+          <p class="text">{{ pet.name }}</p>
+        </li>
+        <li>
+          <p class="tag">Birthday</p>
+          <p class="text">{{ pet.birthday | date }}</p>
+        </li>
+        <li>
+          <p class="tag">Sex</p>
+          <p class="text">{{ pet.sex }}</p>
+        </li>
+        <li>
+          <p class="tag">Species</p>
+          <p class="text">{{ pet.species }}</p>
+        </li>
+      </ul>
+    </div>
+    <button type="button" class="deleteBtn" (click)="removePet(pet._id)">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-trash'"
+        [width]="'18px'"
+        [height]="'18px'"
+      ></svg-icon-sprite>
+    </button>
+  </li>
   }
 </ul>
-  

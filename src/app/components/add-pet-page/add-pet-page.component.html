@@ -8,8 +8,8 @@
       <form class="form" [formGroup]="addPetForm" (ngSubmit)="onSubmit()">
         <div class="sexWrapper">
           @if(sex && sex.invalid){
-            <p class="textError">{{ errors.sex }}</p>
-            }
+          <p class="textError">{{ errors.sex }}</p>
+          }
           <label
             for="female-sex"
             class="sex female"
@@ -45,7 +45,7 @@
             id="male-sex"
             class="sexInput"
             formControlName="sex"
-            />
+          />
           <label
             for="multiple-sex"
             class="sex multi"
@@ -63,26 +63,29 @@
             id="multiple-sex"
             class="sexInput"
             formControlName="sex"
-            />
+          />
         </div>
         <div class="avatarWrapper">
           <div class="avatarSVG">
             @if(avatarPhoto){
-              <img [src]="avatarPhoto" alt="pet avatar">
+            <img [src]="avatarPhoto" alt="pet avatar" />
             }@else{
-              <svg-icon-sprite
+            <svg-icon-sprite
               [src]="'images/sprite.svg#icon-footprint'"
               [width]="'44px'"
               [class]="'icon'"
-              ></svg-icon-sprite>
+            ></svg-icon-sprite>
             }
           </div>
         </div>
         <div class="fileWrapper">
           @if(imgURL && imgURL.invalid){
-            <p class="textError">{{ errors.imgURL }}</p>
-            }
-          <p class="avatarUrl">
+          <p class="textError">{{ errors.imgURL }}</p>
+          }
+          <p
+            class="avatarUrl"
+            [ngClass]="{ checked: imgURL.value !== '', error: errors.imgURL }"
+          >
             @if(filename === ''){ pick avatar } @else{{{filename}}}
           </p>
           <input
@@ -102,50 +105,76 @@
         </div>
         <div class="inputWrapper">
           @if(title && title.invalid){
-            <p class="textError">{{ errors.title }}</p>
-            }
-          <input type="text" class="input" placeholder="Title" formControlName="title" [ngClass]="{checked: title.value !== ''}" (blur)="updErrorMsg('title')"/>
+          <p class="textError">{{ errors.title }}</p>
+          }
+          <input
+            type="text"
+            class="input"
+            placeholder="Title"
+            formControlName="title"
+            [ngClass]="{ checked: title.value !== '', error: errors.title }"
+            (blur)="updErrorMsg('title')"
+          />
         </div>
         <div class="inputWrapper">
           @if(name && name.invalid){
-            <p class="textError">{{ errors.name }}</p>
-            }
-          <input type="text" class="input" placeholder="Pet’s Name" formControlName="name" [ngClass]="{checked: name.value !== ''}" (blur)="updErrorMsg('name')"/>
+          <p class="textError">{{ errors.name }}</p>
+          }
+          <input
+            type="text"
+            class="input"
+            placeholder="Pet’s Name"
+            formControlName="name"
+            [ngClass]="{ checked: name.value !== '', error: errors.name }"
+            (blur)="updErrorMsg('name')"
+          />
         </div>
         <div class="bottomInputs">
-          <div class="datePicker" [ngClass]="{checked: birthday.value}">
+          <div
+            class="datePicker"
+            [ngClass]="{ checked: birthday.value, error: errors.birthday }"
+          >
             @if(birthday && birthday.invalid){
-              <p class="textError">{{ errors.birthday }}</p>
-              }
-            <p-datepicker placeholder="pick a date" dateFormat="yy-mm-dd" formControlName="birthday" [readonlyInput]="true" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" (blur)="updErrorMsg('birthday')"/>
+            <p class="textError">{{ errors.birthday }}</p>
+            }
+            <p-datepicker
+              placeholder="pick a date"
+              dateFormat="yy-mm-dd"
+              formControlName="birthday"
+              [readonlyInput]="true"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              inputId="icondisplay"
+              (onClose)="updErrorMsg('birthday')"
+            />
           </div>
           <div class="btnWrapper">
             @if(species && species.invalid){
-              <p class="textError">{{ errors.species }}</p>
-              }
+            <p class="textError">{{ errors.species }}</p>
+            }
             <svg-icon-sprite
-            [src]="'images/sprite.svg#icon-arrow-left'"
-            [class]="'imgChevron'"
-            [class.down]="chevron"
+              [src]="'images/sprite.svg#icon-arrow-left'"
+              [class]="'imgChevron'"
+              [class.down]="chevron"
             ></svg-icon-sprite>
             <ng-select
-            class="species"
-            [ngClass]="{checked: species.value}"
-            (change)="handlepick()"
-            [clearable]="false"
-            placeholder="Type of pet"
-            [fixedPlaceholder]="false"
-            [searchable]="false"
-            (open)="handleChevron()"
-            (close)="handleChevron()"
-            formControlName="species"
-            (blur)="updErrorMsg('species')"
+              class="species"
+              [ngClass]="{ checked: species.value, error: errors.species }"
+              (change)="handlepick('species')"
+              [clearable]="false"
+              placeholder="Type of pet"
+              [fixedPlaceholder]="false"
+              [searchable]="false"
+              (open)="handleChevron()"
+              (close)="handleChevron()"
+              formControlName="species"
+              (blur)="updErrorMsg('species')"
             >
-            @for(item of species$ | async; track item){
+              @for(item of species$ | async; track item){
               <ng-option [value]="item">{{ item }}</ng-option>
-            }
-          </ng-select>
-        </div>
+              }
+            </ng-select>
+          </div>
         </div>
         <div class="bottom">
           <button type="button" class="backBtn" (click)="goBack()">Back</button>

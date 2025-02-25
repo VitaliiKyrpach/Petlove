@@ -9,6 +9,9 @@ import {
   addToFavFailure,
   addToFavorites,
   addToFavSuccess,
+  deletePet,
+  deletePetFailure,
+  deletePetSuccess,
   getFriends,
   getFriendsSuccess,
   getNews,
@@ -217,12 +220,27 @@ export class dataEffects {
       switchMap((action) => {
         return this.service.addNewPet(action.data).pipe(
           map((data) => {
-            console.log('effect', data)
+            console.log('effect', data);
             return addNewPetSuccess({ data: data.pets });
           }),
           catchError((error) => {
             console.log(error);
             return of(addNewPetFailure({ error, event: 'addNewPet' }));
+          })
+        );
+      })
+    )
+  );
+  deletePet$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deletePet),
+      switchMap((action) => {
+        return this.service.removePet(action.id).pipe(
+          map((data) => {
+            return deletePetSuccess({ data: data.pets });
+          }),
+          catchError((error) => {
+            return of(deletePetFailure({ error, event: 'deletePet' }));
           })
         );
       })

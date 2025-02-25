@@ -62,11 +62,14 @@ export class ServiceService {
   public addToFav(id: string): Observable<any> {
     return this.http.post(`${this.api}/notices/favorites/add/${id}`, id);
   }
-  public removeFromFav(id: string):Observable<any>{
-    return this.http.delete(`${this.api}/notices/favorites/remove/${id}`)
+  public removeFromFav(id: string): Observable<any> {
+    return this.http.delete(`${this.api}/notices/favorites/remove/${id}`);
   }
-    public addNewPet(data: NewPet):Observable<UserData>{
-      console.log('service', data)
-      return this.http.post<UserData>(`${this.api}/users/current/pets/add`, data)
-    }
+  public addNewPet(data: NewPet): Observable<UserData> {
+    console.log('service', data);
+    return this.http.post<UserData>(`${this.api}/users/current/pets/add`, data);
+  }
+  public removePet(id: string): Observable<any> {
+    return this.http.delete(`${this.api}/users/current/pets/remove/${id}`);
+  }
 }

@@ -8,9 +8,7 @@
     justify-content: center;
     gap: 32px;
   }
-  .form{
-    
-  }
+
   .img {
     width: 592px;
     height: 654px;
@@ -105,7 +103,7 @@
       border-radius: 30px;
       border: 1px solid $color-primary-transparent;
       outline: none;
-      &.checked{
+      &.checked {
         border-color: $color-secondary;
       }
       &::placeholder {
@@ -131,8 +129,11 @@
     line-height: 1.28;
     letter-spacing: -0.02em;
     border-radius: 30px;
-    border: 1px solid $color-secondary;
+    border: 1px solid $color-primary-transparent;
     outline: none;
+    &.checked {
+      border-color: $color-secondary;
+    }
   }
   .uploadInpit {
     display: none;
@@ -181,7 +182,7 @@
   .down {
     transform: rotate(90deg);
   }
-  .btnWrapper{
+  .btnWrapper {
     flex-shrink: 0;
     width: calc((100% - 12px) / 2);
   }
@@ -192,11 +193,11 @@
     position: relative;
     border: 1px solid $color-primary-transparent;
 
-    &.checked{
-      border-color: $color-secondary
+    &.checked {
+      border-color: $color-secondary;
     }
   }
-  ::ng-deep .ng-select .ng-select-container{
+  ::ng-deep .ng-select .ng-select-container {
     cursor: pointer;
   }
   .ng-select ::ng-deep .ng-dropdown-panel {
@@ -212,7 +213,6 @@
   }
   ::ng-deep .ng-dropdown-panel .scroll-host {
     height: 100%;
-    
   }
   ::ng-deep .ng-option {
     color: $color-secondary-dark;
@@ -270,65 +270,65 @@
     font-size: 16px;
     font-weight: 500;
   }
-  .bottomInputs{
+  .bottomInputs {
     display: flex;
     justify-content: center;
     gap: 12px;
     margin-bottom: 40px;
   }
-  .bottom{
+  .bottom {
     display: flex;
     justify-content: center;
     gap: 8px;
   }
-  .submitBtn{
+  .submitBtn {
     @extend %button;
     width: 170px;
     height: 48px;
   }
-  .backBtn{
+  .backBtn {
     width: 170px;
     height: 48px;
     font-family: "manrope", sans-serif;
-  color: $color-primary-dark;
-  border-radius: 30px;
-  border: none;
-  outline: none;
-  background-color: $color-pag-disabled;
-  cursor: pointer;
-  transition: background-color 150ms ease;
-  &:hover {
-    background-color: $color-pag;
+    color: $color-primary-dark;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background-color: $color-pag-disabled;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    &:hover {
+      background-color: $color-pag;
+    }
   }
-  }
-  .datePicker{
+  .datePicker {
     position: relative;
     height: 52px;
     border-radius: 30px;
     border: 1px solid $color-primary-transparent;
-    &.checked{
-      border-color: $color-secondary
+    &.checked {
+      border-color: $color-secondary;
     }
   }
-  ::ng-deep .p-datepicker{
+  ::ng-deep .p-datepicker {
     display: flex;
     // width: calc((100% - 12px) / 2);
     height: 52px;
     padding: 16px;
   }
-  ::ng-deep .p-datepicker-input{
+  ::ng-deep .p-datepicker-input {
     pointer-events: none;
   }
-  ::ng-deep .p-datepicker-input-icon-container{
+  ::ng-deep .p-datepicker-input-icon-container {
     position: unset;
     width: 20px;
     height: 20px;
   }
-  ::ng-deep .p-datepicker-input-icon .p-icon{
+  ::ng-deep .p-datepicker-input-icon .p-icon {
     width: 20px;
     height: 20px;
   }
-  ::ng-deep .p-datepicker-calendar-container{
+  ::ng-deep .p-datepicker-calendar-container {
     width: 210px;
     position: relative;
     top: -22px;
@@ -338,10 +338,10 @@
     border-radius: 28px;
     border: 1px solid $color-primary-transparent;
   }
-  ::ng-deep .p-datepicker-weekday-cell{
+  ::ng-deep .p-datepicker-weekday-cell {
     background-color: $color-primary-transparent;
   }
-  ::ng-deep .p-datepicker-day-cell:hover{
+  ::ng-deep .p-datepicker-day-cell:hover {
     background-color: $color-primary-transparent;
   }
   // ::ng-deep .p-datepicker-input{
@@ -356,5 +356,8 @@
     font-size: 12px;
     line-height: 1.16;
     color: $color-error;
+  }
+  .form .error {
+    border-color: $color-error;
   }
 }

@@ -32,4 +32,56 @@
 .petsList {
   margin-bottom: 40px;
   min-height: 50px;
+  .petCard {
+    display: flex;
+    padding: 20px;
+    border: 1px solid $color-primary-transparent;
+    border-radius: 20px;
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+    .img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-right: 25px;
+    }
+    .title {
+      font-size: 14px;
+      line-height: 1.28;
+      margin-top: 14px;
+      margin-bottom: 12px;
+    }
+    .bioList {
+      display: flex;
+      gap: 25px;
+    }
+    .tag {
+      font-size: 10px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: $color-secondary-dark;
+    }
+    .text {
+      font-size: 12px;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+    }
+    .deleteBtn {
+      margin-left: auto;
+      padding-top: 4px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background-color: $color-secondary-light;
+      color: $color-secondary;
+      transition: background-color 150ms linear;
+      &:hover {
+        background-color: $color-secondary-hover;
+      }
+    }
+  }
 }
