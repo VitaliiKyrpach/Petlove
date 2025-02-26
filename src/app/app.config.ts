@@ -14,6 +14,7 @@ import { AuthInterceptor } from './interceptors/authinterceptor';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideStore(store),
     provideEffects(effects),
+    provideAnimationsAsync(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideAnimationsAsync(),
   //   providePrimeNG({ 
@@ -28,5 +30,6 @@ export const appConfig: ApplicationConfig = {
   //         preset: Aura
   //     }
   // })
+
   ],
 };

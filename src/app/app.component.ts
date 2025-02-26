@@ -15,8 +15,12 @@ import { selectUser } from './store/selectors';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+
   title = 'Petlove';
-  constructor(private store: Store) {}
+
+  constructor(private store: Store,) {
+    }
+
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -28,4 +32,5 @@ export class AppComponent implements OnInit {
       });
     }
   }
+  
 }

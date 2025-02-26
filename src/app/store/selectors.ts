@@ -38,3 +38,4 @@ export const selectFav = createSelector(
 export const selectMyPets = createSelector(
   selectFeatureAuth, (state)=> state.user.pets
 )
+export const selectErrors = createSelector(selectFeatureAuth, (state)=> state.error)
