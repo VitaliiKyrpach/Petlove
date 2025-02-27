@@ -11,7 +11,7 @@ export const loginSuccess = createAction(
 );
 export const loginFailure = createAction(
   '[Auth] Login Fail',
-  props<{ error: any; event: string }>()
+  props<{ error: any}>()
 );
 
 export const registration = createAction(
@@ -24,14 +24,14 @@ export const registrationSuccess = createAction(
 );
 export const registrationFailure = createAction(
   '[Auth] Registration Fail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );
 
 export const logout = createAction('[Auth] Logout', props<{ event: string }>());
 export const logoutSuccess = createAction('[Auth] Logout Success');
 export const logoutFail = createAction(
   '[Auth] Logout Fail',
-  props<{ error: any; event: string }>()
+  props<{ error: any}>()
 );
 
 export const getUser = createAction('[Auth] Get User');
@@ -41,7 +41,7 @@ export const getUserSuccess = createAction(
 );
 export const getUserFailure = createAction(
   '[Auth] Get User Fail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );
 export const editUser = createAction(
   '[Auth] Edit User',
@@ -53,5 +53,5 @@ export const editUserSuccess = createAction(
 );
 export const editUserFailure = createAction(
   '[Auth] Edit User Fail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );

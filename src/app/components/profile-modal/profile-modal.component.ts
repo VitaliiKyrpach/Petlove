@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { AuthError, EditForm, User } from '../../interfaces/interfaces';
+import { EditForm, User } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { editUser } from '../../store/actions-auth';
 import { selectError } from '../../store/selectors';
@@ -23,7 +23,6 @@ import { ServiceService } from '../../services/service.service';
 })
 export class ProfileModalComponent implements OnInit {
   @Input() data!: User;
-    public error!: AuthError;
   public filename: string = '';
   public avatarPhoto!: string;
   private avatarUrl: string = '';
@@ -41,7 +40,6 @@ export class ProfileModalComponent implements OnInit {
   });
   constructor(private store: Store, private modalService: ModalService, private service: ServiceService){}
   ngOnInit(): void {
-    this.store.select(selectError).subscribe(error=> this.error = error)
     this.name.setValue(this.data.name)
     this.email.setValue(this.data.email)
     this.phone.setValue(this.data.phone || '')

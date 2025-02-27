@@ -6,7 +6,6 @@ import {
   NewsData,
   Pet,
   PetData,
-  UserData,
 } from '../interfaces/interfaces';
 
 export const getFriends = createAction('[Data] Get Friends');
@@ -18,6 +17,7 @@ export const getNews = createAction(
   '[Data] Get News',
   props<{ page: number; search: string }>()
 );
+export const getDataFailure = createAction('[Data] Get DataFail',props<{error: any}>())
 export const getNewsSuccess = createAction(
   '[Data] Get NewsSuccess',
   props<{ news: NewsData }>()
@@ -41,7 +41,7 @@ export const addToFavSuccess = createAction(
 );
 export const addToFavFailure = createAction(
   '[Data] Add Pet To FavoritesFail',
-  props<{ error: any; event: string }>()
+  props<{ error: any; }>()
 );
 export const removeFromFav = createAction(
   '[Data] Remove Pet From Favorites',
@@ -53,7 +53,7 @@ export const removeFromFavSuccess = createAction(
 );
 export const removeFromFavFailure = createAction(
   '[Data] Remove Pet From FavoritesFail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );
 export const addNewPet = createAction(
   '[Data] Add New Pet',
@@ -65,7 +65,7 @@ export const addNewPetSuccess = createAction(
 );
 export const addNewPetFailure = createAction(
   '[Data] Add New PetFail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );
 export const deletePet = createAction(
   '[Data] Delete Pet',
@@ -77,5 +77,6 @@ export const deletePetSuccess = createAction(
 );
 export const deletePetFailure = createAction(
   '[Data] Delete PetFail',
-  props<{ error: any; event: string }>()
+  props<{ error: any }>()
 );
+export const resetError = createAction('[Data] Reset Error');

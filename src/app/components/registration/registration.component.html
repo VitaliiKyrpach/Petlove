@@ -128,9 +128,6 @@
               (blur)="updErrorMsg('confirm')"
             />
           </div>
-          @if(error.message !== '' && error.type === 'registration'){
-          <p class="errorAuth">*{{ error.message }}</p>
-          }
 
           <button
             type="submit"
@@ -150,9 +147,6 @@
           </button>
         </p>
       </div>
-      @if(error.message !== '' && error.type === 'registration'){
-      <p>*{{ error.message }}</p>
-      }
     </div>
   </div>
 </section>

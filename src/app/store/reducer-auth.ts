@@ -20,8 +20,10 @@ import {
   addToFavSuccess,
   deletePetFailure,
   deletePetSuccess,
+  getDataFailure,
   removeFromFavFailure,
   removeFromFavSuccess,
+  resetError,
 } from './actions';
 
 export const initialAuthState: InitAuthState = {
@@ -37,16 +39,12 @@ export const initialAuthState: InitAuthState = {
   token: null,
   isLoggedIn: false,
   isRefresh: false,
-  error: {
-    type: '',
-    message: '',
-  },
+  error: '',
 };
 
 export const authReducer = createReducer(
   initialAuthState,
   on(loginSuccess, (state, { data }) => {
-    console.log(data);
     return {
       ...state,
       user: {
@@ -56,28 +54,19 @@ export const authReducer = createReducer(
       },
       token: data.token,
       isLoggedIn: true,
-      error: {
-        type: '',
-        message: '',
-      },
+      error: '',
     };
   }),
-  on(loginFailure, (state, { error, event }) => {
+  on(loginFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
-  on(registrationFailure, (state, { error, event }) => {
+  on(registrationFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(registrationSuccess, (state, { data }) => {
@@ -90,10 +79,7 @@ export const authReducer = createReducer(
       },
       token: data.token,
       isLoggedIn: true,
-      error: {
-        type: '',
-        message: '',
-      },
+      error: '',
     };
   }),
   on(getUser, (state) => {
@@ -119,69 +105,51 @@ export const authReducer = createReducer(
       token: data.token,
       isLoggedIn: true,
       isRefresh: false,
-      error: {
-        type: '',
-        message: '',
-      },
+      error: '',
     };
   }),
-  on(getUserFailure, (state, { error, event }) => {
+  on(getUserFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(editUserSuccess, (state, { data }) => {
     return {
       ...state,
       user: data,
-      error: {
-        type: '',
-        message: '',
-      },
+      error: '',
     };
   }),
-  on(editUserFailure, (state, { error, event }) => {
+  on(editUserFailure, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(logoutSuccess, (state) => {
     return initialAuthState;
   }),
-  on(logoutFail, (state, { error, event }) => {
+  on(logoutFail, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(addToFavSuccess, (state, { data }) => {
-    console.log(data);
     return {
       ...state,
       user: {
         ...state.user,
         noticesFavorites: [...state.user.noticesFavorites, data],
       },
+      error: ''
     };
   }),
-  on(addToFavFailure, (state, { error, event }) => {
+  on(addToFavFailure, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(removeFromFavSuccess, (state, { data }) => {
@@ -194,34 +162,29 @@ export const authReducer = createReducer(
         ...state.user,
         noticesFavorites: newFav,
       },
+      error: ''
     };
   }),
-  on(removeFromFavFailure, (state, { error, event }) => {
+  on(removeFromFavFailure, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(addNewPetSuccess, (state, { data }) => {
-    console.log('reducer', data);
     return {
       ...state,
       user: {
         ...state.user,
         pets: data,
       },
+      error: ''
     };
   }),
-  on(addNewPetFailure, (state, { error, event }) => {
+  on(addNewPetFailure, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
   }),
   on(deletePetSuccess, (state, { data }) => {
@@ -231,15 +194,27 @@ export const authReducer = createReducer(
         ...state.user,
         pets: data,
       },
+      error: ''
     };
   }),
-  on(deletePetFailure, (state, { error, event }) => {
+  on(deletePetFailure, (state, { error }) => {
     return {
       ...state,
-      error: {
-        message: error.error.message,
-        type: event,
-      },
+      error: error.error.message,
     };
+  }),
+  on(getDataFailure, (state, {error
+  })=> {
+    return {
+      ...state,
+      error: error.error.message
+    }
+  }),
+  on(resetError, (state)=> {
+    console.log('error null')
+    return {
+      ...state,
+      error: ''
+    }
   })
 );

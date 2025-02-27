@@ -13,7 +13,8 @@ import { provideEffects } from '@ngrx/effects';
 import { AuthInterceptor } from './interceptors/authinterceptor';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
-
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,10 @@ export const appConfig: ApplicationConfig = {
     provideEffects(effects),
     provideAnimationsAsync(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideAnimationsAsync(),
+    provideToastr({positionClass: 'toast-top-center',
+      timeOut: 5000
+    }),
+    provideAnimations()
   //   providePrimeNG({ 
   //     theme: {
   //         preset: Aura

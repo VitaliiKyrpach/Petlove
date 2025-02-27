@@ -80,9 +80,6 @@
         (blur)="updErrorMsg('phone')"
       />
     </div>
-    @if(error.type === 'editUser' && error.message !== ''){
-      <p class="textErrorBack ">{{error.message}}</p>
-    }
     <button
       class="submitBtn"
       type="submit"

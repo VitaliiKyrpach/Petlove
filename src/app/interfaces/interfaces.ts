@@ -91,7 +91,7 @@ export interface InitAuthState {
   token: string | null;
   isLoggedIn: boolean;
   isRefresh: boolean;
-  error: AuthError;
+  error: string;
 }
 export interface UserData extends User {
   pets: Pet[];
@@ -104,10 +104,6 @@ export interface User {
   email: string | null;
   avatar: string | null;
   phone: string | null;
-}
-export interface AuthError {
-  type: string;
-  message: string;
 }
 export interface Pages {
   page: number;

@@ -5,7 +5,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { Store } from '@ngrx/store';
 import { getUser } from './store/actions-auth';
-import { selectUser } from './store/selectors';
+import { selectError, selectUser } from './store/selectors';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,20 @@ import { selectUser } from './store/selectors';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-
   title = 'Petlove';
 
-  constructor(private store: Store,) {
+  constructor(private store: Store, private toastr: ToastrService) {
     }
 
   ngOnInit(): void {
+    this.store.select(selectError).subscribe(error => {
+      console.log(error)
+      if(error !== ''){
+        this.toastr.error(error);
+      }
+    })
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       this.store.dispatch(getUser());
       this.store.select(selectUser).subscribe((data) => {

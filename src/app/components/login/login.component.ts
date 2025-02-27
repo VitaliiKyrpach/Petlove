@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { AuthError, LoginErrors, LoginForm } from '../../interfaces/interfaces';
+import { LoginErrors, LoginForm } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/actions-auth';
 import { selectError } from '../../store/selectors';
@@ -20,14 +20,9 @@ import { selectError } from '../../store/selectors';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
-  public error!: AuthError;
+export class LoginComponent {
   constructor(private router: Router, private store: Store) {}
-  ngOnInit(): void {
-    this.store.select(selectError).subscribe((data) => {
-      this.error = data;
-    });
-  }
+  
   public loginForm: FormGroup<LoginForm> = new FormGroup({
     email: new FormControl('', [
       Validators.required,

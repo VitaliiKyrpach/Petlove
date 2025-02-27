@@ -65,9 +65,6 @@
               (blur)="updErrorMsg('password')"
             />
           </div>
-          @if(error.message !== '' && error.type === 'login'){
-          <p class="errorAuth">*{{ error.message }}</p>
-          }
           <button
             type="submit"
             class="submitBtn"

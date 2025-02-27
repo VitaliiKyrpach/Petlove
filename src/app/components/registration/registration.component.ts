@@ -3,21 +3,19 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import {
-  AuthError,
   IsShown,
   RegErrors,
   RegForm,
 } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { registration } from '../../store/actions-auth';
-import { selectError } from '../../store/selectors';
+
 
 @Component({
   selector: 'app-registration',
@@ -26,19 +24,12 @@ import { selectError } from '../../store/selectors';
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
-export class RegistrationComponent implements OnInit {
-  public error!: AuthError;
+export class RegistrationComponent {
   constructor(
     private router: Router,
     private store: Store,
-    private cdRef: ChangeDetectorRef
   ) {}
-  ngOnInit(): void {
-    this.store.select(selectError).subscribe((data) => {
-      console.log(data);
-      this.error = data;
-    });
-  }
+ 
   public isShown: IsShown = {
     pass: false,
     confirm: false,

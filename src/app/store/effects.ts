@@ -12,6 +12,7 @@ import {
   deletePet,
   deletePetFailure,
   deletePetSuccess,
+  getDataFailure,
   getFriends,
   getFriendsSuccess,
   getNews,
@@ -21,6 +22,7 @@ import {
   removeFromFav,
   removeFromFavFailure,
   removeFromFavSuccess,
+  resetError,
 } from './actions';
 import {
   editUser,
@@ -39,23 +41,26 @@ import {
   registrationFailure,
   registrationSuccess,
 } from './actions-auth';
-import { catchError, EMPTY, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class dataEffects {
   private actions$ = inject(Actions);
   constructor(
     private service: ServiceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {}
 
   loadFriends$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getFriends),
+      tap(() => this.store.dispatch(resetError())),
       switchMap(() =>
         this.service.getFriends().pipe(
           map((friends) => getFriendsSuccess({ friends })),
-          catchError((error) => EMPTY)
+          catchError((error) => of(getDataFailure({error})))
         )
       )
     )
@@ -64,10 +69,11 @@ export class dataEffects {
   loadNews$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getNews),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.getNews(action.page, action.search).pipe(
           map((news) => getNewsSuccess({ news })),
-          catchError((error) => EMPTY)
+          catchError((error) => of(getDataFailure({error})))
         );
       })
     )
@@ -76,18 +82,20 @@ export class dataEffects {
   loadPets$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getPets),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.getPets(action.page, action.filters).pipe(
           map((pets) => getPetsSuccess({ pets })),
-          catchError((error) => EMPTY)
+          catchError((error) =>  of(getDataFailure({error})))
         );
       })
     )
   );
 
-  loadLogin$ = createEffect(() =>
+  Login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(login),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.authService.logIn(action.data).pipe(
           map((data) => {
@@ -96,15 +104,16 @@ export class dataEffects {
             return loginSuccess({ data });
           }),
           catchError((error) => {
-            return of(loginFailure({ error, event: action.event }));
+            return of(loginFailure({ error }));
           })
         );
       })
     )
   );
-  loadRegister$ = createEffect(() =>
+  Register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(registration),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.authService.registration(action.data).pipe(
           map((data) => {
@@ -112,7 +121,7 @@ export class dataEffects {
             return registrationSuccess({ data });
           }),
           catchError((error) => {
-            return of(registrationFailure({ error, event: action.event }));
+            return of(registrationFailure({ error }));
           })
         );
       })
@@ -128,31 +137,32 @@ export class dataEffects {
             return getUserSuccess({ data });
           }),
           catchError((error) => {
-            return of(getUserFailure({ error, event: 'getUser' }));
+            return of(getUserFailure({ error }));
           })
         );
       })
     )
   );
-  loadLogout$ = createEffect(() =>
+  Logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(logout),
-      switchMap((action) => {
+      switchMap(() => {
         return this.authService.logout().pipe(
           map(() => {
             localStorage.removeItem('token');
             return logoutSuccess();
           }),
           catchError((error) => {
-            return of(logoutFail({ error, event: action.event }));
+            return of(logoutFail({ error }));
           })
         );
       })
     )
   );
-  loadEditUser$ = createEffect(() =>
+  EditUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(editUser),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.authService.editUser(action.user).pipe(
           map((data) => {
@@ -160,13 +170,13 @@ export class dataEffects {
           }),
           catchError((error) => {
             console.log(error);
-            return of(editUserFailure({ error, event: action.event }));
+            return of(editUserFailure({ error }));
           })
         );
       })
     )
   );
-  loadEdToFav$ = createEffect(() =>
+  EdToFav$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addToFavorites),
       switchMap((action) => {
@@ -178,19 +188,19 @@ export class dataEffects {
               }),
               catchError((error) => {
                 console.log(error);
-                return of(addToFavFailure({ error, event: 'getPet' }));
+                return of(addToFavFailure({ error }));
               })
             );
           }),
           catchError((error) => {
             console.log(error);
-            return of(addToFavFailure({ error, event: 'addToFav' }));
+            return of(addToFavFailure({ error }));
           })
         );
       })
     )
   );
-  loadRemoveToFav$ = createEffect(() =>
+  RemoveToFav$ = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFromFav),
       switchMap((action) => {
@@ -202,19 +212,19 @@ export class dataEffects {
               }),
               catchError((error) => {
                 console.log(error);
-                return of(removeFromFavFailure({ error, event: 'getPet' }));
+                return of(removeFromFavFailure({ error }));
               })
             );
           }),
           catchError((error) => {
             console.log(error);
-            return of(removeFromFavFailure({ error, event: 'addToFav' }));
+            return of(removeFromFavFailure({ error}));
           })
         );
       })
     )
   );
-  loadAddnewPet$ = createEffect(() =>
+  AddnewPet$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addNewPet),
       switchMap((action) => {
@@ -225,7 +235,7 @@ export class dataEffects {
           }),
           catchError((error) => {
             console.log(error);
-            return of(addNewPetFailure({ error, event: 'addNewPet' }));
+            return of(addNewPetFailure({ error}));
           })
         );
       })
@@ -240,7 +250,7 @@ export class dataEffects {
             return deletePetSuccess({ data: data.pets });
           }),
           catchError((error) => {
-            return of(deletePetFailure({ error, event: 'deletePet' }));
+            return of(deletePetFailure({ error}));
           })
         );
       })
