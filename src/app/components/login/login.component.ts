@@ -22,7 +22,7 @@ import { selectError } from '../../store/selectors';
 })
 export class LoginComponent {
   constructor(private router: Router, private store: Store) {}
-  
+
   public loginForm: FormGroup<LoginForm> = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -35,7 +35,7 @@ export class LoginComponent {
   });
   public onSubmit(): void {
     const data = this.loginForm.value;
-    this.store.dispatch(login({ data, event: 'login' }));
+    this.store.dispatch(login({ data }));
     console.log(this.loginForm.value);
     this.loginForm.reset();
   }

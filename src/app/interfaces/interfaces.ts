@@ -44,15 +44,15 @@ export interface AddPet {
   imgURL: FormControl<string | null>;
   species: FormControl<string | null>;
   birthday: FormControl<string | null>;
-  sex: FormControl<string | null>
+  sex: FormControl<string | null>;
 }
-export interface Pet{
-  name: string,
-  title: string,
-  imgURL: string,
-  species: string,
-  birthday: string,
-  sex: string
+export interface Pet {
+  name: string;
+  title: string;
+  imgURL: string;
+  species: string;
+  birthday: string;
+  sex: string;
 }
 export interface RegErrors {
   name: string;
@@ -91,13 +91,15 @@ export interface InitAuthState {
   token: string | null;
   isLoggedIn: boolean;
   isRefresh: boolean;
-  error: string;
+  notification: {
+    type: string;
+    message: string;
+  };
 }
 export interface UserData extends User {
   pets: Pet[];
-  noticesViewed: Pet[],
-  noticesFavorites: Pet[],
-
+  noticesViewed: Pet[];
+  noticesFavorites: Pet[];
 }
 export interface User {
   name: string | null;
@@ -115,13 +117,13 @@ export interface PetData {
   results: Pet[];
   totalPages: number;
 }
-export interface NewPet{
-  name: string,
-  title: string,
-  imgURL: string,
-  species: string,
-  birthday: string,
-  sex: string
+export interface NewPet {
+  name: string;
+  title: string;
+  imgURL: string;
+  species: string;
+  birthday: string;
+  sex: string;
 }
 export interface Pet {
   birthday: string;
@@ -183,6 +185,6 @@ export interface Chevrons {
   type: boolean;
 }
 export interface CardData {
-  id: string,
-  isFavorite$: Observable<string[]>
+  id: string;
+  isFavorite$: Observable<string[]>;
 }

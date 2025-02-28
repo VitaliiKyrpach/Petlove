@@ -30,12 +30,13 @@ export const selectIsRefresh = createSelector(
 );
 export const selectError = createSelector(
   selectFeatureAuth,
-  (state) => state.error
+  (state) => state.notification
 );
 export const selectFav = createSelector(
-  selectFeatureAuth, (state)=> state.user.noticesFavorites
-)
+  selectFeatureAuth,
+  (state) => state.user.noticesFavorites
+);
 export const selectMyPets = createSelector(
-  selectFeatureAuth, (state)=> state.user.pets
-)
-
+  selectFeatureAuth,
+  (state) => state.user.pets
+);

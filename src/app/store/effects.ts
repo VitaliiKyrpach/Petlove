@@ -60,7 +60,7 @@ export class dataEffects {
       switchMap(() =>
         this.service.getFriends().pipe(
           map((friends) => getFriendsSuccess({ friends })),
-          catchError((error) => of(getDataFailure({error})))
+          catchError((error) => of(getDataFailure({ error })))
         )
       )
     )
@@ -73,7 +73,7 @@ export class dataEffects {
       switchMap((action) => {
         return this.service.getNews(action.page, action.search).pipe(
           map((news) => getNewsSuccess({ news })),
-          catchError((error) => of(getDataFailure({error})))
+          catchError((error) => of(getDataFailure({ error })))
         );
       })
     )
@@ -86,7 +86,7 @@ export class dataEffects {
       switchMap((action) => {
         return this.service.getPets(action.page, action.filters).pipe(
           map((pets) => getPetsSuccess({ pets })),
-          catchError((error) =>  of(getDataFailure({error})))
+          catchError((error) => of(getDataFailure({ error })))
         );
       })
     )
@@ -131,6 +131,7 @@ export class dataEffects {
   loadUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginSuccess, getUser),
+      tap(() => this.store.dispatch(resetError())),
       switchMap(() => {
         return this.authService.getUser().pipe(
           map((data) => {
@@ -146,6 +147,7 @@ export class dataEffects {
   Logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(logout),
+      tap(() => this.store.dispatch(resetError())),
       switchMap(() => {
         return this.authService.logout().pipe(
           map(() => {
@@ -179,6 +181,7 @@ export class dataEffects {
   EdToFav$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addToFavorites),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.addToFav(action.id).pipe(
           switchMap(() => {
@@ -203,6 +206,7 @@ export class dataEffects {
   RemoveToFav$ = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFromFav),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.removeFromFav(action.id).pipe(
           switchMap(() => {
@@ -218,7 +222,7 @@ export class dataEffects {
           }),
           catchError((error) => {
             console.log(error);
-            return of(removeFromFavFailure({ error}));
+            return of(removeFromFavFailure({ error }));
           })
         );
       })
@@ -227,6 +231,7 @@ export class dataEffects {
   AddnewPet$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addNewPet),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.addNewPet(action.data).pipe(
           map((data) => {
@@ -235,7 +240,7 @@ export class dataEffects {
           }),
           catchError((error) => {
             console.log(error);
-            return of(addNewPetFailure({ error}));
+            return of(addNewPetFailure({ error }));
           })
         );
       })
@@ -244,13 +249,14 @@ export class dataEffects {
   deletePet$ = createEffect(() =>
     this.actions$.pipe(
       ofType(deletePet),
+      tap(() => this.store.dispatch(resetError())),
       switchMap((action) => {
         return this.service.removePet(action.id).pipe(
           map((data) => {
             return deletePetSuccess({ data: data.pets });
           }),
           catchError((error) => {
-            return of(deletePetFailure({ error}));
+            return of(deletePetFailure({ error }));
           })
         );
       })

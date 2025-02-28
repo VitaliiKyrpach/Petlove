@@ -8,14 +8,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import {
-  IsShown,
-  RegErrors,
-  RegForm,
-} from '../../interfaces/interfaces';
+import { IsShown, RegErrors, RegForm } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { registration } from '../../store/actions-auth';
-
 
 @Component({
   selector: 'app-registration',
@@ -25,11 +20,8 @@ import { registration } from '../../store/actions-auth';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
-  constructor(
-    private router: Router,
-    private store: Store,
-  ) {}
- 
+  constructor(private router: Router, private store: Store) {}
+
   public isShown: IsShown = {
     pass: false,
     confirm: false,
@@ -54,7 +46,7 @@ export class RegistrationComponent {
       password: this.password.value,
     };
     console.log(data);
-    this.store.dispatch(registration({ data, event: 'registration' }));
+    this.store.dispatch(registration({ data }));
     this.regForm.reset();
   }
 

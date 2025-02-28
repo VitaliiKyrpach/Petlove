@@ -19,7 +19,7 @@ export class CloseModalComponent {
         this.modalService.closeModal();
         break;
       case 'yes':
-        this.store.dispatch(logout({ event: 'logout' }));
+        this.store.dispatch(logout());
         this.modalService.closeModal();
     }
   }

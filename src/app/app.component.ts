@@ -18,26 +18,26 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent implements OnInit {
   title = 'Petlove';
 
-  constructor(private store: Store, private toastr: ToastrService) {
-    }
+  constructor(private store: Store, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.store.select(selectError).subscribe(error => {
-      console.log(error)
-      if(error !== ''){
-        this.toastr.error(error);
+    this.store.select(selectError).subscribe((toast) => {
+      console.log(toast.message);
+      if (toast.type === 'error' && toast.message !== '') {
+        this.toastr.error(toast.message);
+      } else if (toast.type === 'success' && toast.message !== '') {
+        this.toastr.success(toast.message);
       }
-    })
+    });
     const token = localStorage.getItem('token');
-    console.log(token)
+    console.log(token);
     if (token) {
       this.store.dispatch(getUser());
       this.store.select(selectUser).subscribe((data) => {
-        console.log(data)
+        console.log(data);
         const favorites = data.noticesFavorites.map((cards) => cards._id);
         console.log(favorites);
       });
     }
   }
-  
 }

@@ -39,7 +39,10 @@ export const initialAuthState: InitAuthState = {
   token: null,
   isLoggedIn: false,
   isRefresh: false,
-  error: '',
+  notification: {
+    type: '',
+    message: '',
+  },
 };
 
 export const authReducer = createReducer(
@@ -54,19 +57,28 @@ export const authReducer = createReducer(
       },
       token: data.token,
       isLoggedIn: true,
-      error: '',
+      notification: {
+        type: 'success',
+        message: 'Login success',
+      },
     };
   }),
   on(loginFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(registrationFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(registrationSuccess, (state, { data }) => {
@@ -79,7 +91,10 @@ export const authReducer = createReducer(
       },
       token: data.token,
       isLoggedIn: true,
-      error: '',
+      notification: {
+        type: 'success',
+        message: 'Registration success',
+      },
     };
   }),
   on(getUser, (state) => {
@@ -105,26 +120,34 @@ export const authReducer = createReducer(
       token: data.token,
       isLoggedIn: true,
       isRefresh: false,
-      error: '',
     };
   }),
   on(getUserFailure, (state, { error }) => {
     return {
       ...initialAuthState,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(editUserSuccess, (state, { data }) => {
     return {
       ...state,
       user: data,
-      error: '',
+      notification: {
+        type: 'success',
+        message: 'Edit user success',
+      },
     };
   }),
   on(editUserFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(logoutSuccess, (state) => {
@@ -133,7 +156,10 @@ export const authReducer = createReducer(
   on(logoutFail, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(addToFavSuccess, (state, { data }) => {
@@ -143,13 +169,15 @@ export const authReducer = createReducer(
         ...state.user,
         noticesFavorites: [...state.user.noticesFavorites, data],
       },
-      error: ''
     };
   }),
   on(addToFavFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(removeFromFavSuccess, (state, { data }) => {
@@ -162,13 +190,15 @@ export const authReducer = createReducer(
         ...state.user,
         noticesFavorites: newFav,
       },
-      error: ''
     };
   }),
   on(removeFromFavFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(addNewPetSuccess, (state, { data }) => {
@@ -178,13 +208,19 @@ export const authReducer = createReducer(
         ...state.user,
         pets: data,
       },
-      error: ''
+      notification: {
+        type: 'success',
+        message: 'Add new pet success',
+      },
     };
   }),
   on(addNewPetFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
   on(deletePetSuccess, (state, { data }) => {
@@ -194,27 +230,34 @@ export const authReducer = createReducer(
         ...state.user,
         pets: data,
       },
-      error: ''
     };
   }),
   on(deletePetFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message,
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
     };
   }),
-  on(getDataFailure, (state, {error
-  })=> {
+  on(getDataFailure, (state, { error }) => {
     return {
       ...state,
-      error: error.error.message
-    }
+      notification: {
+        type: 'error',
+        message: error.error.message,
+      },
+    };
   }),
-  on(resetError, (state)=> {
-    console.log('error null')
+  on(resetError, (state) => {
+    console.log('error null');
     return {
       ...state,
-      error: ''
-    }
+      notification: {
+        type: '',
+        message: '',
+      },
+    };
   })
 );
