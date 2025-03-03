@@ -6,6 +6,6 @@
     [src]="avatar || 'images/userPicture.png'"
     alt="picture of a user"
   />
-    <p class="name" [ngClass]="path === '/' ? 'home' : ''">{{userName}}</p>
+    <p class="name"  [class.home]="path === '/'">{{userName}}</p>
   </div>
 </div>

@@ -8,14 +8,12 @@
     padding: 15px 35px;
     font-weight: 700;
     text-transform: uppercase;
+    @media screen and (max-width: 767px){
+      display: none;
+    }
   }
   .logout.home {
-    border: 1px solid $color-accent-light;
-    transition: color 150ms ease, background-color 150ms ease;
-    &:hover {
-      color: $color-secondary;
-      background-color: $color-secondary-light;
-    }
+    display: none;
   }
   .user{
     display: flex;
@@ -26,18 +24,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background-color: $color-secondary-light;
         color:$color-secondary;
         transition: background-color 150ms linear;
+        @media screen and (min-width: 768px){
+          width: 50px;
+          height: 50px;
+        }
     }
     .name{
+      display: none;
+      @media screen and (min-width: 768px){
+        display: block;
         font-size: 20px;
         line-height: 1;
         font-weight: 700;
         letter-spacing: -0.03em;
+      }
         &.home{
             color: $color-secondary-light;
             transition: color 150ms linear;

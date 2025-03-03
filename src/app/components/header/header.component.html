@@ -1,4 +1,4 @@
-<header class="header" [ngClass]="path === '/' ? 'fixed' : 'relative'">
+<header class="header" [ngClass]="{fixed: path === '/'}">
   <div class="container">
     <nav class="nav" [ngClass]="path === '/' ? 'home' : ''">
       <a routerLink="" class="logo" [ngClass]="path === '/' ? 'home' : ''"
@@ -45,6 +45,12 @@
       }@else{
       <app-auth-nav [path]="path" />
       } }
+      <button type="button" class="burger" [class.home]="path === '/'">
+        <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-burger'"
+        [width]="'36px'"
+      ></svg-icon-sprite>
+      </button>
     </nav>
   </div>
 </header>
