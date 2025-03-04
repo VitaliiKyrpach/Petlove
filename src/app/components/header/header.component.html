@@ -1,13 +1,22 @@
-<header class="header" [ngClass]="{fixed: path === '/'}">
+<header class="header" [ngClass]="{ fixed: path === '/' }">
   <div class="container">
     <nav class="nav" [ngClass]="path === '/' ? 'home' : ''">
       <a routerLink="" class="logo" [ngClass]="path === '/' ? 'home' : ''"
         ><span>petl</span>
         <span class="heart" [ngClass]="path === '/' ? 'home' : ''">
+          @if(path === '/'){
+
           <svg-icon-sprite
             [src]="'images/sprite.svg#icon-heart'"
             [width]="'23px'"
           ></svg-icon-sprite>
+          }@else{
+
+          <svg-icon-sprite
+            [src]="'images/sprite.svg#icon-heart-active'"
+            [width]="'23px'"
+          ></svg-icon-sprite>
+          }
         </span>
         <span>ve</span></a
       >
@@ -41,16 +50,28 @@
         </li>
       </ul>
       @if(!isRefresh){ @if(isLogged){
-      <app-user-nav [path]="path" />
+      <app-user-nav [path]="path" place="header" />
       }@else{
-      <app-auth-nav [path]="path" />
+      <app-auth-nav [path]="path" class="headerAuth" />
       } }
-      <button type="button" class="burger" [class.home]="path === '/'">
+      <button
+        type="button"
+        class="burger"
+        [class.home]="path === '/'"
+        (click)="openMenu()"
+      >
         <svg-icon-sprite
-        [src]="'images/sprite.svg#icon-burger'"
-        [width]="'36px'"
-      ></svg-icon-sprite>
+          [src]="'images/sprite.svg#icon-burger'"
+          [width]="'36px'"
+        ></svg-icon-sprite>
       </button>
     </nav>
+    <app-mobile-menu
+      [path]="path"
+      [isLogged]="isLogged"
+      [isOpen]="isOpen"
+      class="mobileMenu"
+      (close)="closeMenu()"
+    />
   </div>
 </header>

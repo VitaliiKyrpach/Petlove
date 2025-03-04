@@ -15,6 +15,7 @@ import { ModalService } from '../../services/modal.service';
 })
 export class UserNavComponent implements OnInit {
   @Input() path: string = '';
+  @Input() place!: string;
 
   private modalService = inject(ModalService);
 
@@ -24,11 +25,10 @@ export class UserNavComponent implements OnInit {
   constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {
-    this.store
-      .select(selectUser)
-      .subscribe((user) => {this.userName = user.name
-        this.avatar = user.avatar
-      });
+    this.store.select(selectUser).subscribe((user) => {
+      this.userName = user.name;
+      this.avatar = user.avatar;
+    });
   }
   public handleLogout(): void {
     this.modalService.openModal('logoutModal');

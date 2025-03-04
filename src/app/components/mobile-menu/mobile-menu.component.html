@@ -1,0 +1,40 @@
+<div class="mobileNav" [class.isOpen]="isOpen">
+  <button type="button" (click)="closeMenu()">close</button>
+  <nav>
+    <ul class="navLinkGrp">
+      <li>
+        <a
+          routerLink="news"
+          routerLinkActive="activeLink"
+          class="navLink"
+          [ngClass]="path === '/' ? 'home' : ''"
+          >News</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="notices"
+          routerLinkActive="activeLink"
+          class="navLink"
+          [ngClass]="path === '/' ? 'home' : ''"
+          >Find pet</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="friends"
+          routerLinkActive="activeLink"
+          class="navLink"
+          [ngClass]="path === '/' ? 'home' : ''"
+          >Our friends</a
+        >
+      </li>
+    </ul>
+    @if(isLogged){
+    <app-user-nav place="mobileMenu" />
+    }@else{
+
+    <app-auth-nav [path]="path" />
+    }
+  </nav>
+</div>

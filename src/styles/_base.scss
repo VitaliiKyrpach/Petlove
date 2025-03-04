@@ -67,24 +67,24 @@ li {
   width: 100%;
   overflow: hidden;
 }
-@media screen and (min-width: 375px){
-  .container{
-    width: 375px;
+@media screen and (min-width: 375px) {
+  .container {
+    // width: 375px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  body{
+  body {
     font-size: 16px;
     line-height: 1.25;
   }
-	.container {
-		padding: 16px 32px;
-   width: 768px;
-	}
+  .container {
+    padding: 16px 32px;
+    // width: 768px;
+  }
 }
 @media screen and (min-width: 1280px) {
-	.container {
-   width: 1280px;
-	}
+  .container {
+    width: 1280px;
+  }
 }

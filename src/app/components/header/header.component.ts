@@ -12,6 +12,7 @@ import { filter } from 'rxjs';
 import { NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectIsLoggedIn, selectIsRefresh } from '../../store/selectors';
+import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ import { selectIsLoggedIn, selectIsRefresh } from '../../store/selectors';
     IconSpriteModule,
     AuthNavComponent,
     UserNavComponent,
+    MobileMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -30,6 +32,7 @@ import { selectIsLoggedIn, selectIsRefresh } from '../../store/selectors';
 export class HeaderComponent implements OnInit {
   public isLogged: boolean = false;
   public isRefresh: boolean = false;
+  public isOpen: boolean = false;
   public path: string = '';
   constructor(private router: Router, private store: Store) {}
   ngOnInit(): void {
@@ -44,11 +47,18 @@ export class HeaderComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
+        console.log(event.url);
         if (event.url.length > 1) {
           this.path = event.url.replace('/', '');
         } else {
           this.path = event.url;
         }
       });
+  }
+  public openMenu(): void {
+    this.isOpen = true;
+  }
+  public closeMenu() {
+    this.isOpen = false;
   }
 }

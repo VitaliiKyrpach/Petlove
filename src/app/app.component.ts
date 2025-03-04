@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { getUser } from './store/actions-auth';
 import { selectError, selectUser } from './store/selectors';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent implements OnInit {
   title = 'Petlove';
-
-  constructor(private store: Store, private toastr: ToastrService) {}
+  private isExpired!: boolean;
+  constructor(
+    private store: Store,
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.store.select(selectError).subscribe((toast) => {
@@ -32,12 +37,17 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('token');
     console.log(token);
     if (token) {
-      this.store.dispatch(getUser());
-      this.store.select(selectUser).subscribe((data) => {
-        console.log(data);
-        const favorites = data.noticesFavorites.map((cards) => cards._id);
-        console.log(favorites);
-      });
+      this.isExpired = this.authService.expiredToken(token);
+      if (this.isExpired) {
+        localStorage.removeItem('token');
+      } else {
+        this.store.dispatch(getUser());
+        this.store.select(selectUser).subscribe((data) => {
+          console.log(data);
+          const favorites = data.noticesFavorites.map((cards) => cards._id);
+          console.log(favorites);
+        });
+      }
     }
   }
 }

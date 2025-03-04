@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/interfaces';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,12 @@ export class AuthService {
     return this.http.get<any>(`${this.api}/users/current/full`);
   }
 
-  public editUser(data: User){
-    return this.http.patch<User>(`${this.api}/users/current/edit`, data)
+  public editUser(data: User) {
+    return this.http.patch<User>(`${this.api}/users/current/edit`, data);
+  }
+  public expiredToken(token: string): boolean {
+    const decoded: any = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    return decoded.exp < currentTime ? true : false;
   }
 }

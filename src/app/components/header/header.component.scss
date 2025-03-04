@@ -1,103 +1,114 @@
-@import '../../../styles/variables';
-.header{
-        width: 100%;
-  
-    &.fixed{
-        position: fixed;
-        top: 0;
+@import "../../../styles/variables";
+.header {
+  width: 100%;
+
+  &.fixed {
+    position: absolute;
+    top: 0;
+  }
+  .nav {
+    display: flex;
+    position: relative;
+    padding: 18px 0px;
+    align-items: center;
+    @media screen and (min-width: 768px) {
+      padding: 16px 0px;
     }
-    .nav{
-        display: flex;
-        position: relative;
-        padding: 18px 0px;
-        align-items: center;
-        @media screen and (min-width: 768px){
-            padding: 16px 0px;
-        }
-        @media screen and (min-width: 1280px){
-            justify-content: space-between;
-            padding: 16px 32px;
-        }
-        &.home{
-            padding-left: 20px;
-            padding-right: 20px;
-            @media screen and (min-width: 768px){
-                padding-left: 32px;
-                padding-right: 32px;
-            }
-            @media screen and (min-width: 1280px){
-                padding-left: 64px;
-                padding-right: 64px;
-            }
-        }
+    @media screen and (min-width: 1280px) {
+      justify-content: space-between;
+      padding: 16px 32px;
     }
-    .logo{
-        display: flex;
-        align-items: center;
-        color: $color-primary-dark;
-        font-size: 20px;
-        font-weight: 800;
-        line-height: 1;
-        text-decoration: none;
-        position: relative;
-        margin-right: auto;
-        @media screen and (min-width: 768px){
-            font-size: 28px;
-        }
-        @media screen and (min-width: 1280px){
-            margin-right: unset;
-        }
+    &.home {
+      padding-left: 20px;
+      padding-right: 20px;
+      @media screen and (min-width: 768px) {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+      @media screen and (min-width: 1280px) {
+        padding-left: 64px;
+        padding-right: 64px;
+      }
     }
-    .logo.home{
-        color: $color-light;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    color: $color-primary-dark;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    position: relative;
+    margin-right: auto;
+    @media screen and (min-width: 768px) {
+      font-size: 28px;
     }
-    .heart{
-        color:$color-secondary;
-        position: relative;
-        top: 3px;
+    @media screen and (min-width: 1280px) {
+      margin-right: unset;
     }
-    .heart.home{
-        color:$color-light;
+  }
+  .logo.home {
+    color: $color-light;
+  }
+  .heart {
+    color: $color-secondary;
+    position: relative;
+    top: 3px;
+  }
+  .heart.home {
+    color: $color-light;
+  }
+  .navLinkGrp {
+    display: none;
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      left: calc(50% - 165px);
     }
-    .navLinkGrp{
-        display: none;
-        @media screen and (min-width: 1280px){
-            display: flex;
-            gap: 10px;
-            position: absolute;
-            left: calc(50% - 165px)
-        }
+  }
+  .navLink {
+    color: $color-primary-dark;
+    padding: 15px 20px;
+    border-radius: 30px;
+    border: 1px solid $color-primary-transparent;
+  }
+  .navLink.home {
+    color: $color-light;
+    border: 1px solid $color-accent-light;
+  }
+  .activeLink {
+    border-color: $color-secondary;
+  }
+  .headerAuth {
+    display: none;
+    @media screen and (min-width: 1280px) {
+      display: block;
     }
-    .navLink{
-        color: $color-primary-dark;
-        padding: 15px 20px;
-        border-radius: 30px;
-        border: 1px solid $color-primary-transparent;
+  }
+  .burger {
+    height: 36px;
+    width: 36px;
+    padding: 0;
+    margin-left: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &.home {
+      color: $color-light;
     }
-    .navLink.home{
-        color: $color-light;
-        border: 1px solid $color-accent-light;
+    @media screen and (min-width: 768px) {
+      margin-left: 18px;
     }
-    .activeLink{
-        border-color: $color-secondary;
+    @media screen and (min-width: 1280px) {
+      display: none;
     }
-    .burger{
-        height: 36px;
-        width: 36px;
-        padding: 0;
-        margin-left: 12px;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        &.home{
-            color: $color-light;
-        }
-        @media screen and (min-width: 768px){
-            margin-left: 18px;
-        }
-        @media screen and (min-width: 1280px){
-            display: none;
-        }
+  }
+  .mobileMenu {
+    @media screen and (min-width: 1280px) {
+      display: none;
     }
+  }
 }
