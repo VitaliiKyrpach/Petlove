@@ -35,17 +35,17 @@ export class AppComponent implements OnInit {
       }
     });
     const token = localStorage.getItem('token');
-    console.log(token);
     if (token) {
       this.isExpired = this.authService.expiredToken(token);
+      
       if (this.isExpired) {
+        console.log('expired')
         localStorage.removeItem('token');
       } else {
+        console.log('not expired')
         this.store.dispatch(getUser());
         this.store.select(selectUser).subscribe((data) => {
-          console.log(data);
           const favorites = data.noticesFavorites.map((cards) => cards._id);
-          console.log(favorites);
         });
       }
     }

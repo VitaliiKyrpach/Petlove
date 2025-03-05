@@ -1,4 +1,4 @@
-<ul class="auth">
+<ul class="auth" [class.mobile]="place==='mobileMenu'">
     <li><a routerLink="login" class="login" [ngClass]="path === '/' ? 'home' : ''">Login</a></li>
     <li><a routerLink="registration" class="reg">Registration</a></li>
 </ul>
