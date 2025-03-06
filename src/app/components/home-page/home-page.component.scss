@@ -1,5 +1,9 @@
 @import "../../../styles/variables";
 .home {
+  margin-top: 10px;
+  @media screen and (min-width: 768px){
+  margin-top: 16px;
+  }
   .img {
     border-radius: 30px;
     height: 402px;
@@ -19,8 +23,12 @@
   height: 390px;
   background-color: $color-secondary;
   border-radius: 30px;
-  padding: 0px 20px 50px;
+  padding: 0px 10px 50px;
   color: $color-light;
+  @media screen and (min-width: 375px){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   @media screen and (min-width: 768px) {
     border-radius: 60px;
     height: 496px;
@@ -34,12 +42,16 @@
     padding: 0px 64px 32px;
   }
   .title {
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.03em;
     margin-bottom: 24px;
-    width: 275px;
+    width: 100%;
+    @media screen and (min-width:375px){
+      width: 275px;
+    font-size: 50px;
+    }
     @media screen and (min-width: 768px) {
       font-size: 80px;
       border-radius: 60px;
@@ -57,12 +69,13 @@
   .text {
     letter-spacing: -0.02em;
     flex-shrink: 0;
-    width: 295px;
+    max-width: 295px;
     align-self: flex-end;
     @media screen and (min-width: 768px) {
       font-size: 18px;
       line-height: 1.22;
       width: 255px;
+      max-width: unset;
     }
   }
 }
