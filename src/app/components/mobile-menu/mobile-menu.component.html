@@ -1,5 +1,8 @@
-<div class="mobileNav" [class.isOpen]="isOpen">
-  <button type="button" (click)="closeMenu()">close</button>
+<div class="mobileNav" [class.isOpen]="isOpen" (click)="click($event)">
+  <button type="button" class="closeBtn"> <svg-icon-sprite
+    [src]="'images/sprite.svg#icon-cross-small-converted'"
+    class="svg"
+  ></svg-icon-sprite></button>
   <nav>
     <ul class="navLinkGrp">
       <li>
@@ -7,7 +10,7 @@
           routerLink="news"
           routerLinkActive="activeLink"
           class="navLink"
-          [ngClass]="path === '/' ? 'home' : ''"
+
           >News</a
         >
       </li>
@@ -16,7 +19,7 @@
           routerLink="notices"
           routerLinkActive="activeLink"
           class="navLink"
-          [ngClass]="path === '/' ? 'home' : ''"
+
           >Find pet</a
         >
       </li>
@@ -25,7 +28,7 @@
           routerLink="friends"
           routerLinkActive="activeLink"
           class="navLink"
-          [ngClass]="path === '/' ? 'home' : ''"
+
           >Our friends</a
         >
       </li>
@@ -34,7 +37,7 @@
     <app-user-nav place="mobileMenu" />
     }@else{
 
-    <app-auth-nav [path]="path" />
+    <app-auth-nav [path]="path" place="mobileMenu"/>
     }
   </nav>
 </div>

@@ -4,6 +4,11 @@
 .auth {
   display: flex;
   gap: 8px;
+  &.mobile{
+    flex-direction: column;
+    gap: 10px;
+    align-items: center
+  }
   .login {
     @extend %button;
     padding: 15px 35px;

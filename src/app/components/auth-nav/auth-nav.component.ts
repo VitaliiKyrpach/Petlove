@@ -12,4 +12,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class AuthNavComponent {
   @Input() path:string = ''
+  @Input() place: string = ''
 }

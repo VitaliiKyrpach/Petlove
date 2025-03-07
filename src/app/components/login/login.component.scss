@@ -3,26 +3,60 @@
 
 .wrapper {
   display: flex;
-  gap: 32px;
-  margin-top: 114px;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  // margin-top: 80px;
+  @media screen and (min-width: 768px){
+    margin-top: 114px;
+    gap: 16px;
+  }
+  @media screen and (min-width: 1280px){
+    flex-direction: row;
+    gap: 32px;
+  }
   .cardWrapper {
     flex-shrink: 0;
-    width: 592px;
-    height: 654px;
-    background-image: url("../../../../public/images/loginDog.jpg");
-    border-radius: 60px;
+    // width: 335px;
+    width: 100%;
+    max-width: 500px;
+    height: 280px;
+    background-image: url("../../../../public/images/loginDogSmall.jpg");
+    background-position: center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
     overflow: hidden;
+    @media screen and (min-width: 768px){
+      // width: 704px;
+     max-width: 1000px;
+      height: 302px;
+      background-image: url("../../../../public/images/loginDogTablet.jpg");
+    border-radius: 60px;
+    }
+    @media screen and (min-width: 1280px){
+      width: 592px;
+      height: 654px;
+      background-image: url("../../../../public/images/loginDog.jpg");
+    }
   }
   .card {
+    display: none;
     width: 294px;
     height: 121px;
     background-color: $color-light;
     border-radius: 20px;
     padding: 16px;
-    display: flex;
     gap: 8px;
-    margin-top: 436px;
-    margin-left: 61px;
+    margin-top: 149px;
+    margin-left: 32px;
+    @media screen and (min-width: 768px){
+      display: flex;
+    }
+    @media screen and (min-width: 1280px){
+      margin-top: 436px;
+      margin-left: 61px;
+    }
   }
   .img {
     width: 60px;
