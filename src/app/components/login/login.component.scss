@@ -6,36 +6,38 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  // margin-top: 80px;
-  @media screen and (min-width: 768px){
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 1000px;
     margin-top: 114px;
     gap: 16px;
   }
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1280px) {
+    width: 592px;
     flex-direction: row;
     gap: 32px;
+    margin-left: unset;
+    margin-right: unset;
   }
   .cardWrapper {
     flex-shrink: 0;
-    // width: 335px;
     width: 100%;
-    max-width: 500px;
     height: 280px;
     background-image: url("../../../../public/images/loginDogSmall.jpg");
-    background-position: center ;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 30px;
     overflow: hidden;
-    @media screen and (min-width: 768px){
-      // width: 704px;
-     max-width: 1000px;
+    @media screen and (min-width: 768px) {
       height: 302px;
       background-image: url("../../../../public/images/loginDogTablet.jpg");
-    border-radius: 60px;
+      border-radius: 60px;
     }
-    @media screen and (min-width: 1280px){
-      width: 592px;
+    @media screen and (min-width: 1280px) {
       height: 654px;
       background-image: url("../../../../public/images/loginDog.jpg");
     }
@@ -50,10 +52,10 @@
     gap: 8px;
     margin-top: 149px;
     margin-left: 32px;
-    @media screen and (min-width: 768px){
+    @media screen and (min-width: 768px) {
       display: flex;
     }
-    @media screen and (min-width: 1280px){
+    @media screen and (min-width: 1280px) {
       margin-top: 436px;
       margin-left: 61px;
     }
@@ -88,24 +90,54 @@
     color: $color-thirdly-dark;
   }
   .formWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex-shrink: 0;
-    width: 592px;
-    height: 654px;
+    width: 100%;
+    height: 422px;
     background-color: $color-light;
     border-radius: 60px;
     overflow: hidden;
-    padding: 118px 84px;
+    padding-left: 20px;
+    padding-right: 20px;
+    // padding: 60px 20px;
+    @media screen and (min-width: 768px) {
+      // padding: 30px 140px;
+      height: 560px;
+    }
+    @media screen and (min-width: 1280px) {
+      // padding: 114px 84px;
+      height: 654px;
+    }
+    .content {
+      width: 100%;
+      max-width: 295px;
+      @media screen and (min-width: 768px) {
+        max-width: 424px;
+      }
+    }
     .title {
-      font-size: 54px;
+      font-size: 28px;
       line-height: 1;
       letter-spacing: -0.04em;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      @media screen and (min-width: 768px) {
+        font-size: 54px;
+        margin-bottom: 16px;
+      }
     }
     .textUpper {
-      font-size: 18px;
-      line-height: 1.22;
+      font-size: 14px;
+      line-height: 1.28;
       letter-spacing: -0.02em;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+        line-height: 1.22;
+        margin-bottom: 32px;
+      }
     }
   }
   .errorAuth {
@@ -118,18 +150,22 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 12px;
+    @media screen and (min-width: 768px) {
+      gap: 20px;
+      margin-bottom: 16px;
+    }
     .input {
       width: 100%;
-      height: 52px;
-      font-size: 16px;
-      line-height: 1.25;
+      height: 42px;
+      font-size: 14px;
+      line-height: 1.28;
       font-weight: 500;
       letter-spacing: -0.03em;
       border-radius: 30px;
       border: 1px solid $color-primary-transparent;
-      padding: 16px;
+      padding: 12px;
       outline: none;
       &::placeholder {
         color: $color-secondary-dark;
@@ -137,46 +173,65 @@
       &:focus {
         border-color: $color-secondary;
       }
+      @media screen and (min-width: 768px) {
+        height: 52px;
+        font-size: 16px;
+        line-height: 1.25;
+        padding: 16px;
+      }
     }
     .input.error {
       border-color: $color-error;
     }
     .svgError {
       position: absolute;
-      top: 14px;
+      top: 11px;
       right: 16px;
       color: $color-error;
+      @media screen and (min-width: 768px) {
+        top: 14px;
+      }
     }
     .inputWrapper {
       position: relative;
     }
     .textError {
       position: absolute;
-      top: -14px;
+      top: -11px;
       left: 10px;
-      font-size: 12px;
+      font-size: 10px;
       line-height: 1.16;
       color: $color-error;
+      @media screen and (min-width: 768px) {
+        top: -14px;
+        font-size: 12px;
+      }
     }
     .submitBtn {
       @extend %button;
-      height: 52px;
-      margin-top: 48px;
+      height: 42px;
+      margin-top: 28px;
       border: none;
       cursor: pointer;
+      @media screen and (min-width: 768px) {
+        height: 52px;
+        margin-top: 44px;
+      }
     }
     .submitBtn[disabled] {
-      // color: $color-secondary;
-      // background-color: $color-secondary-light;
       cursor: not-allowed;
     }
   }
   .textLower {
-    font-size: 14px;
-    line-height: 1.43;
+    font-size: 12px;
+    line-height: 1.16;
     letter-spacing: -0.03em;
     color: $color-secondary-dark;
     text-align: center;
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+      line-height: 1.43;
+    }
   }
   .redirect {
     color: $color-secondary;
