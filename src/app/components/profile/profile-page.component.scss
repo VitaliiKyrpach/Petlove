@@ -1,23 +1,41 @@
 @import "../../../styles/variables";
 .profile {
-  margin-top: 16px;
+  // @media screen and (min-width: 768px) {
+  //   margin-top: 0px;
+  // }
+  @media screen and (min-width: 1280px) {
+    margin-top: 16px;
+  }
 
   .wrapper {
     display: flex;
-    flex-direction: row;
-    gap: 32px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    @media screen and (min-width: 1280px) {
+      flex-direction: row;
+      gap: 32px;
+    }
     .userSide {
       flex-shrink: 0;
-      width: 520px;
       background-color: $color-light;
-      border-radius: 60px;
-      padding: 40px;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 30px;
+      padding: 18px 20px 40px;
+      @media screen and (min-width: 768px) {
+        max-width: 800px;
+        padding: 40px;
+      }
+      @media screen and (min-width: 1280px) {
+        width: 520px;
+      }
     }
     .logoutBtn {
-      font-size: 16px;
-      line-height: 1.25;
+      font-size: 14px;
+      line-height: 1.28;
       color: $color-secondary;
-      padding: 15px 35px;
+      padding: 12px 28px;
       font-weight: 700;
       text-transform: uppercase;
       border-radius: 30px;
@@ -28,6 +46,11 @@
       transition: background-color 150ms ease;
       &:hover {
         background-color: $color-secondary-hover;
+      }
+      @media screen and (min-width) {
+        font-size: 16px;
+        line-height: 1.25;
+        padding: 15px 35px;
       }
     }
   }

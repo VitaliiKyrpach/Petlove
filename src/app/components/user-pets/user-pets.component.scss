@@ -7,22 +7,31 @@
   align-items: center;
   margin-bottom: 20px;
   .title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.33;
+    line-height: 1.25;
+    @media screen and (min-height: 768px) {
+      font-size: 18px;
+      line-height: 1.33;
+    }
   }
   .addBtn {
     @extend %button;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.25;
-    padding: 10px 20px;
+    line-height: 1.28;
+    padding: 10px 16px;
     border: none;
     outline: none;
     display: flex;
     flex-direction: row;
     gap: 4px;
     cursor: pointer;
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 1.25;
+      padding: 10px 20px;
+    }
     .imgClear {
       display: inline-block;
       transform: rotate(45deg);
@@ -30,31 +39,68 @@
   }
 }
 .petsList {
-  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
   min-height: 50px;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 40px;
+  }
   .petCard {
     display: flex;
-    padding: 20px;
+    padding: 16px;
     border: 1px solid $color-primary-transparent;
     border-radius: 20px;
-    &:not(:last-child) {
-      margin-bottom: 14px;
+    @media screen and (min-width: 768px) {
+      width: calc((100% - 14px) / 2);
+      padding: 22px 16px;
     }
+    @media screen and (min-width: 1280px) {
+      width: 100%;
+      padding: 20px;
+    }
+
     .img {
-      width: 90px;
-      height: 90px;
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
-      margin-right: 25px;
+      margin-right: 14px;
+      @media screen and (min-width: 768px) {
+        width: 75px;
+        height: 75px;
+      }
+      @media screen and (min-width: 1280px) {
+        width: 90px;
+        height: 90px;
+        margin-right: 25px;
+      }
     }
     .title {
       font-size: 14px;
       line-height: 1.28;
-      margin-top: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 12px;
+      }
+      @media screen and (min-width: 1280px) {
+        margin-top: 14px;
+      }
     }
     .bioList {
       display: flex;
-      gap: 25px;
+      flex-wrap: wrap;
+      gap: 10px;
+      @media screen and (min-width: 1280px) {
+        gap: 25px;
+      }
     }
     .tag {
       font-size: 10px;
@@ -69,18 +115,29 @@
       letter-spacing: -0.02em;
     }
     .deleteBtn {
+      flex-shrink: 0;
       margin-left: auto;
-      padding-top: 4px;
-      width: 38px;
-      height: 38px;
+      width: 30px;
+      height: 30px;
+      padding: 7px;
       border-radius: 50%;
       border: none;
       cursor: pointer;
       background-color: $color-secondary-light;
       color: $color-secondary;
       transition: background-color 150ms linear;
+
       &:hover {
         background-color: $color-secondary-hover;
+      }
+      @media screen and (min-width: 768px) {
+        width: 32px;
+        height: 32px;
+      }
+      @media screen and (min-width: 1280px) {
+        padding: 8px;
+        width: 38px;
+        height: 38px;
       }
     }
   }

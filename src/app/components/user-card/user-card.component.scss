@@ -27,25 +27,34 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 110px;
-      height: 110px;
+      width: 94px;
+      height: 94px;
       background-color: $color-secondary-light;
       border-radius: 50%;
       color: $color-secondary;
+      margin-top: 58px;
       margin-bottom: 8px;
+      @media screen and (min-width: 768px) {
+        width: 110px;
+        height: 110px;
+      }
     }
     .inputFile {
       display: none;
     }
     .text {
       display: block;
-      font-size: 14px;
-      line-height: 1.28;
+      font-size: 12px;
+      line-height: 1.33;
       letter-spacing: -0.02em;
       text-align: center;
       text-decoration: underline;
       width: 100%;
       cursor: pointer;
+      @media screen and (min-width: 768px) {
+        font-size: 14px;
+        line-height: 1.28;
+      }
     }
   }
 
@@ -75,20 +84,50 @@
   margin-bottom: 40px;
 }
 .title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 1.33;
+  line-height: 1.25;
   margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
+.bioWrapper {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
 }
 .bio {
   letter-spacing: -0.03em;
-  padding: 16px;
+  padding: 12px;
   border-radius: 30px;
   border: 1px solid $color-secondary;
-  &:not(:last-child) {
-    margin-bottom: 14px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: calc((100% - 14px) / 2);
+    padding: 16px;
+    margin-left: 0;
+    margin-right: 0;
   }
-  &.placeholder{
+  @media screen and (min-width: 1280px) {
+    max-width: 440px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 0px;
+    }
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 14px;
+    }
+  }
+  &.placeholder {
     border-color: $color-primary-transparent;
   }
 }

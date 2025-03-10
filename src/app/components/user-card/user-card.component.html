@@ -9,13 +9,21 @@
   <div class="avatarWrapper">
     <div class="avatarSVG">
       <img
-    class="img"
-    [src]="user.avatar || 'images/userPicture.png'"
-    alt="picture of a user"
-  />
+        class="img"
+        [src]="user.avatar || 'images/userPicture.png'"
+        alt="picture of a user"
+      />
     </div>
-    <input class="inputFile" type="file" id="uploadPhoto" (change)="setAvatar($event)"/>
+    @if(!user.avatar){
+
+    <input
+      class="inputFile"
+      type="file"
+      id="uploadPhoto"
+      (change)="setAvatar($event)"
+    />
     <label class="text" for="uploadPhoto">Upload photo</label>
+    }
   </div>
   <button type="button" class="editBtn" (click)="openModal()">
     <svg-icon-sprite
@@ -27,11 +35,13 @@
 </div>
 <div class="information">
   <h3 class="title">My information</h3>
-  <p class="bio">{{ user.name }}</p>
-  <p class="bio">{{ user.email }}</p>
-  @if(user.phone){
-  <p class="bio">{{ user.phone }}</p>
-  }@else{
-  <p class="bio placeholder">+380</p>
-  }
+  <div class="bioWrapper">
+    <p class="bio">{{ user.name }}</p>
+    <p class="bio">{{ user.email }}</p>
+    @if(user.phone){
+    <p class="bio">{{ user.phone }}</p>
+    }@else{
+    <p class="bio placeholder">+380</p>
+    }
+  </div>
 </div>

@@ -2,24 +2,34 @@
 .tabsWrapper {
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 20px;
+  @media screen and (min-width: 1280px) {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
   .tab {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.28;
     letter-spacing: -0.03em;
     background-color: $color-light;
     border: none;
     outline: none;
     border-radius: 30px;
-    width: 142px;
-    height: 48px;
+    width: 123px;
+    height: 42px;
     padding: 0;
     cursor: pointer;
     transition: background-color 150ms linear;
     &:hover {
       background-color: $color-pag-disabled;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 1.25;
+      width: 142px;
+      height: 48px;
     }
   }
   .active {
@@ -32,14 +42,24 @@
 }
 .cardList {
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  flex-direction: column;
+  gap: 20px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 }
 .empty {
+  padding: 0px 25px;
   max-width: 458px;
-  margin-top: 180px;
-  margin-left: 103px;
+  margin-top: 80px;
+  margin-bottom: 140px;
   text-align: center;
+  @media screen and (min-width: 768px) {
+    margin-top: 180px;
+    margin-left: 103px;
+  }
 }
 .color {
   color: $color-secondary;
