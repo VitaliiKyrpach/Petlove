@@ -1,10 +1,16 @@
 <li
   class="card"
-  [ngClass]="{ viewed: place === 'viewed' || place === 'favorites', findPage: place === 'findPage' }"
+  [ngClass]="{
+    viewed: place === 'viewed' || place === 'favorites',
+    findPage: place === 'findPage'
+  }"
 >
   <img
     class="img"
-    [ngClass]="{ viewed: place === 'viewed' || place === 'favorites', findPage: place === 'findPage' }"
+    [ngClass]="{
+      viewed: place === 'viewed' || place === 'favorites',
+      findPage: place === 'findPage'
+    }"
     [src]="pet.imgURL"
     alt="pet photo"
   />
