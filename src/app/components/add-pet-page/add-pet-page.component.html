@@ -1,6 +1,6 @@
 <section class="addPet">
   <div class="container wrapper">
-    <img src="images/addDog.jpg" alt="picture of a dog" class="img" />
+    <div class="picture"></div>
     <div class="formWrapper">
       <h2 class="title">
         Add my pet / <span class="span">Personal details</span>
@@ -72,7 +72,7 @@
             }@else{
             <svg-icon-sprite
               [src]="'images/sprite.svg#icon-footprint'"
-              [width]="'44px'"
+              
               [class]="'icon'"
             ></svg-icon-sprite>
             }
@@ -89,7 +89,7 @@
             @if(filename === ''){ pick avatar } @else{{{filename}}}
           </p>
           <input
-            class="uploadInpit"
+            class="uploadInput"
             type="file"
             id="upload"
             (change)="onFileChange($event)"
@@ -98,7 +98,6 @@
             <span class="text">Upload photo</span>
             <svg-icon-sprite
               [src]="'images/sprite.svg#icon-upload-cloud'"
-              [width]="'20px'"
               [class]="'icon'"
             ></svg-icon-sprite
           ></label>
