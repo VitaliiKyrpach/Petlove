@@ -1,16 +1,33 @@
-<div class="mobileNav" [class.isOpen]="isOpen" (click)="click($event)">
-  <button type="button" class="closeBtn"> <svg-icon-sprite
-    [src]="'images/sprite.svg#icon-cross-small-converted'"
-    class="svg"
-  ></svg-icon-sprite></button>
-  <nav>
+<div
+  class="mobileNav"
+  [class.isOpen]="isOpen"
+  (click)="click($event)"
+  [ngClass]="{
+    orange: path === '/' || path === 'login' || path === 'registration'
+  }"
+>
+  <button
+    type="button"
+    class="closeBtn"
+    [ngClass]="{
+      orange: path === '/' || path === 'login' || path === 'registration'
+    }"
+  >
+    <svg-icon-sprite
+      [src]="'images/sprite.svg#icon-cross-small-converted'"
+      class="svg"
+    ></svg-icon-sprite>
+  </button>
+  <nav class="nav">
     <ul class="navLinkGrp">
       <li>
         <a
           routerLink="news"
           routerLinkActive="activeLink"
           class="navLink"
-
+          [ngClass]="{
+            orange: path === '/' || path === 'login' || path === 'registration'
+          }"
           >News</a
         >
       </li>
@@ -19,7 +36,9 @@
           routerLink="notices"
           routerLinkActive="activeLink"
           class="navLink"
-
+          [ngClass]="{
+            orange: path === '/' || path === 'login' || path === 'registration'
+          }"
           >Find pet</a
         >
       </li>
@@ -28,7 +47,9 @@
           routerLink="friends"
           routerLinkActive="activeLink"
           class="navLink"
-
+          [ngClass]="{
+            orange: path === '/' || path === 'login' || path === 'registration'
+          }"
           >Our friends</a
         >
       </li>
@@ -36,8 +57,7 @@
     @if(isLogged){
     <app-user-nav place="mobileMenu" />
     }@else{
-
-    <app-auth-nav [path]="path" place="mobileMenu"/>
+    <app-auth-nav [path]="path" place="mobileMenu" class="auth" />
     }
   </nav>
 </div>

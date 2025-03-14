@@ -4,10 +4,14 @@
 .auth {
   display: flex;
   gap: 8px;
-  &.mobile{
+  &.mobile {
     flex-direction: column;
     gap: 10px;
-    align-items: center
+    align-items: center;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      gap: 16px;
+    }
   }
   .login {
     @extend %button;
@@ -34,6 +38,14 @@
     transition: background-color 150ms ease;
     &:hover {
       background-color: $color-secondary-hover;
+    }
+  }
+  .login.mobile,
+  .reg.mobile {
+    width: 200px;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+      width: 180px;
     }
   }
 }

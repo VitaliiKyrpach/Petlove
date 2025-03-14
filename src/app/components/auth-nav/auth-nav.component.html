@@ -1,4 +1,25 @@
-<ul class="auth" [class.mobile]="place==='mobileMenu'">
-    <li><a routerLink="login" class="login" [ngClass]="path === '/' ? 'home' : ''">Login</a></li>
-    <li><a routerLink="registration" class="reg">Registration</a></li>
+<ul class="auth" [class.mobile]="place === 'mobileMenu'">
+  <li>
+    <a
+      routerLink="login"
+      class="login"
+      [ngClass]="{
+        home:
+          path === '/' ||
+          (path === '/' && place === 'mobileMenu') ||
+          (path === 'login' && place === 'mobileMenu') ||
+          (path === 'registration' && place === 'mobileMenu'),
+        mobile: place === 'mobileMenu'
+      }"
+      >Login</a
+    >
+  </li>
+  <li>
+    <a
+      routerLink="registration"
+      class="reg"
+      [ngClass]="{ mobile: place === 'mobileMenu' }"
+      >Registration</a
+    >
+  </li>
 </ul>
