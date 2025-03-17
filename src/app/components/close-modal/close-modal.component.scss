@@ -2,30 +2,39 @@
 @import "../../../styles/buttons";
 
 .wrapper {
-  padding: 80px;
+  padding: 40px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (min-width: 768px) {
+   padding: 80px;
+  }
   .img {
     width: 80px;
     height: 80px;
     margin-bottom: 20px;
   }
   .text {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 1.16;
+    line-height: 1;
     letter-spacing: -0.03em;
     margin-bottom: 28px;
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.16;
+     }
   }
   .bottom {
     display: flex;
     justify-content: center;
     gap: 8px;
+    width: 100%;
   }
   .yesBtn {
     @extend %button;
-    width: 140px;
+    width: 100%;
+    max-width: 140px;
     height: 48px;
     font-size: 16px;
     line-height: 1.25;
@@ -34,8 +43,8 @@
   }
   .noBtn {
     @extend %button;
-
-    width: 140px;
+    width: 100%;
+    max-width: 140px;
     height: 48px;
     font-size: 16px;
     line-height: 1.25;

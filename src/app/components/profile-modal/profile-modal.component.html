@@ -7,7 +7,6 @@
     [src]="data.avatar || 'images/userPicture.png'"
     alt="picture of a user"
   />
-  <!-- [src]="avatarPhoto || 'images/userPicture.png'" -->
   <form class="form" [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
     <div class="fileWrapper">
       @if(avatar && avatar.invalid){

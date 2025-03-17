@@ -55,7 +55,7 @@
       </li>
     </ul>
     @if(isLogged){
-    <app-user-nav place="mobileMenu" />
+    <app-user-nav place="mobileMenu" class="auth"/>
     }@else{
     <app-auth-nav [path]="path" place="mobileMenu" class="auth" />
     }

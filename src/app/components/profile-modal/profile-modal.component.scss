@@ -1,18 +1,30 @@
 @import "../../../styles/variables";
 @import "../../../styles/buttons";
 .wrapper {
+  padding: 40px 20px;
+  @media screen and (min-width: 768px) {
   padding: 50px;
+    
+  }
   .label {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 1.33;
+    line-height: 1;
     margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.33;
+  }
   }
   .img {
     display: block;
-    width: 86px;
-    height: 86px;
+    width: 80px;
+    height: 80px;
     margin: 0px auto 12px;
+    @media screen and (min-width: 768px) {
+      width: 86px;
+    height: 86px;
+    }
   }
   .form {
     display: flex;
@@ -21,11 +33,15 @@
   .fileWrapper {
     position: relative;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     gap: 8px;
+    @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    }
   }
   .avatarUrl {
-    width: 226px;
+    width: 100%;
+    max-width: 226px;
     height: 42px;
     padding: 12px;
     font-size: 14px;
@@ -34,27 +50,37 @@
     border-radius: 30px;
     border: 1px solid $color-secondary;
     outline: none;
+   white-space: nowrap;
+   overflow: hidden;
+    text-overflow: ellipsis;
   }
   .uploadInpit {
     display: none;
   }
   .upload {
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-shrink: none;
     position: relative;
     gap: 8px;
-    font-size: 14px;
-    line-height: 1.28;
+    font-size: 12px;
+    line-height: 1.33;
     letter-spacing: -0.02em;
-    width: 146px;
+    width: 126px;
     height: 42px;
     background-color: $color-secondary-light;
     border-radius: 30px;
     color: $color-secondary;
     cursor: pointer;
     transition: background-color 150ms linear;
+    @media screen and (min-width: 768px) {
+    width: 146px;
+    font-size: 14px;
+    line-height: 1.28;
+      
+    }
     &:hover {
       background-color: $color-secondary-hover;
     }
@@ -69,6 +95,9 @@
   .inputWrapper {
     position: relative;
     &:not(:last-child) {
+      @media screen and (min-width: 768px) {
+      margin-bottom: 10px; 
+      }
       margin-bottom: 14px;
     }
   }
@@ -94,27 +123,39 @@
     color: $color-error;
   }
   .input {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.28;
     letter-spacing: -0.03em;
-    width: 380px;
-    padding: 16px;
+    width: 100%;
+    padding: 12px;
     border-radius: 30px;
     border: 1px solid $color-secondary;
     outline: none;
+    @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 16px;
+    width: 380px;    
+    }
   }
   .error {
     border-color: $color-error;
   }
   .submitBtn {
     @extend %button;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.28;
     letter-spacing: -0.03em;
+    height: 42px;
+    margin-top: 11px;
+    @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
     height: 52px;
-    margin-top: 40px;
+    margin-top: 40px; 
+    }
     &[disabled] {
       cursor: not-allowed;
     }

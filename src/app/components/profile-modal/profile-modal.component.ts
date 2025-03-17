@@ -100,6 +100,7 @@ export class ProfileModalComponent implements OnInit {
             console.log(this.errors.avatar, this.avatar.errors)
           }
     }
+    console.log(this.errors)
   }
   onFileChange(event: any) {
     const file = event.target.files[0];
