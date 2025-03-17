@@ -29,6 +29,7 @@ export class PetCardComponent implements OnInit {
     this.favorites$.subscribe((favorites) => {
       this.isFavorite = favorites.includes(this.pet._id);
        });
+       console.log(this.pet.popularity)
   }
 
   public openModal(): void {

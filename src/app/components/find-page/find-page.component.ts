@@ -52,30 +52,21 @@ export class FindPageComponent implements OnInit {
         ).subscribe((data) => {
           const favorites = data.map((card) => card._id);  
           this.favorites$.next(favorites);
-          console.log('favorites in findPage', favorites);
         });
       }
     });
-    // this.store.select(selectIsLoggedIn).subscribe((data) => {
-    //   this.isLoggedIn = data;
-    //   if (this.isLoggedIn) {
-    //     this.store.select(selectFav).subscribe(data=> {
-    //       const favorites = data.map(card=> card._id)
-    //   this.favorites$.next(favorites);
-    //       console.log('favorites in findPage',favorites)
-    //     })
-    //   }
-    // });
+   
     this.PetData$ = this.store.select(selectPets);
     this.PetData$.subscribe((data) => {
       if (!data.results.length && this.filters === null) {
         console.log('dispatch works');
         this.store.dispatch(getPets({ page: 1, filters: this.filters }));
       }
-      console.log(data);
+
       this.pets = data.results;
       this.pages.page = data.page;
       this.pages.totalPages = data.totalPages;
+      console.log(this.pets)
     });
   }
 
