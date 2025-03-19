@@ -100,10 +100,11 @@ export class dataEffects {
         return this.authService.logIn(action.data).pipe(
           map((data) => {
             localStorage.setItem('token', data.token);
-
+            console.log('effect',data)
             return loginSuccess({ data });
           }),
           catchError((error) => {
+            console.log('ERROR', error)
             return of(loginFailure({ error }));
           })
         );
@@ -138,6 +139,7 @@ export class dataEffects {
             return getUserSuccess({ data });
           }),
           catchError((error) => {
+            console.log('ERROR', error)
             return of(getUserFailure({ error }));
           })
         );

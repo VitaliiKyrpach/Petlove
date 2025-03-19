@@ -1,4 +1,4 @@
-import { Form, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 export interface Friends {
@@ -16,6 +16,19 @@ interface workday {
   _id: string;
   from?: string;
   to?: string;
+}
+export interface LoginData {
+  name?: string;
+  email: string;
+  password: string;
+}
+export interface LoginResponse{
+  name: string;
+  email: string;
+  token: string;
+}
+export interface LogOutResponse {
+  message: string
 }
 export interface LoginForm {
   email: FormControl<string | null>;
@@ -96,16 +109,27 @@ export interface InitAuthState {
     message: string;
   };
 }
-export interface UserData extends User {
-  pets: Pet[];
-  noticesViewed: Pet[];
-  noticesFavorites: Pet[];
-}
 export interface User {
   name: string | null;
   email: string | null;
   avatar: string | null;
   phone: string | null;
+}
+export interface UserData extends User {
+  pets: Pet[];
+  noticesViewed: Pet[];
+  noticesFavorites: Pet[];
+}
+export interface UserResponse extends UserData{
+  _id: string;
+  token: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface TokenDecode {
+  exp: number;
+  iat: number;
+  id: string;
 }
 export interface Pages {
   page: number;

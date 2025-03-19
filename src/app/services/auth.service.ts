@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interfaces/interfaces';
+import { LoginData, LoginResponse, LogOutResponse, TokenDecode, User, UserResponse } from '../interfaces/interfaces';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -11,27 +11,27 @@ export class AuthService {
   private api = 'https://petlove.b.goit.study/api';
 
   constructor(private http: HttpClient) {}
-  public logIn(data: any): Observable<any> {
-    return this.http.post<any>(`${this.api}/users/signin`, data);
+  public logIn(data: LoginData): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.api}/users/signin`, data);
   }
-  public registration(data: any) {
+  public registration(data: LoginData): Observable<LoginResponse> {
     console.log(data);
-    return this.http.post<any>(`${this.api}/users/signup`, data);
+    return this.http.post<LoginResponse>(`${this.api}/users/signup`, data);
   }
-  public logout() {
-    return this.http.post<any>(`${this.api}/users/signout`, {});
-  }
-
-  public getUser() {
-    return this.http.get<any>(`${this.api}/users/current/full`);
+  public logout(): Observable<LogOutResponse> {
+    return this.http.post<LogOutResponse>(`${this.api}/users/signout`, {});
   }
 
-  public editUser(data: User) {
-    return this.http.patch<User>(`${this.api}/users/current/edit`, data);
+  public getUser(): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.api}/users/current/full`);
+  }
+
+  public editUser(data: User): Observable<UserResponse> {
+    return this.http.patch<UserResponse>(`${this.api}/users/current/edit`, data);
   }
   public expiredToken(token: string): boolean {
-    const decoded: any = jwtDecode(token);
+    const {exp}: TokenDecode = jwtDecode(token);
     const currentTime = Date.now() / 1000;
-    return decoded.exp < currentTime ? true : false;
+    return exp < currentTime ? true : false;
   }
 }

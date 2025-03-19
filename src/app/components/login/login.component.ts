@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,7 +11,6 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { LoginErrors, LoginForm } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/actions-auth';
-import { selectError } from '../../store/selectors';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +33,10 @@ export class LoginComponent {
     ]),
   });
   public onSubmit(): void {
-    const data = this.loginForm.value;
+    const data = {
+      email: this.email.value,
+      password: this.password.value
+    }
     this.store.dispatch(login({ data }));
     console.log(this.loginForm.value);
     this.loginForm.reset();

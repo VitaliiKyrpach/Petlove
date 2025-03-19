@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(selectError).subscribe((toast) => {
-      console.log(toast.message);
       if (toast.type === 'error' && toast.message !== '') {
         this.toastr.error(toast.message);
       } else if (toast.type === 'success' && toast.message !== '') {

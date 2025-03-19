@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { IsShown, RegErrors, RegForm } from '../../interfaces/interfaces';
+import { IsShown, LoginData, RegErrors, RegForm } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { registration } from '../../store/actions-auth';
 
@@ -40,7 +40,7 @@ export class RegistrationComponent {
   });
 
   public onSubmit(): void {
-    const data = {
+    const data: LoginData = {
       name: this.name.value,
       email: this.email.value,
       password: this.password.value,

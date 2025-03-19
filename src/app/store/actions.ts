@@ -7,6 +7,7 @@ import {
   Pet,
   PetData,
 } from '../interfaces/interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export const getFriends = createAction('[Data] Get Friends');
 export const getFriendsSuccess = createAction(
@@ -41,7 +42,7 @@ export const addToFavSuccess = createAction(
 );
 export const addToFavFailure = createAction(
   '[Data] Add Pet To FavoritesFail',
-  props<{ error: any; }>()
+  props<{ error: HttpErrorResponse; }>()
 );
 export const removeFromFav = createAction(
   '[Data] Remove Pet From Favorites',
@@ -53,7 +54,7 @@ export const removeFromFavSuccess = createAction(
 );
 export const removeFromFavFailure = createAction(
   '[Data] Remove Pet From FavoritesFail',
-  props<{ error: any }>()
+  props<{ error: HttpErrorResponse }>()
 );
 export const addNewPet = createAction(
   '[Data] Add New Pet',
@@ -65,7 +66,7 @@ export const addNewPetSuccess = createAction(
 );
 export const addNewPetFailure = createAction(
   '[Data] Add New PetFail',
-  props<{ error: any }>()
+  props<{ error: HttpErrorResponse }>()
 );
 export const deletePet = createAction(
   '[Data] Delete Pet',
@@ -77,6 +78,6 @@ export const deletePetSuccess = createAction(
 );
 export const deletePetFailure = createAction(
   '[Data] Delete PetFail',
-  props<{ error: any }>()
+  props<{ error: HttpErrorResponse }>()
 );
 export const resetError = createAction('[Data] Reset Error');

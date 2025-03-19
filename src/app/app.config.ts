@@ -11,8 +11,6 @@ import { provideStore } from '@ngrx/store';
 import { effects, store } from './store/store';
 import { provideEffects } from '@ngrx/effects';
 import { AuthInterceptor } from './interceptors/authinterceptor';
-import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -29,11 +27,5 @@ export const appConfig: ApplicationConfig = {
       timeOut: 5000
     }),
     provideAnimations()
-  //   providePrimeNG({ 
-  //     theme: {
-  //         preset: Aura
-  //     }
-  // })
-
   ],
 };

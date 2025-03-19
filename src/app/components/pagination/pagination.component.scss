@@ -32,11 +32,12 @@
 }
 .btn{
     @extend %pagBtn;
+    color: $color-primary-dark;
 
     .arr{
         position: relative;
         top: 1px;
-        color: $color-primary-dark;
+        
     }
         .left{
             left: 8px

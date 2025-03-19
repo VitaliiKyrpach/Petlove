@@ -16,7 +16,8 @@
     margin: auto;
     width: calc(100% - 40px);
     max-width: 450px;
-    
+    max-height: 90vh;
+    overflow: auto;
   }
   .close {
     position: absolute;
@@ -28,6 +29,7 @@
     border: none;
     outline: none;
     padding: 0;
+    color: $color-primary-dark;
     cursor: pointer;
   }
 }
