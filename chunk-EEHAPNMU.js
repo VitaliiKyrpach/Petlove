@@ -1,0 +1,1 @@
+import{g as t,h as o}from"./chunk-TODNHXCP.js";var r=o("data"),n=t(r,e=>e.friends),a=t(r,e=>e.news),i=t(r,e=>e.pets),s=o("auth"),p=t(s,e=>e.user),l=t(s,e=>e.isLoggedIn),x=t(s,e=>e.isRefresh),u=t(s,e=>e.notification),I=t(s,e=>e.user.noticesFavorites),f=t(s,e=>e.user.pets);export{n as a,a as b,i as c,p as d,l as e,x as f,u as g,I as h,f as i};
