@@ -34,7 +34,7 @@ export class UserNavComponent implements OnInit {
     this.modalService.openModal('logoutModal');
   }
 
-  public goToProfile() {
+  public goToProfile(): void {
     this.router.navigate(['profile']);
   }
 }

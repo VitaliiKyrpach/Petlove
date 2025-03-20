@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NotFoundComponent {
   private route = inject(Router);
 
-  public redirect() {
+  public redirect(): void {
     this.route.navigate(['/']);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { PetModalComponent } from '../pet-modal/pet-modal.component';
-import { IconSpriteComponent, IconSpriteModule } from 'ng-svg-icon-sprite';
+import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { CloseModalDirective } from '../../directives/close-modal.directive';
 import { CloseModalComponent } from '../close-modal/close-modal.component';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
@@ -32,7 +32,6 @@ import { CardData, User } from '../../interfaces/interfaces';
     ngOnInit(): void {
       this.modalService.modalOpen$.subscribe((open) => (this.isOpen = open));
       this.modalService.data$.subscribe((data) => {
-        console.log(data)
         if (data && (data as CardData).id) {
           this.card = data as CardData;
         } else if (data && (data as User).name) {
@@ -40,10 +39,9 @@ import { CardData, User } from '../../interfaces/interfaces';
         }
       });
       this.modalService.type$.subscribe((type) => (this.type = type));
-      console.log(this.type);
     }
 
-    public closeModal() {
+    public closeModal(): void {
       this.modalService.closeModal();
     }
   }

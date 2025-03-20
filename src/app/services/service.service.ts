@@ -9,6 +9,7 @@ import {
   Pet,
   PetData,
   UserData,
+  UserResponse,
 } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
@@ -18,7 +19,9 @@ import { Params } from '@angular/router';
 })
 export class ServiceService {
   private api = 'https://petlove.b.goit.study/api';
+
   constructor(private http: HttpClient) {}
+
   public getFriends(): Observable<Friends[]> {
     return this.http.get<Friends[]>(`${this.api}/friends/`);
   }
@@ -46,29 +49,30 @@ export class ServiceService {
   public getLocations(): Observable<Locations[]> {
     return this.http.get<Locations[]>(`${this.api}/cities/locations`);
   }
+
   private cloudName = 'dzs583axq';
   private uploadPreset = 'image_preset';
-  public setAvatar(file: any): Observable<any> {
-    console.log(file);
+  public setAvatar(file: File): Observable<{secure_url: string}> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', this.uploadPreset);
 
     const url = `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
 
-    return this.http.post(url, formData);
+    return this.http.post<{secure_url: string}>(url, formData);
   }
-  public addToFav(id: string): Observable<any> {
-    return this.http.post(`${this.api}/notices/favorites/add/${id}`, id);
+  
+  public addToFav(id: string): Observable<string[]> {
+    return this.http.post<string[]>(`${this.api}/notices/favorites/add/${id}`, id);
   }
-  public removeFromFav(id: string): Observable<any> {
-    return this.http.delete(`${this.api}/notices/favorites/remove/${id}`);
+  public removeFromFav(id: string): Observable<string[]> {
+    return this.http.delete<string[]>(`${this.api}/notices/favorites/remove/${id}`);
   }
-  public addNewPet(data: NewPet): Observable<UserData> {
+  public addNewPet(data: NewPet): Observable<UserResponse> {
     console.log('service', data);
-    return this.http.post<UserData>(`${this.api}/users/current/pets/add`, data);
+    return this.http.post<UserResponse>(`${this.api}/users/current/pets/add`, data);
   }
-  public removePet(id: string): Observable<any> {
-    return this.http.delete(`${this.api}/users/current/pets/remove/${id}`);
+  public removePet(id: string): Observable<UserResponse> {
+    return this.http.delete<UserResponse>(`${this.api}/users/current/pets/remove/${id}`);
   }
 }

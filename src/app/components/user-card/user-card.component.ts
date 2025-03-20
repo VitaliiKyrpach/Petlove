@@ -1,9 +1,8 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
-import { selectUser } from '../../store/selectors';
-import { User, UserData } from '../../interfaces/interfaces';
+import {  UserData } from '../../interfaces/interfaces';
 import { ServiceService } from '../../services/service.service';
 import { editUser } from '../../store/actions-auth';
 
@@ -20,20 +19,24 @@ export class UserCardComponent {
   private modalService = inject(ModalService);
   constructor(private store: Store, private service: ServiceService) {}
 
-  public openModal() {
+  public openModal(): void {
     this.modalService.openModal('profile', this.user);
-    console.log(this.user);
   }
-  public setAvatar(data: any) {
-    console.log('send', data.target.files[0]);
-    this.service.setAvatar(data.target.files[0]).subscribe((res) => {
-      const user = {
-        name: this.user.name,
-        email: this.user.email,
-        phone: this.user.phone,
-        avatar: res.secure_url,
-      };
-      this.store.dispatch(editUser({ event: 'editUser', user }));
-    });
+
+  public setAvatar(data: Event): void {
+    const input = data.target as HTMLInputElement;
+    const file = input?.files?.[0]; 
+
+    if (file) {
+      this.service.setAvatar(file).subscribe((res) => {
+        const user = {
+          name: this.user.name,
+          email: this.user.email,
+          phone: this.user.phone,
+          avatar: res.secure_url,
+        };
+        this.store.dispatch(editUser({ event: 'editUser', user }));
+      });
+    }
   }
 }

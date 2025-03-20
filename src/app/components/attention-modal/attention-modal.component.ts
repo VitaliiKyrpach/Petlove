@@ -12,16 +12,18 @@ import { ModalService } from '../../services/modal.service';
 export class AttentionModalComponent {
   @Input() type!: string;
   modalService = inject(ModalService);
+
   constructor(private router: Router) {}
-  public goToLogin() {
+
+  public goToLogin(): void {
     this.router.navigate(['/login']);
     this.modalService.closeModal();
   }
-  public goToReg() {
+  public goToReg(): void {
     this.router.navigate(['/registration']);
     this.modalService.closeModal();
   }
-  public goToProfile() {
+  public goToProfile(): void {
     this.router.navigate(['/profile']);
     this.modalService.closeModal();
   }

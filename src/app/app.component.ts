@@ -36,16 +36,13 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token) {
       this.isExpired = this.authService.expiredToken(token);
-      
       if (this.isExpired) {
-        console.log('expired')
         localStorage.removeItem('token');
       } else {
-        console.log('not expired')
         this.store.dispatch(getUser());
-        this.store.select(selectUser).subscribe((data) => {
-          const favorites = data.noticesFavorites.map((cards) => cards._id);
-        });
+        // this.store.select(selectUser).subscribe((data) => {
+        //   const favorites = data.noticesFavorites.map((cards) => cards._id);
+        // });
       }
     }
   }

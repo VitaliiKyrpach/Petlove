@@ -5,7 +5,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { addToFavorites, removeFromFav } from '../../store/actions';
-import {  Observable, of } from 'rxjs';
+import {  Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pet-card',
@@ -29,7 +29,6 @@ export class PetCardComponent implements OnInit {
     this.favorites$.subscribe((favorites) => {
       this.isFavorite = favorites.includes(this.pet._id);
        });
-       console.log(this.pet.popularity)
   }
 
   public openModal(): void {
@@ -38,14 +37,13 @@ export class PetCardComponent implements OnInit {
       isFavorite$: this.favorites$
     }
     if (this.isLoggedIn) {
-           this.modalService.openModal('petModal',  data);
+      this.modalService.openModal('petModal',  data);
     } else {
       this.modalService.openModal('attention');
     }
   }
 
   public addToFav(id: string): void {
-
     if (this.isLoggedIn) {
       if(this.isFavorite){
         this.store.dispatch(removeFromFav({id}))

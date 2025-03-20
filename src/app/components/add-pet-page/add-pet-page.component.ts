@@ -17,9 +17,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
-import { AddPet } from '../../interfaces/interfaces';
+import { AddPet, AddPetError } from '../../interfaces/interfaces';
 import { Router } from '@angular/router';
-import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { addNewPet } from '../../store/actions';
 
@@ -47,7 +46,7 @@ export class AddPetPageComponent implements OnInit {
   public avatarPhoto!: string;
   public date = new Date();
   public chevron: boolean = false;
-  public errors = {
+  public errors: AddPetError = {
     name: '',
     title: '',
     imgURL: '',
@@ -75,17 +74,16 @@ export class AddPetPageComponent implements OnInit {
     sex: new FormControl<string>('', Validators.required),
   });
 
-  public handleChevron() {
+  public handleChevron(): void {
     this.chevron = !this.chevron;
   }
-  public handlepick(type: string) {
-    console.log(type);
+  public handlepick(type: string): void {
     this.updErrorMsg(type);
   }
-  public showSex() {
+  public showSex(): void {
     console.log(this.sex);
   }
-  public goBack() {
+  public goBack(): void {
     this.router.navigate(['/profile']);
   }
   get name(): FormControl {
@@ -107,13 +105,12 @@ export class AddPetPageComponent implements OnInit {
     return this.addPetForm.get('sex') as FormControl;
   }
 
-  public onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.filename = file.name;
-    console.log(file);
+  public onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input?.files?.[0];
     if (file) {
+      this.filename = file.name;
       this.service.setAvatar(file).subscribe((res) => {
-        console.log(res);
         this.imgURL.setValue(res.secure_url);
       });
       const reader = new FileReader();
@@ -170,10 +167,9 @@ export class AddPetPageComponent implements OnInit {
         }
         break;
     }
-    console.log(this.errors);
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     let date;
     this.birthday.value
       ? (date = new Date(this.birthday.value).toISOString().split('T')[0])
@@ -187,7 +183,6 @@ export class AddPetPageComponent implements OnInit {
       birthday: date,
       sex: this.sex.value,
     };
-    console.log(pet);
     if (this.addPetForm.valid) {
       this.store.dispatch(addNewPet({ data: pet }));
       this.router.navigate(['/profile']);

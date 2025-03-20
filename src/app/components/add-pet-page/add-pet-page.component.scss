@@ -41,7 +41,6 @@
       background-image: url("../../../../public/images/addDog.jpg");
     }
   }
- 
   .formWrapper {
     width: 100%;
     max-width: 400px;
@@ -312,7 +311,6 @@
   }
   .ng-select.species {
     @extend %input;
-    // width: 200px;
     height: 42px;
     position: relative;
     border: 1px solid $color-primary-transparent;
@@ -457,7 +455,6 @@
   }
   ::ng-deep .p-datepicker {
     display: flex;
-    // width: calc((100% - 12px) / 2);
     height: 42px;
     padding: 12px;
     @media screen and (min-width: 768px){

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { UserData } from '../../interfaces/interfaces';
 import { PetCardComponent } from '../pet-card/pet-card.component';
 import { BehaviorSubject } from 'rxjs';
@@ -11,16 +11,18 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './user-notices.component.html',
   styleUrl: './user-notices.component.scss',
 })
-export class UserNoticesComponent implements OnInit{
+export class UserNoticesComponent implements OnChanges{
     public favorites$ = new BehaviorSubject<string[]>([]);
     @Input() user!: UserData;
 
-  ngOnInit(): void {
-    const favorites = this.user.noticesFavorites.map(card=> card._id)
-    this.favorites$.next(favorites);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['user'] && this.user?.noticesFavorites) {
+      const favorites = this.user.noticesFavorites.map(card => card._id);
+      this.favorites$.next(favorites);
+    }
   }
   public tab: string = 'favorite';
-  public changeTab(tab: string) {
+  public changeTab(tab: string): void {
     this.tab = tab;
   }
 }

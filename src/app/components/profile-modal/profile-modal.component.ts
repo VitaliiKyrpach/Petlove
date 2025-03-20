@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,10 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { EditForm, User } from '../../interfaces/interfaces';
+import { EditForm, ProfileError, User } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { editUser } from '../../store/actions-auth';
-import { selectError } from '../../store/selectors';
 import { ModalService } from '../../services/modal.service';
 import { ServiceService } from '../../services/service.service';
 
@@ -38,13 +37,16 @@ export class ProfileModalComponent implements OnInit {
       [Validators.required, Validators.pattern(/^.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/)]
     ),
   });
+
   constructor(private store: Store, private modalService: ModalService, private service: ServiceService){}
+ 
   ngOnInit(): void {
     this.name.setValue(this.data.name)
     this.email.setValue(this.data.email)
     this.phone.setValue(this.data.phone || '')
   }
-  public handleSubmit() {
+
+  public handleSubmit(): void {
     const user: User = {
       name: this.name.value,
       email: this.email.value,
@@ -52,14 +54,13 @@ export class ProfileModalComponent implements OnInit {
       avatar: this.avatarUrl
     }
     this.store.dispatch(editUser({event: 'editUser',user}))
+
     if(this.profileForm.valid){
       this.modalService.closeModal()
-
     }
-  
   }
 
-  public errors = {
+  public errors: ProfileError = {
     email: '',
     phone: '',
     avatar: '',
@@ -97,16 +98,15 @@ export class ProfileModalComponent implements OnInit {
         case 'avatar':
           if(this.avatar && this.avatar.hasError('pattern')){
             this.errors.avatar = 'Avatar is invalid'
-            console.log(this.errors.avatar, this.avatar.errors)
           }
     }
-    console.log(this.errors)
   }
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.filename = file.name;
-    console.log(file);
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input?.files?.[0]
+
     if (file) {
+      this.filename = file.name;
       this.service.setAvatar(file).subscribe(res=> this.avatarUrl = res.secure_url)
       const reader = new FileReader();
       reader.onload = () => {

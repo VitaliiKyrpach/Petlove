@@ -18,7 +18,7 @@ export const getNews = createAction(
   '[Data] Get News',
   props<{ page: number; search: string }>()
 );
-export const getDataFailure = createAction('[Data] Get DataFail',props<{error: any}>())
+export const getDataFailure = createAction('[Data] Get DataFail',props<{error: HttpErrorResponse}>())
 export const getNewsSuccess = createAction(
   '[Data] Get NewsSuccess',
   props<{ news: NewsData }>()
@@ -38,7 +38,7 @@ export const addToFavorites = createAction(
 );
 export const addToFavSuccess = createAction(
   '[Data] Add Pet To FavoritesSuccess',
-  props<{ data: any }>()
+  props<{ data: Pet }>()
 );
 export const addToFavFailure = createAction(
   '[Data] Add Pet To FavoritesFail',
@@ -50,7 +50,7 @@ export const removeFromFav = createAction(
 );
 export const removeFromFavSuccess = createAction(
   '[Data] Remove Pet From FavoritesSuccess',
-  props<{ data: any }>()
+  props<{ data: Pet }>()
 );
 export const removeFromFavFailure = createAction(
   '[Data] Remove Pet From FavoritesFail',

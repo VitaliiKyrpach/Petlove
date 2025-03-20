@@ -12,8 +12,10 @@ import { logout } from '../../store/actions-auth';
 })
 export class CloseModalComponent {
   modalService = inject(ModalService);
+
   constructor(private store: Store) {}
-  public closeModal(action: string) {
+
+  public closeModal(action: string):void {
     switch (action) {
       case 'no':
         this.modalService.closeModal();

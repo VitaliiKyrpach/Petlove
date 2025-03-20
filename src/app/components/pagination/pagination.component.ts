@@ -12,14 +12,15 @@ import { Observable } from 'rxjs';
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent implements OnInit {
-@Input() data$!: Observable<NewsData | PetData>
-newPage = output<number>()
+@Input() data$!: Observable<NewsData | PetData>;
+newPage = output<number>();
+
 public pageArr: number[] = [];
 public pages: Pages = {
   page: 1,
   totalPages: 1
 };
-public isExist: boolean = false
+public isExist: boolean = false;
 
 ngOnInit(): void {
   this.data$.subscribe((data) => {
@@ -30,7 +31,7 @@ ngOnInit(): void {
   });
 }
 
-public handlePage(action: string | number) {
+public handlePage(action: string | number): void {
   if (typeof action === 'string') {
     switch (action) {
       case 'first':
@@ -69,7 +70,7 @@ public handlePage(action: string | number) {
   }
 }
 
-private calcArr(page: number) {
+private calcArr(page: number): void {
   this.pageArr = [];
   if (this.pages.totalPages <= 3) {
     for (let i = 1; i <= this.pages.totalPages; i++) {

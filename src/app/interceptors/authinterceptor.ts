@@ -13,12 +13,11 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const idToken = localStorage.getItem('token');
+    const idToken: string | null = localStorage.getItem('token');
     if (req.url.includes('cloudinary.com')) {
       return next.handle(req);
     }
     if (idToken) {
-      console.log('isToken');
       const cloned = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + idToken),
       });

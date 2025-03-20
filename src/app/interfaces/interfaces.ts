@@ -38,6 +38,11 @@ export interface LoginErrors {
   email: string;
   password: string;
 }
+export interface ProfileError{
+  email: string;
+    phone: string;
+    avatar: string;
+}
 export interface RegForm {
   name: FormControl<string | null>;
   email: FormControl<string | null>;
@@ -59,7 +64,7 @@ export interface AddPet {
   birthday: FormControl<string | null>;
   sex: FormControl<string | null>;
 }
-export interface Pet {
+export interface AddPetError {
   name: string;
   title: string;
   imgURL: string;
@@ -177,10 +182,6 @@ export enum InputType {
   Location = 'location',
 }
 export enum InputSort {
-  // Cheap = 'cheap',
-  // Expensive = 'expensive',
-  // Popular = 'popular',
-  // Unpopular = 'unpopular',
   Price = 'price',
   Popularity = 'popularity',
 }

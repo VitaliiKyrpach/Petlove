@@ -6,7 +6,7 @@ import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/selectors';
 import { UserData } from '../../interfaces/interfaces';
-import { getUser } from '../../store/actions-auth';
+
 
 @Component({
   selector: 'app-profile-page',
@@ -23,11 +23,10 @@ export class ProfilePageComponent {
 
   ngOnInit(): void {
     this.store.select(selectUser).subscribe((data) => {
-      console.log(data);
       this.user = data;
     });
   }
-  public openModal() {
+  public openModal(): void {
     this.modalService.openModal('logoutModal');
   }
 }

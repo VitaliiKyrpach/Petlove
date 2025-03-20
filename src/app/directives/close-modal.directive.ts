@@ -13,7 +13,7 @@ export class CloseModalDirective implements OnDestroy {
     document.addEventListener('keydown', this.keydownListener);
   }
 
-  closeModal(event: KeyboardEvent) {
+  closeModal(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.modalService.closeModal();
     }

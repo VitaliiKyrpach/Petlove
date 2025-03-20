@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -45,7 +45,6 @@ export class RegistrationComponent {
       email: this.email.value,
       password: this.password.value,
     };
-    console.log(data);
     this.store.dispatch(registration({ data }));
     this.regForm.reset();
   }

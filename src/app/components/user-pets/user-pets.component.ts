@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IconSpriteComponent, IconSpriteModule } from 'ng-svg-icon-sprite';
+import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { Observable } from 'rxjs';
 import { Pet } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
@@ -16,13 +16,13 @@ import { deletePet } from '../../store/actions';
   templateUrl: './user-pets.component.html',
   styleUrl: './user-pets.component.scss',
 })
-export class UserPetsComponent implements OnInit {
+export class UserPetsComponent {
   public myPets$!: Observable<Pet[]>;
   constructor(private router: Router, private store: Store) {
     this.myPets$ = this.store.select(selectMyPets);
   }
-  ngOnInit(): void {}
-  public goToAddPet() {
+
+  public goToAddPet(): void {
     this.router.navigate(['add-pet']);
   }
   public removePet(id: string): void {

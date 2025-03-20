@@ -59,19 +59,16 @@ export class FindPageComponent implements OnInit {
     this.PetData$ = this.store.select(selectPets);
     this.PetData$.subscribe((data) => {
       if (!data.results.length && this.filters === null) {
-        console.log('dispatch works');
         this.store.dispatch(getPets({ page: 1, filters: this.filters }));
       }
 
       this.pets = data.results;
       this.pages.page = data.page;
       this.pages.totalPages = data.totalPages;
-      console.log(this.pets)
     });
   }
 
   public handlePage(newPage: number): void {
-    console.log('pagination');
     this.pages.page = newPage;
     this.store.dispatch(
       getPets({ page: this.pages.page, filters: this.filters })

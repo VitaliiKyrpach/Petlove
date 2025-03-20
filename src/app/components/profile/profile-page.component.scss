@@ -1,12 +1,8 @@
 @import "../../../styles/variables";
 .profile {
-  // @media screen and (min-width: 768px) {
-  //   margin-top: 0px;
-  // }
   @media screen and (min-width: 1280px) {
     margin-top: 16px;
   }
-
   .wrapper {
     display: flex;
     flex-direction: column;

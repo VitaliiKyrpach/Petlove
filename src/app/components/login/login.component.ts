@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
-import { LoginErrors, LoginForm } from '../../interfaces/interfaces';
+import { LoginData, LoginErrors, LoginForm } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/actions-auth';
 
@@ -32,15 +32,17 @@ export class LoginComponent {
       Validators.minLength(7),
     ]),
   });
+
   public onSubmit(): void {
-    const data = {
+    const data: LoginData = {
       email: this.email.value,
       password: this.password.value
     }
     this.store.dispatch(login({ data }));
-    console.log(this.loginForm.value);
+  
     this.loginForm.reset();
   }
+  
   public redirect(): void {
     this.router.navigate(['registration']);
   }

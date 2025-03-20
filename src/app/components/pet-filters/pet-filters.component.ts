@@ -38,7 +38,7 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
   styleUrl: './pet-filters.component.scss',
 })
 export class PetFiltersComponent implements OnInit {
-  petFilters = output<any>();
+  petFilters = output<Filters>();
   public categories$!: Observable<string[]>;
   public gender$!: Observable<string[]>;
   public type$!: Observable<string[]>;
@@ -73,7 +73,8 @@ export class PetFiltersComponent implements OnInit {
     this.type$ = this.service.getSpecies();
     this.locations$ = this.service.getLocations();
   }
-  public clearSort(type: InputSort) {
+
+  public clearSort(type: InputSort): void {
     switch (type) {
       case 'price':
         this.sortPrice = null;

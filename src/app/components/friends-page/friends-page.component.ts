@@ -15,8 +15,10 @@ import { getFriends } from '../../store/actions';
   styleUrl: './friends-page.component.scss'
 })
 export class FriendsPageComponent implements OnInit {
-  public friends$!: Observable<Friends[]>
+  public friends$!: Observable<Friends[]>;
+
   constructor(private store: Store){}
+  
   ngOnInit(){
    this.friends$ = this.store.select(selectFriends)
    this.friends$.pipe(first()).subscribe(data => {

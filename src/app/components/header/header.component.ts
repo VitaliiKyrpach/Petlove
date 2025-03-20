@@ -34,20 +34,20 @@ export class HeaderComponent implements OnInit {
   public isRefresh: boolean = false;
   public isOpen: boolean = false;
   public path: string = '';
+
   constructor(private router: Router, private store: Store) {}
+
   ngOnInit(): void {
     this.store.select(selectIsLoggedIn).subscribe((data) => {
       this.isLogged = data;
-      console.log('isLoggedIn', data);
     });
     this.store.select(selectIsRefresh).subscribe((data) => {
       this.isRefresh = data;
-      console.log('isRefresh', data);
     });
+
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        console.log(event.url);
         if (event.url.length > 1) {
           this.path = event.url.replace('/', '');
         } else {
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   public openMenu(): void {
     this.isOpen = true;
   }
-  public closeMenu() {
+  public closeMenu(): void {
     this.isOpen = false;
   }
 }

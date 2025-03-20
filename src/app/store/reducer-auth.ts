@@ -104,7 +104,6 @@ export const authReducer = createReducer(
     };
   }),
   on(getUserSuccess, (state, { data }) => {
-    console.log(data);
     return {
       ...state,
       user: {
@@ -251,7 +250,6 @@ export const authReducer = createReducer(
     };
   }),
   on(resetError, (state) => {
-    console.log('error null');
     return {
       ...state,
       notification: {
