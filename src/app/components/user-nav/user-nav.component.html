@@ -3,7 +3,11 @@
     type="button"
     (click)="handleLogout()"
     class="logout"
-    [ngClass]="{ home: path === '/', header: place === 'header' }"
+    [ngClass]="{
+      home: path === '/',
+      header: place === 'header',
+      mobile: place === 'mobileMenu'
+    }"
   >
     LOG OUT
   </button>
