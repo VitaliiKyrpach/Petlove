@@ -5,6 +5,25 @@
     <img class="img" [src]="data.imgURL" alt="pet photo" />
   </div>
   <h3 class="cardTitle">{{ data.title }}</h3>
+  <div class="starWrapper">
+    @for( star of stars; track star; let idx = $index){ @if(idx <= activeStars -
+    1){
+    <div class="star active">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-star'"
+        [width]="'18px'"
+      ></svg-icon-sprite>
+    </div>
+    }@else{
+    <div class="star">
+      <svg-icon-sprite
+        [src]="'images/sprite.svg#icon-star'"
+        [width]="'18px'"
+      ></svg-icon-sprite>
+    </div>
+    } }
+    <p class="count">{{ data.popularity | rating }}</p>
+  </div>
   <ul class="bioList">
     <li>
       <p class="bioTitle">Name</p>
@@ -28,17 +47,17 @@
   <div class="bottom">
     <button type="button" class="add" (click)="handleFav()">
       @if(isFavorite){
-        <span>Remove</span>
-        <svg-icon-sprite
+      <span>Remove</span>
+      <svg-icon-sprite
         [src]="'images/sprite.svg#icon-trash'"
         [width]="'18px'"
-        ></svg-icon-sprite>
+      ></svg-icon-sprite>
       }@else{
-        <span>Add to</span>
-        <svg-icon-sprite
+      <span>Add to</span>
+      <svg-icon-sprite
         [src]="'images/sprite.svg#icon-heart'"
         [width]="'18px'"
-        ></svg-icon-sprite>
+      ></svg-icon-sprite>
       }
     </button>
     <button type="button" class="contact">Contact</button>

@@ -6,17 +6,17 @@
   height: 100%;
   padding: 40px 28px;
   @media screen and (min-width: 768px) {
-  padding: 40px 70px;
+    padding: 40px 70px;
   }
   .imgWrapper {
     position: relative;
     width: 120px;
-    height: 12  0px;
+    height: 12 0px;
     margin: 0px auto 20px;
     @media screen and (min-width: 768px) {
       width: 150px;
-    height: 150px;
-    margin-bottom: 16px;
+      height: 150px;
+      margin-bottom: 16px;
     }
   }
   .img {
@@ -33,16 +33,37 @@
       line-height: 1.33;
     }
   }
+  .starWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 20px;
+    .star {
+      width: 16px;
+      height: 16px;
+      color: $color-primary-transparent;
+      &.active {
+        color: $color-secondary;
+      }
+    }
+    .count {
+      position: relative;
+      top: 1px;
+      font-size: 14px;
+    }
+  }
   .bioList {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
     margin-bottom: 16px;
-    @media screen and (min-width: 375px){
+    @media screen and (min-width: 375px) {
       justify-content: center;
       gap: 22px;
     }
-    @media screen and (min-width: 768px){
-    gap: 28px;
+    @media screen and (min-width: 768px) {
+      gap: 28px;
     }
   }
   .bioTitle {

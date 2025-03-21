@@ -5,12 +5,13 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { Store } from '@ngrx/store';
 import { addToFavorites, removeFromFav } from '../../store/actions';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { RatingPipe } from '../../pipes/rating.pipe';
 
 @Component({
   selector: 'app-pet-card',
   standalone: true,
-  imports: [IconSpriteModule, DatePipe, CommonModule],
+  imports: [IconSpriteModule, DatePipe, CommonModule, RatingPipe],
   templateUrl: './pet-card.component.html',
   styleUrl: './pet-card.component.scss',
 })
@@ -28,16 +29,16 @@ export class PetCardComponent implements OnInit {
   ngOnInit(): void {
     this.favorites$.subscribe((favorites) => {
       this.isFavorite = favorites.includes(this.pet._id);
-       });
+    });
   }
 
   public openModal(): void {
     const data = {
       id: this.pet._id,
-      isFavorite$: this.favorites$
-    }
+      isFavorite$: this.favorites$,
+    };
     if (this.isLoggedIn) {
-      this.modalService.openModal('petModal',  data);
+      this.modalService.openModal('petModal', data);
     } else {
       this.modalService.openModal('attention');
     }
@@ -45,10 +46,10 @@ export class PetCardComponent implements OnInit {
 
   public addToFav(id: string): void {
     if (this.isLoggedIn) {
-      if(this.isFavorite){
-        this.store.dispatch(removeFromFav({id}))
-      } else{
-           this.store.dispatch(addToFavorites({ id }));
+      if (this.isFavorite) {
+        this.store.dispatch(removeFromFav({ id }));
+      } else {
+        this.store.dispatch(addToFavorites({ id }));
       }
     } else {
       this.modalService.openModal('attention');

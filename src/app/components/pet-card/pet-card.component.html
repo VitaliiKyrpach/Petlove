@@ -14,10 +14,24 @@
     [src]="pet.imgURL"
     alt="pet photo"
   />
-  <div>
+  <div class="titleWrapper">
     <h3 class="cardTitle">{{ pet.title }}</h3>
+    <div class="starWrapper">
+      <div class="star">
+        <svg-icon-sprite
+          [src]="'images/sprite.svg#icon-star'"
+          [width]="'18px'"
+        ></svg-icon-sprite>
+      </div>
+      <p class="count">{{ pet.popularity | rating }}</p>
+    </div>
   </div>
-  <ul class="dataList">
+  <ul
+    class="dataList"
+    [ngClass]="{
+      viewed: place === 'viewed' || place === 'favorites',
+    }"
+  >
     <li>
       <p class="bioTitle">Name</p>
       <p class="bio">{{ pet.name }}</p>

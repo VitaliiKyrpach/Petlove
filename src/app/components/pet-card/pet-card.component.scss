@@ -37,15 +37,35 @@
       width: 320px;
     }
   }
+  .titleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .starWrapper {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    .count {
+      position: relative;
+      top: 1px;
+      font-size: 14px;
+    }
+  }
   .cardTitle {
     font-weight: 700;
     font-size: 16px;
     line-height: 1.25;
-    margin-bottom: 8px;
     @media screen and (min-width: 768px) {
       font-size: 18px;
       line-height: 1.33;
     }
+  }
+  .star {
+    width: 16px;
+    height: 16px;
+    color: $color-secondary;
   }
   .img {
     width: 100%;
@@ -73,6 +93,11 @@
     }
     @media screen and (min-width: 1280px) {
       gap: 20px;
+    }
+    &.viewed {
+      @media screen and (min-width: 1280px) {
+        gap: 16px;
+      }
     }
   }
   .bioTitle {
