@@ -30,8 +30,8 @@ export class AuthService {
     return this.http.patch<UserResponse>(`${this.api}/users/current/edit`, data);
   }
   public expiredToken(token: string): boolean {
-    const {exp}: TokenDecode = jwtDecode(token);
+    const {iat}: TokenDecode = jwtDecode(token);
     const currentTime = Date.now() / 1000;
-    return exp < currentTime ? true : false;
+    return iat + 120000 < currentTime ? true : false;
   }
 }

@@ -51,16 +51,18 @@
       <svg-icon-sprite
         [src]="'images/sprite.svg#icon-trash'"
         [width]="'18px'"
+        [class]="'iconSvg'"
       ></svg-icon-sprite>
       }@else{
       <span>Add to</span>
       <svg-icon-sprite
         [src]="'images/sprite.svg#icon-heart'"
         [width]="'18px'"
+        [class]="'iconSvg'"
       ></svg-icon-sprite>
       }
     </button>
-    <button type="button" class="contact">Contact</button>
+    <button type="button" class="contact" (click)="handleContact()">Contact</button>
   </div>
 </div>
 }

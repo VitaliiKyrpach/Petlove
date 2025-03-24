@@ -100,11 +100,9 @@ export class dataEffects {
         return this.authService.logIn(action.data).pipe(
           map((data) => {
             localStorage.setItem('token', data.token);
-            console.log('effect',data)
             return loginSuccess({ data });
           }),
           catchError((error) => {
-            console.log('ERROR', error)
             return of(loginFailure({ error }));
           })
         );
@@ -139,7 +137,6 @@ export class dataEffects {
             return getUserSuccess({ data });
           }),
           catchError((error) => {
-            console.log('ERROR', error)
             return of(getUserFailure({ error }));
           })
         );
@@ -173,7 +170,6 @@ export class dataEffects {
             return editUserSuccess({ data });
           }),
           catchError((error) => {
-            console.log(error);
             return of(editUserFailure({ error }));
           })
         );
@@ -192,13 +188,11 @@ export class dataEffects {
                 return addToFavSuccess({ data });
               }),
               catchError((error) => {
-                console.log(error);
                 return of(addToFavFailure({ error }));
               })
             );
           }),
           catchError((error) => {
-            console.log(error);
             return of(addToFavFailure({ error }));
           })
         );
@@ -217,13 +211,11 @@ export class dataEffects {
                 return removeFromFavSuccess({ data });
               }),
               catchError((error) => {
-                console.log(error);
                 return of(removeFromFavFailure({ error }));
               })
             );
           }),
           catchError((error) => {
-            console.log(error);
             return of(removeFromFavFailure({ error }));
           })
         );
@@ -237,11 +229,9 @@ export class dataEffects {
       switchMap((action) => {
         return this.service.addNewPet(action.data).pipe(
           map((data) => {
-            console.log('effect', data);
             return addNewPetSuccess({ data: data.pets });
           }),
           catchError((error) => {
-            console.log(error);
             return of(addNewPetFailure({ error }));
           })
         );

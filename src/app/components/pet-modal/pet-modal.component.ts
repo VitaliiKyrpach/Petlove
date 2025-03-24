@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { addToFavorites, removeFromFav } from '../../store/actions';
 import { Subject, takeUntil } from 'rxjs';
 import { RatingPipe } from '../../pipes/rating.pipe';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-pet-modal',
@@ -23,7 +24,8 @@ export class PetModalComponent implements OnInit, OnDestroy {
   public data!: Pet;
   public activeStars!: number;
   private service = inject(ServiceService);
-
+  private modalService = inject(ModalService);
+  
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -45,6 +47,9 @@ export class PetModalComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(addToFavorites({ id: this.card.id }));
     }
+  }
+  public handleContact(): void{
+    this.modalService.openModal('contact')
   }
   ngOnDestroy(): void {
     this.onDestroy$.next();

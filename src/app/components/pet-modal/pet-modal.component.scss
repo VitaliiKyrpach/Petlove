@@ -109,6 +109,7 @@
     padding: 8px 14px;
   }
   .add {
+    position: relative;
     @extend %button;
     width: 160px;
     height: 48px;
@@ -119,6 +120,10 @@
     gap: 8px;
     align-items: center;
     justify-content: center;
+  }
+  .iconSvg{
+    position: relative;
+    top: 2px
   }
   .contact {
     @extend %button;

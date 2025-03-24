@@ -7,7 +7,7 @@ import { CardData, User } from '../interfaces/interfaces';
 })
 export class ModalService {
   public modalOpen$ = new BehaviorSubject<boolean>(false);
-  public data$ = new Subject< CardData |  User | null>();
+  public data$ = new Subject< CardData | User | null>();
   public type$ = new Subject<string>();
   constructor() {}
   public openModal(type: string, data?: CardData | User): void {

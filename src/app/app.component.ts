@@ -40,9 +40,6 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('token');
       } else {
         this.store.dispatch(getUser());
-        // this.store.select(selectUser).subscribe((data) => {
-        //   const favorites = data.noticesFavorites.map((cards) => cards._id);
-        // });
       }
     }
   }
